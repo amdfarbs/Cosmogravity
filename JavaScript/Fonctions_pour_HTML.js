@@ -76,6 +76,7 @@ function savevalues(darkenergy=false){
         localStorage.setItem('Omégal0',document.getElementById('Omégal0').value);
     }
     localStorage.setItem('optionsOmégar0',document.getElementById('optionsOmégar0').value);
+    localStorage.setItem('test',document.getElementById('OptionsOmégak0').checked);
 }
 -
 function loadvalues(darkenergy=false){
@@ -92,6 +93,12 @@ function loadvalues(darkenergy=false){
             document.getElementById('Omégal0').value = localStorage.getItem('Omégal0');
         }
         document.getElementById('optionsOmégar0').value = localStorage.getItem('optionsOmégar0');
+        if (localStorage.getItem('test') === "true") {
+            document.getElementById('OptionsOmégak0').checked = true;
+        }
+        else {
+            document.getElementById('OptionsOmégak0').checked = false;
+        }
         localStorage.clear();
     }
 }
