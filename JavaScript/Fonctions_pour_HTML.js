@@ -78,7 +78,7 @@ function savevalues(darkenergy=false){
     localStorage.setItem('optionsOmégar0',document.getElementById('optionsOmégar0').value);
     localStorage.setItem('test',document.getElementById('OptionsOmégak0').checked);
 }
--
+
 function loadvalues(darkenergy=false){
     if (localStorage.getItem("T0")!==null){
         document.getElementById('T0').value = localStorage.getItem('T0');
