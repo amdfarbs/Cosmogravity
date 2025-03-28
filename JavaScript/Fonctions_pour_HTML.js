@@ -67,6 +67,7 @@ function savevalues(darkenergy=false){
     localStorage.setItem('H0',document.getElementById('H0').value);
     localStorage.setItem('optionsMonofluide',document.getElementById('optionsMonofluide').value);
     localStorage.setItem('Omégam0',document.getElementById('Omégam0').value);
+    document.getElementById('OptionsOmégak0').checked = true;
     if (darkenergy){
         localStorage.setItem('OmégaDE0',document.getElementById('OmégaDE0').value);
         localStorage.setItem('w0',document.getElementById('w0').value);
@@ -76,7 +77,7 @@ function savevalues(darkenergy=false){
     }
     localStorage.setItem('optionsOmégar0',document.getElementById('optionsOmégar0').value);
 }
-
+-
 function loadvalues(darkenergy=false){
     if (localStorage.getItem("T0")!==null){
         document.getElementById('T0').value = localStorage.getItem('T0');
@@ -442,4 +443,5 @@ function enregistrer() {
 
         lien.click()
     })
+
 }
