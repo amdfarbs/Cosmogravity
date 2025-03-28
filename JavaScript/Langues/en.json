@@ -178,7 +178,7 @@
 		"infobulle_t2": "Time associated with z2",
 		"infobulle_delta_t": "Difference in time between z1 and z2",
 		"infobulle_z1": "Value of the spectral redshift at the time of photon emission",
-		"infobulle_z2": "Value of the spectral redshift at the time of photon reception",
+		"infobulle_z2": "Value of the spectral redshift at the time of photon emission",
 		"infobulle_Ie": "Photometric intensity of the star",
 		"infobulle_dz1": "Apparent diameter distance of z1",
 		"infobulle_dz2": "Apparent diameter distance of z2",
@@ -191,7 +191,9 @@
 		"infobulle_E2": "Brightness of z2",
 		"infobulle_mu1": "Distance modulus of z1",
 		"infobulle_mu2": "Distance modulus of z2",
-
+		"infoOmégaR0Sortie": "Current radiation density parameter.",
+		"infoOmégaK0Sortie": "Current curvature density parameter.",
+		
 		"avertissement_z_grand":"z&#x2248;-1 (possible numerical error)"
 	},
 
