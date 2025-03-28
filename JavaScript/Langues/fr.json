@@ -181,8 +181,8 @@
 		"infobulle_t1": "Temps associé à z1",
 		"infobulle_t2": "Temps associé à z2",
 		"infobulle_delta_t": "Différence de temps entre z1 et z2",
-		"infobulle_z1":"Valeur du décalage spectra au temps de l'émission du photon",
-		"infobulle_z2":"Valeur du décalage spectra au temps de la réception du photon",
+		"infobulle_z1":"Valeur du décalage spectral au temps de l'émission du photon",
+		"infobulle_z2":"Valeur du décalage spectral au temps de l'émission du photon",
 		"infobulle_Ie":"Intensité photométrique de l'astre",
 		"infobulle_dz1":"Distance diamètre apparent de z1",
 		"infobulle_dz2":"Distance diamètre apparent de z2",
@@ -195,7 +195,9 @@
 		"infobulle_E2":"Eclat de z2",
 		"infobulle_mu1":"module de distance de z1",
 		"infobulle_mu2":"module de distance de z2",
-
+		"infoOmégaR0Sortie": "Paramètre de densité de rayonnement actuel.",
+		"infoOmégaK0Sortie": "Paramètre de densité de courbure actuel.",
+		
 		"avertissement_z_grand":"z&#x2248;-1 (erreur numérique possible)"
 	},
 

@@ -305,6 +305,8 @@ function texte_univers_calculette() {
     document.getElementById("Monofluide_optionK").innerHTML = texte.univers.monofluide_K
     document.getElementById("infoOmégam0").title = texte.univers.infoOmégam0
     document.getElementById("infoOmégaLDE0").title = texte.univers.infoOmégaL0
+    document.getElementById("infoOmégar0Sortie").title = texte.calculette.infoOmégaR0Sortie
+    document.getElementById("infoOmégak0Sortie").title = texte.calculette.infoOmégaK0Sortie
     document.getElementById("label_optionsOmégar0").insertAdjacentHTML("beforeend", texte.univers.label_Omégar0)
     document.getElementById("infoOmégaR0").title = texte.univers.infoOmégaR0
     document.getElementById("Omégar0_optionRFC_et_Neutrinos").innerHTML = texte.univers.Omégar0_RFC_et_Neutrinos
