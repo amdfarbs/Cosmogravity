@@ -320,7 +320,7 @@ function updateUnivers() {
         equa_diff_2 = equa_diff_2_DE;
     }
     
-    if (document.getElementById("Omégal0")){
+
         //affichage des horizons seulement dans certains cas
         if (!(document.getElementById('optionsMonofluide').value === "optionNull")){//aucun horizons si univers monofluide (existe bien mais implementation pour le futur car différente formule)
             document.getElementById('horizonEvenement').style.display="none";
@@ -367,7 +367,8 @@ function updateUnivers() {
                 document.getElementById("he_enregistrer").innerHTML = "d<sub>e<sub>0</sub></sub> = " + dm_horizon_evenement_pc.toExponential(4) + " pc"
             }
         }
-    }   
+
+       
 
         
     if (document.getElementById("Omégal0")) {

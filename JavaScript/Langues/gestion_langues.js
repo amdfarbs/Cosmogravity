@@ -283,8 +283,8 @@ function texte_univers_DE() {
     document.getElementById("infoOmégar0Sortie").title = texte.univers.infoOmégaR0Sortie
     document.getElementById("infoOmégak0Sortie").title = texte.univers.infoOmégaK0Sortie
     document.getElementById("Temps").innerHTML = texte.univers.Temps
-    // document.getElementById("evenement").innerHTML = texte.univers.evenement
-    // document.getElementById("particule").innerHTML = texte.univers.particules
+    document.getElementById("evenement").innerHTML = texte.univers.evenement
+    document.getElementById("particule").innerHTML = texte.univers.particules
 
     document.getElementById("Enregistrer").innerHTML = texte.univers.Enregistrer
     document.getElementById("infoNomFichier").title = texte.univers.infoNomFichier
