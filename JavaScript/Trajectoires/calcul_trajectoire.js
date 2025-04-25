@@ -2248,33 +2248,13 @@ function creation_blocs(context,mobilefactor,rmaxjson,r0ou2){
 	context.stroke();
 }
 //Agrandir taille case si nécessaire
-function autoResizeInput(inputElement) {
-    // Create a temporary span element to measure text width
-    const tempSpan = document.createElement('span');
-    tempSpan.style.visibility = 'hidden';
-    tempSpan.style.whiteSpace = 'nowrap';
-    tempSpan.style.font = window.getComputedStyle(inputElement).font;
-    document.body.appendChild(tempSpan);
+function resizeInput(item) {
+	item.style.width = Math.max(100, 7.86 * (2 + item.value.length)) + 'px';}
 
-    // Function to update input width
-    const updateWidth = () => {
-        // Set span text to match input value
-        tempSpan.textContent = inputElement.value || inputElement.placeholder || '';
-        // Adjust input width based on span width
-        inputElement.style.width = `${tempSpan.offsetWidth + 10}px`; // Add padding for better appearance
-    };
-
-    // Attach event listener to handle typing in the input
-    inputElement.addEventListener('input', updateWidth);
-
-    // Initialize width on page load or when placeholder is set
-    updateWidth();
-
-
-}
-
-// Apply auto-resizing to all relevant inputs
-document.querySelectorAll('.dynamic-input').forEach(autoResizeInput);
+  // Appeler la fonction au chargement de la page
+  window.addEventListener('load', function() {
+	resizeInput(document.getElementById('M'));
+  });
 
 //----------------------------------------------------{choixTrajectoire}----------------------------------------------------
 
