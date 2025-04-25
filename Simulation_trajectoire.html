@@ -125,12 +125,14 @@ ga('send', 'pageview');
 
                 <div id="masse_div" class="input-wrapper">
                     <label id="massetxt" title= ""  for="M">M (kg) =</label>
-                    <input id="M" value="2e39" align="left" maxlength="10" type="text" size="10" onchange="verifnbr();initialisationGenerale(lenbdefusees)" oninput="initialisationGenerale(lenbdefusees)" autocomplete="off">
+                    <input type="number" id="M" class="dynamic-input" value="2e39" placeholder="Masse" onchange="verifnbr();initialisationGenerale(lenbdefusees)" oninput="initialisationGenerale(lenbdefusees)" autocomplete="off">
+					
+
                 </div>
         
                 <div id="rayon_phy_div" class="input-wrapper">
                     <label title="" for="r_phy" id="txt_rphysique"></label>
-			        <input id="r_phy" value="0" align="left" maxlength="10" type="text" size="10" onchange="verifnbr();initialisationGenerale(lenbdefusees)" autocomplete="off">
+			        <input type="number" id="r_phy" class="dynamic-input" value="0" placeholder="RayonPhysique" onchange="verifnbr();initialisationGenerale(lenbdefusees)" autocomplete="off">
                 </div>
         
             </div>
