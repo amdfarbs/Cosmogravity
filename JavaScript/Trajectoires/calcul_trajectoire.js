@@ -1721,7 +1721,7 @@ function animate(compteur,mobile,mobilefactor)
 			}
 
 		}
-			
+				
 		//-----------------------------------------------------AFFICHAGE DES DIODES------------------------------------------------
 
 		/* Diode pour le gradient 
@@ -1730,64 +1730,59 @@ function animate(compteur,mobile,mobilefactor)
 			gradient > 7 -------  rouge
 		*/
 
-		if (Number(fm) <= 1) 
-		{
-			document.getElementById('DivClignotante'+compteur.toString()).innerHTML = " <img src='../Images/diodever.gif' height='14px' />";
+		//  Gestion de la diode gradient accélération
+	if (element2.value == "mobile"){
+		if (Number(fm) <= 1) {
+			document.getElementById('DivClignotante'+compteur.toString()).innerHTML = " <img src='./Images/diodever.gif' height='14px' />";
 			document.getElementById('DivClignotante'+compteur.toString()).style.color = "green";
 		} 
-		else if (1 < Number(fm) && Number(fm) < 7) 
-		{
-			document.getElementById('DivClignotante'+compteur.toString()).innerHTML = " <img src='../Images/diodejaune.gif' height='14px' />";
+		else if (1 < Number(fm) && Number(fm) < 7) {
+			document.getElementById('DivClignotante'+compteur.toString()).innerHTML = " <img src='./Images/diodejaune.gif' height='14px' />";
 			document.getElementById('DivClignotante'+compteur.toString()).style.color = "yellow";
 		} 
-		else if (Number(fm) >= 7)
-		{
-			document.getElementById('DivClignotante'+compteur.toString()).innerHTML = " <img src='../Images/dioderouge.gif' height='14px' />";
+		else if (Number(fm) >= 7) {
+			document.getElementById('DivClignotante'+compteur.toString()).innerHTML = " <img src='./Images/dioderouge.gif' height='14px' />";
 			document.getElementById('DivClignotante'+compteur.toString()).style.color = "red";
 		} 
-		
-		/* Diode pour le decalage spectrale
-			decalage < 0.3 ------- vert
-			0.3< decalage < 0.5 ------- jaune
-			decalage > 0.5 -------  rouge
-		*/
-		if (Number(deltam_sur_m) <= 0.3) 
-		{
-			document.getElementById('DivClignotantePilot'+compteur.toString()).innerHTML = " <img src='../Images/diodever.gif' height='14px' />";
+	}
+
+	    //  Gestion de la diode réserve d'énergie
+	if (element2.value == "mobile"){
+		if (Number(deltam_sur_m) <= 0.3) {
+			document.getElementById('DivClignotantePilot'+compteur.toString()).innerHTML = " <img src='./Images/diodever.gif' height='14px' />";
 			document.getElementById('DivClignotantePilot'+compteur.toString()).style.color = "green";
 		} 
-		else if (0.3 < Number(deltam_sur_m) && Number(deltam_sur_m) < 0.5) 
-		{
-			document.getElementById('DivClignotantePilot'+compteur.toString()).innerHTML = " <img src='../Images/diodejaune.gif' height='14px' />";
+		else if (0.3 < Number(deltam_sur_m) && Number(deltam_sur_m) < 0.5) {
+			document.getElementById('DivClignotantePilot'+compteur.toString()).innerHTML = " <img src='./Images/diodejaune.gif' height='14px' />";
 			document.getElementById('DivClignotantePilot'+compteur.toString()).style.color = "yellow";
 		} 
-		else if (Number(deltam_sur_m) >= 0.5) 
-		{
-			document.getElementById('DivClignotantePilot'+compteur.toString()).innerHTML = " <img src='../Images/dioderouge.gif' height='14px' />";
+		else if (Number(deltam_sur_m) >= 0.5) {
+			document.getElementById('DivClignotantePilot'+compteur.toString()).innerHTML = " <img src='./Images/dioderouge.gif' height='14px' />";
 			document.getElementById('DivClignotantePilot'+compteur.toString()).style.color = "red";
 		} 
+	}	
 	
 		/* Diode pour le nombre de g ressenti
-			g_ressenti < 4 ------- vert
-			4 < g_ressenti < 9------- jaune
-			g_ressenti > 9 -------  rouge
-		*/ 
-		if (nombre_de_g_calcul_memo <= 4) 
-		{
-			document.getElementById('DivClignotanteNbG'+compteur.toString()).innerHTML = " <img src='../Images/diodever.gif' height='14px' />";
-			document.getElementById('DivClignotanteNbG'+compteur.toString()).style.color = "green";
-		} 
-		else if (4 < nombre_de_g_calcul_memo && nombre_de_g_calcul_memo <= 9) 
-		{
-			document.getElementById('DivClignotanteNbG'+compteur.toString()).innerHTML = " <img src='../Images/diodejaune.gif' height='14px' />";
-			document.getElementById('DivClignotanteNbG'+compteur.toString()).style.color = "yellow";
-		} 
-		else if (nombre_de_g_calcul_memo > 9) 
-		{
-			document.getElementById('DivClignotanteNbG'+compteur.toString()).innerHTML = " <img src='../Images/dioderouge.gif' height='14px' />";
-			document.getElementById('DivClignotanteNbG'+compteur.toString()).style.color = "red";
-		} 
-	}
+     g_ressenti < 4 ------- vert
+     4 < g_ressenti < 9------- jaune
+     g_ressenti > 9 ------- rouge
+     */
+    // Gestion de la diode nombre de g ressenti
+    /*if (element2.value == "mobile") {
+        if (nombre_de_g_calcul_memo <= 4) {
+            document.getElementById('DivClignotanteNbG'+compteur.toString()).innerHTML = " <img src='../Images/diodever.gif' height='14px' />";
+            document.getElementById('DivClignotanteNbG'+compteur.toString()).style.color = "green";
+        }
+        else if (4 < nombre_de_g_calcul_memo && nombre_de_g_calcul_memo <= 9) {
+            document.getElementById('DivClignotanteNbG'+compteur.toString()).innerHTML = " <img src='../Images/diodejaune.gif' height='14px' />";
+            document.getElementById('DivClignotanteNbG'+compteur.toString()).style.color = "yellow";
+        }
+        else if (nombre_de_g_calcul_memo > 9) {
+            document.getElementById('DivClignotanteNbG'+compteur.toString()).innerHTML = " <img src='../Images/dioderouge.gif' height='14px' />";
+            document.getElementById('DivClignotanteNbG'+compteur.toString()).style.color = "red";
+        }
+    }
+		/*
 
 	/*si tout les Timers relié aux mobiles sont supprimés on sait que ya plus de calculs en cours alors on met qu'on a fini la simulation*/
 	if (Object.keys(Timer.instances).length === 0) 
@@ -1796,7 +1791,7 @@ function animate(compteur,mobile,mobilefactor)
 		document.getElementById("pause/resume").style.display='none';  //on enleve les 2 buttons pause
 		document.getElementById('bouton_pause').style.display='none'; 
 	}
-
+	} 
 }   
 
 //----------------------------------------------------{Vr_mob}----------------------------------------------------
@@ -2252,6 +2247,14 @@ function creation_blocs(context,mobilefactor,rmaxjson,r0ou2){
 
 	context.stroke();
 }
+//Agrandir taille case si nécessaire
+function resizeInput(item) {
+	item.style.width = Math.max(100, 7.86 * (2 + item.value.length)) + 'px';}
+
+  // Appeler la fonction au chargement de la page
+  window.addEventListener('load', function() {
+	resizeInput(document.getElementById('M'));
+  });
 
 //----------------------------------------------------{choixTrajectoire}----------------------------------------------------
 
