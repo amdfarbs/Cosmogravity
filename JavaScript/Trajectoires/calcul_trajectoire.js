@@ -1167,7 +1167,10 @@ function trajectoire(compteur,mobile) {
           			Delta_L= (X_eff + Delta_E/mobile.E)*mobile.L;
 					puissance_instant=Math.abs((Delta_E/mobile.E))*c*c/(temps_acceleration);
 					deltam_sur_m = deltam_sur_m + Math.abs(Delta_E/mobile.E); //Calcul de l'énergie ΔE/E consommée au total. 
-
+					if (deltam_sur_m>0.5){ //Si l'énergie consommée est supérieure à 50% de l'énergie initiale, je ne peux plus piloter.
+						pilotage_possible = false;  
+						deltam_sur_m = 0.5; //Je bloque la valeur à 50%.
+					}
 					mobile.L = mobile.L + Delta_L; //Calcul du nouveau L associé à ce mobile.
 					mobile.E = mobile.E + Delta_E; //Calcul du nouveau E associé à ce mobile. 
 									
