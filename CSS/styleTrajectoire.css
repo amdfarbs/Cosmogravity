@@ -393,22 +393,15 @@ body {
     }
 }
 
-.bouton_mobile{
-    width:30px;
-    height:30px;
-    opacity:0.8;
-    -moz-transition: opacity 0.5s;
-    -webkit-transition: opacity 0.5s;
-    -o-transition: opacity 0.5s;
+.bouton_mobile {
+    width: 30px;
+    height: 30px;
+    opacity: 0.8;
+    transition: opacity 0.5s ease;
   }
   
-  .bouton_mobile:hover{
-    width:30px;
-    height:30px;
-    opacity:1;
-    -moz-transition: opacity 0.7s;
-    -webkit-transition: opacity 0.7s;
-    -o-transition: opacity 0.7s;
+  .bouton_mobile:hover {
+    opacity: 1;
   }
   
 
@@ -633,7 +626,7 @@ tbody td {
 /*Pour l'avertissement*/
   .avertissement_style {
     background-color:  rgba(69, 145, 148, 0.925);
-    color: white;
+    color: rgb(0, 0, 0);
     font-size: 17px;
     /*border: none;*/
     border-color: black;
