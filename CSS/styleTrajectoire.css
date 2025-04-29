@@ -3,9 +3,6 @@ body {
     font-size: 15;
     background-color: rgba(212, 215, 228, 0.85);
 }
-.dynamic-input {
-    transition: width 0.2s ease;
-}
 
 
 /*Pour les boutons verts (start,save...)*/
