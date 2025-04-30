@@ -65,3 +65,8 @@
     color: rgb(64, 47, 221);
 }
 
+.grille_graph {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+}
