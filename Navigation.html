@@ -71,11 +71,11 @@
 
     <div id="txt-langue" class="item bas">
         <div class="sousMenu" style="top: 100%; left: 0">
-            <button onclick="choixLangueFr(); document.location.reload();" class="item" style="cursor: pointer">
+            <button id="LangueFr" onclick="choixLangueFr(); document.location.reload();" class="item" style="cursor: pointer">
                 Français
             </button>
 
-            <button onclick="choixLangueEn(); document.location.reload();" class="item" style="cursor: pointer">
+            <button id="LangueEn" onclick="choixLangueEn(); document.location.reload();" class="item" style="cursor: pointer">
                 English
             </button>
         </div>
@@ -86,6 +86,7 @@
     <a id="txt-LUPM" href="https://www.lupm.in2p3.fr/enseignement/cosmogravity/" class="item bas" style="text-decoration: none; cursor: pointer"></a>
 </nav>
 
+<script src="./JavaScript/Fonctions_pour_HTML.js"></script>
 <script>
     texte_navigation()
 </script>

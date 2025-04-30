@@ -16,6 +16,8 @@ nav {
     margin-top: 0;
     margin-left: 0;
     z-index: 900;
+    font-size: 1rem;
+
 }
 
     .menu {
@@ -41,7 +43,6 @@ nav {
             cursor: default;
             color: rgb(255, 255, 255);
             font-family: Arial, sans-serif;
-            font-size: 1rem;
 
             display: flex;
             justify-content: center;
