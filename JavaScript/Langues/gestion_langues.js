@@ -152,6 +152,21 @@ function o_recupereJson() {
 // Fonctions chargeant le texte pour chaque page
 
 function texte_navigation() {
+    let isHome = localStorage.getItem("isHome")
+    let size
+    console.log(isHome)
+    if (isHome == "True") {
+        size = "1.5rem";
+    } else {
+        size= "1rem";
+    }
+    document.getElementById("nav").style.fontSize = size
+    document.getElementById("txt-théorieTrajectoire").style.fontSize = size
+    document.getElementById("txt-tutoTrajectoire").style.fontSize = size
+    document.getElementById("txt-théorieUnivers").style.fontSize = size
+    document.getElementById("txt-tutoUnivers").style.fontSize = size
+    document.getElementById("LangueFr").style.fontSize = size
+    document.getElementById("LangueEn").style.fontSize = size
     let texte = o_recupereJson();
     document.getElementById("txt-acceuil").innerHTML = texte.nav.acceuil
     document.getElementById("txt-univers").insertAdjacentHTML("beforeend", texte.nav.univers)
@@ -176,6 +191,7 @@ function texte_navigation() {
     document.getElementById("txt-propos").insertAdjacentHTML("beforeend", texte.nav.propos)
     document.getElementById("txt-LUPM").insertAdjacentHTML("beforeend", texte.nav.LUPM)
 }
+
 
 function text_page_index() {
     let texte = o_recupereJson();
