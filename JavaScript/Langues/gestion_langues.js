@@ -154,7 +154,6 @@ function o_recupereJson() {
 function texte_navigation() {
     let isHome = localStorage.getItem("isHome")
     let size
-    console.log(isHome)
     if (isHome == "True") {
         size = "1.5rem";
     } else {
