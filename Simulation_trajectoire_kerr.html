@@ -371,6 +371,7 @@
   <!-- Scripts pour resize et tracer du graphique au chargement + chargement du menu-->
 <script src="./JavaScript/Trajectoires/nav.jquery.min.js"></script>
 <script>
+	localStorage.setItem("isHome","False");
 	$(function() {
 		$("#positionNav").load("Navigation.html");
 	});
