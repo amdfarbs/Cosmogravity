@@ -248,8 +248,51 @@
                             <input id="graphique_pas" type="number" value="300" step="1" min="1" max="10000" oninput="validity.valid||(value='');">
                         </div>
                     </fieldset>
-
                     <fieldset>
+                        <div class="grille_graph">
+                            <div class="fonction_t">
+                                <div>
+                                    <input type="button" id="fonction_dit" name="dependance" value="plot">
+                                    <label id="label_button_dit" class="infobullable" for="fonction_dit">di(t)</label>
+                                </div>
+                               
+                                <div>
+                                    <input type="button" id="fonction_omegait" name="dependance" value="plot">
+                                    <label id="label_button_omegait" class="infobullable" for="fonction_omegait">omegai(t)</label>
+                                </div>
+                                 <div>
+                                    <input type="button" id="fonction_zt" name="dependance" value="plot">
+                                    <label id="label_button_zt" class="infobullable" for="fonction_zt">z(t)</label>
+                                </div>
+                            </div>
+                            <div class="fonction_z">
+                                <div>
+                                    <input type="button" id="fonction_diz" name="dependance" value="plot">
+                                    <label id="label_button_diz" class="infobullable" for="fonction_diz">di(z)</label>
+                                </div>
+                                <div>
+                                    <input type="button" id="fonction_omegaiz" name="dependance" value="plot">
+                                    <label id="label_button_omegaiz" class="infobullable" for="fonction_omegaiz">omegai(z)</label>
+                                </div>
+                                
+                                <div>
+                                    <input type="button" id="fonction_tz" name="dependance" value="plot">
+                                    <label id="label_button_tz" class="infobullable" for="fonction_tz">t(z)</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <input type="checkbox" id="check_log_abs">
+                                <label id="label_check_log_abs" class="infobullable" for="check_log_abs">abscisse log</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="check_log_ord">
+                                <label id="label_check_log_ord" class="infobullable" for="check_log_ord">ordonnée log</label>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <!-- <fieldset>
                         <div>
                             <input type="radio" id="radio_fonction_z" name="dependance" checked>
                             <label id="label_radio_fonction_z" class="infobullable" for="radio_fonction_z"></label>
@@ -266,8 +309,8 @@
                             <input type="checkbox" id="check_log_ord">
                             <label id="label_check_log_ord" class="infobullable" for="check_log_ord"></label>
                         </div>
-                    </fieldset>
-                    <fieldset>
+                    </fieldset> -->
+                    <!-- <fieldset>
                         <div>
                             Affichage
                         </div>        
@@ -295,7 +338,7 @@
                             <input type="checkbox" id="check_z_t" class="check_graph" onchange="document.getElementById('graphique_z_t').classList.toggle('cache')">
                             <label for="check_z_t">z(t)</label>
                         </div>
-                    </fieldset>
+                    </fieldset> -->
                 </div>
                 <br>
                 <div style="display: flex; flex-direction: row;gap: 10px;">
@@ -552,7 +595,7 @@
 
 <script>
     texte_univers_calculette();
-
+    localStorage.setItem("isHome","False");
     $(function() {
         $("#positionNav").load("Navigation.html");
     });
