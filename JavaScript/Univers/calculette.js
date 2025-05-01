@@ -196,9 +196,8 @@ function abscisse_t(fonction_EouF,zmin,zmax,pas){
 }
 
 
-function generer_graphique_distance(fonction_EouF){
+function generer_graphique_distance(fonction_EouF,is_t){
     let start_temps=Date.now();
-    ordonnee_t=document.getElementById('radio_fonction_t').checked;
     log_abs=document.getElementById('check_log_abs').checked;
     log_ord=document.getElementById('check_log_ord').checked;
     //on récupère les variables utiles pour les calcules
@@ -239,7 +238,7 @@ function generer_graphique_distance(fonction_EouF){
     }
 
 
-    if (ordonnee_t){
+    if (is_t==1){
         plot_title = "d<sub>i</sub>(t)";
         xaxis_title=xaxis_temps;
         graphdivid="graphique_d_t"
@@ -255,7 +254,6 @@ function generer_graphique_distance(fonction_EouF){
             abscisse_calcul=sortieabscisse[0];
             abscisse_display=sortieabscisse[1];
         }
-        document.getElementById('check_distance_t').checked=true;
         document.getElementById('graphique_d_t').classList.remove('cache');
     }else{
         plot_title = "d<sub>i</sub>(z)";
@@ -263,7 +261,7 @@ function generer_graphique_distance(fonction_EouF){
         graphdivid="graphique_d_z"
         abscisse_calcul = fonction_log_lin(zmin,zmax,pas);
         abscisse_display=abscisse_calcul;
-        document.getElementById('check_distance_z').checked=true;
+        // document.getElementById('check_distance_z').checked=true;
         document.getElementById('graphique_d_z').classList.remove('cache');
     }
 
@@ -368,9 +366,8 @@ function generer_graphique_distance(fonction_EouF){
     document.getElementById("temps_calcul_graph").innerHTML = "Le calcul a duré : " + (Date.now()-start_temps) + " millisecondes !";
 }
 
-function generer_graphique_Omega(fonction_EouF){
+function generer_graphique_Omega(fonction_EouF,is_t){
     let start_temps=Date.now();
-    ordonnee_t=document.getElementById('radio_fonction_t').checked;
     log_abs=document.getElementById('check_log_abs').checked;
     log_ord=document.getElementById('check_log_ord').checked;
 
@@ -389,7 +386,7 @@ function generer_graphique_Omega(fonction_EouF){
     }
 
 
-    if (ordonnee_t){
+    if (is_t==1){
         plot_title = "&#x3A9;<sub>i</sub>(t)";
         xaxis_title=xaxis_temps;
         graphdivid="graphique_omega_t"
@@ -407,7 +404,6 @@ function generer_graphique_Omega(fonction_EouF){
         }
         
 
-        document.getElementById('check_omega_t').checked=true;
         document.getElementById('graphique_omega_t').classList.remove('cache');
     }else{
         plot_title = "&#x3A9;<sub>i</sub>(z)";
@@ -415,7 +411,6 @@ function generer_graphique_Omega(fonction_EouF){
         graphdivid="graphique_omega_z"
         abscisse_calcul = linear_scale(zmin,zmax,pas);
         abscisse_display=abscisse_calcul;
-        document.getElementById('check_omega_z').checked=true;
         document.getElementById('graphique_omega_z').classList.remove('cache');
     }
 
@@ -560,9 +555,8 @@ function generer_graphique_Omega(fonction_EouF){
     document.getElementById("temps_calcul_graph").innerHTML = "Le calcul a duré : " + (Date.now()-start_temps) + " millisecondes !";
 }
 
-function generer_graphique_TempsDecalage(fonction_EouF){
+function generer_graphique_TempsDecalage(fonction_EouF, is_t){
     let start_temps=Date.now();
-    ordonnee_t=document.getElementById('radio_fonction_t').checked;
     log_abs=document.getElementById('check_log_abs').checked;
     log_ord=document.getElementById('check_log_ord').checked;
 
@@ -611,7 +605,7 @@ function generer_graphique_TempsDecalage(fonction_EouF){
 		showarrow: false}];
 
     
-    if (ordonnee_t){
+    if (is_t == 1){
         yaxis_TempsDecalage=yaxis_decalage;
         plot_title = "z(t)";
         xaxis_title=xaxis_temps;
@@ -619,14 +613,12 @@ function generer_graphique_TempsDecalage(fonction_EouF){
         let abscisse_temp=zArr; //inverser les deux axes
         zArr=abscisse;
         abscisse=abscisse_temp;
-        document.getElementById('check_z_t').checked=true;
         document.getElementById('graphique_z_t').classList.remove('cache');
     }else{
         yaxis_TempsDecalage=yaxis_temps;
         plot_title = "t(z)";
         xaxis_title = "z";
         graphdivid="graphique_t_z"
-        document.getElementById('check_t_z').checked=true;
         document.getElementById('graphique_t_z').classList.remove('cache');
     }
 

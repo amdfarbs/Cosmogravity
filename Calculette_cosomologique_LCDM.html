@@ -252,31 +252,31 @@
                         <div class="grille_graph">
                             <div class="fonction_t">
                                 <div>
-                                    <input type="button" id="fonction_dit" name="dependance" value="plot">
+                                    <input type="button" id="fonction_dit" name="dependance" value="plot" onclick="generer_graphique_distance(fonction_E,1)">
                                     <label id="label_button_dit" class="infobullable" for="fonction_dit">di(t)</label>
                                 </div>
                                
                                 <div>
-                                    <input type="button" id="fonction_omegait" name="dependance" value="plot">
+                                    <input type="button" id="fonction_omegait" name="dependance" value="plot" onclick="generer_graphique_Omega(fonction_E,1)">
                                     <label id="label_button_omegait" class="infobullable" for="fonction_omegait">omegai(t)</label>
                                 </div>
                                  <div>
-                                    <input type="button" id="fonction_zt" name="dependance" value="plot">
+                                    <input type="button" id="fonction_zt" name="dependance" value="plot" onclick="generer_graphique_TempsDecalage(fonction_E,1)">
                                     <label id="label_button_zt" class="infobullable" for="fonction_zt">z(t)</label>
                                 </div>
                             </div>
                             <div class="fonction_z">
                                 <div>
-                                    <input type="button" id="fonction_diz" name="dependance" value="plot">
+                                    <input type="button" id="fonction_diz" name="dependance" value="plot" onclick="generer_graphique_distance(fonction_E,0)">
                                     <label id="label_button_diz" class="infobullable" for="fonction_diz">di(z)</label>
                                 </div>
                                 <div>
-                                    <input type="button" id="fonction_omegaiz" name="dependance" value="plot">
+                                    <input type="button" id="fonction_omegaiz" name="dependance" value="plot" onclick="generer_graphique_Omega(fonction_E,0)">
                                     <label id="label_button_omegaiz" class="infobullable" for="fonction_omegaiz">omegai(z)</label>
                                 </div>
                                 
                                 <div>
-                                    <input type="button" id="fonction_tz" name="dependance" value="plot">
+                                    <input type="button" id="fonction_tz" name="dependance" value="plot" onclick="generer_graphique_TempsDecalage(fonction_E,0)">
                                     <label id="label_button_tz" class="infobullable" for="fonction_tz">t(z)</label>
                                 </div>
                             </div>
@@ -292,7 +292,7 @@
                             </div>
                         </div>
                     </fieldset>
-                    <fieldset style="display: none">
+                    <!-- <fieldset style="display: none">
                         <div>
                             <input type="button" id="radio_fonction_z" name="dependance" checked>
                             <label id="label_radio_fonction_z" class="infobullable" for="radio_fonction_z"></label>
@@ -301,22 +301,14 @@
                             <input type="button" id="radio_fonction_t" name="dependance">
                             <label id="label_radio_fonction_t" class="infobullable" for="radio_fonction_t"></label>
                         </div>
-                        <div>
-                            <input type="checkbox" id="check_log_abs">
-                            <label id="label_check_log_abs" class="infobullable" for="check_log_abs"></label>
-                        </div> -->
-                       <div>
-                            <input type="checkbox" id="check_log_ord">
-                            <label id="label_check_log_ord" class="infobullable" for="check_log_ord"></label>
-                        </div>
-                    </fieldset>
+                    </fieldset> -->
                 </div>
                 <br>
-                <div style="display: flex; flex-direction: row;gap: 10px;">
+                <!-- <div style="display: flex; flex-direction: row;gap: 10px;">
                     <button id="bouton_distance" class="petitBoutton" onclick="generer_graphique_distance(fonction_E)">Distance</button><br>
                     <button id="bouton_omega" class="petitBoutton" onclick="generer_graphique_Omega(fonction_E)">Omega</button><br>
                     <button id="bouton_tempsdecalage" class="petitBoutton" onclick="generer_graphique_TempsDecalage(fonction_E)">Temps/Decalage</button>
-                </div>
+                </div> -->
                 <div>
                     <span id="temps_calcul_graph" style="color:blue"></span>
                 </div>
