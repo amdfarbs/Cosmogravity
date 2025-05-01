@@ -261,56 +261,48 @@
                             <input id="graphique_pas" type="number" value="300" step="1" min="1" max="10000" oninput="validity.valid||(value='');">
                         </div>
                     </fieldset>
-
                     <fieldset>
-                        <div>
-                            <input type="radio" id="radio_fonction_z" name="dependance" checked>
-                            <label id="label_radio_fonction_z" class="infobullable" for="radio_fonction_z"></label>
+                        <div class="grille_graph">
+                            <div class="fonction_t">
+                                <div>
+                                    <input type="button" id="fonction_dit" name="dependance" value="plot" onclick="generer_graphique_distance(fonction_F,1)">
+                                    <label id="label_button_dit" class="infobullable" for="fonction_dit">di(t)</label>
+                                </div>
+                               
+                                <div>
+                                    <input type="button" id="fonction_omegait" name="dependance" value="plot" onclick="generer_graphique_Omega(fonction_F,1)">
+                                    <label id="label_button_omegait" class="infobullable" for="fonction_omegait">omegai(t)</label>
+                                </div>
+                                 <div>
+                                    <input type="button" id="fonction_zt" name="dependance" value="plot" onclick="generer_graphique_TempsDecalage(fonction_F,1)">
+                                    <label id="label_button_zt" class="infobullable" for="fonction_zt">z(t)</label>
+                                </div>
+                            </div>
+                            <div class="fonction_z">
+                                <div>
+                                    <input type="button" id="fonction_diz" name="dependance" value="plot" onclick="generer_graphique_distance(fonction_F,0)">
+                                    <label id="label_button_diz" class="infobullable" for="fonction_diz">di(z)</label>
+                                </div>
+                                <div>
+                                    <input type="button" id="fonction_omegaiz" name="dependance" value="plot" onclick="generer_graphique_Omega(fonction_F,0)">
+                                    <label id="label_button_omegaiz" class="infobullable" for="fonction_omegaiz">omegai(z)</label>
+                                </div>
+                                
+                                <div>
+                                    <input type="button" id="fonction_tz" name="dependance" value="plot" onclick="generer_graphique_TempsDecalage(fonction_F,0)">
+                                    <label id="label_button_tz" class="infobullable" for="fonction_tz">t(z)</label>
+                                </div>
+                            </div>
                         </div>
                         <div>
-                            <input type="radio" id="radio_fonction_t" name="dependance">
-                            <label id="label_radio_fonction_t" class="infobullable" for="radio_fonction_t"></label>
-                        </div>
-                        <div>
-                            <input type="checkbox" id="check_log_abs">
-                            <label id="label_check_log_abs" class="infobullable" for="check_log_abs"></label>
-                        </div>
-                        <div>
-                            <input type="checkbox" id="check_log_ord">
-                            <label id="label_check_log_ord" class="infobullable" for="check_log_ord"></label>
-                        </div>
-                        <div>
-                            <input type="checkbox" id="omegaDE_normalise" checked>
-                            <label id="label_omegaDE_normalise" class="infobullable" for="omegaDE_normalise"></label>
-                        </div>
-                    </fieldset>                    
-                    <fieldset>
-                        <div>
-                            Affichage
-                        </div>        
-                        <div>
-                            <input type="checkbox" id="check_distance_z" class="check_graph" onchange="document.getElementById('graphique_d_z').classList.toggle('cache')">
-                            <label for="check_distance_z">distance(z)</label>
-                        </div>                
-                        <div>
-                            <input type="checkbox" id="check_distance_t" class="check_graph" onchange="document.getElementById('graphique_d_t').classList.toggle('cache')">
-                            <label for="check_distance_t">distance(t)</label>
-                        </div>
-                        <div>
-                            <input type="checkbox" id="check_omega_z" class="check_graph" onchange="document.getElementById('graphique_omega_z').classList.toggle('cache')">
-                            <label for="check_omega_z">omega(z)</label>
-                        </div>
-                        <div>
-                            <input type="checkbox" id="check_omega_t" class="check_graph" onchange="document.getElementById('graphique_omega_t').classList.toggle('cache')">
-                            <label for="check_omega_t">omega(t)</label>
-                        </div>
-                        <div>
-                            <input type="checkbox" id="check_t_z" class="check_graph" onchange="document.getElementById('graphique_t_z').classList.toggle('cache')">
-                            <label for="check_t_z">t(z)</label>
-                        </div>
-                        <div>
-                            <input type="checkbox" id="check_z_t" class="check_graph" onchange="document.getElementById('graphique_z_t').classList.toggle('cache')">
-                            <label for="check_z_t">z(t)</label>
+                            <div>
+                                <input type="checkbox" id="check_log_abs">
+                                <label id="label_check_log_abs" class="infobullable" for="check_log_abs">abscisse log</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="check_log_ord">
+                                <label id="label_check_log_ord" class="infobullable" for="check_log_ord">ordonnée log</label>
+                            </div>
                         </div>
                     </fieldset>
                 </div>

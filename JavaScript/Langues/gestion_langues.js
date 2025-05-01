@@ -346,11 +346,11 @@ function texte_univers_calculette() {
     document.getElementById("geometrie_titre").innerHTML = texte.calculette.geometrie_titre;
     document.getElementById("photometrie_titre").innerHTML = texte.calculette.photometrie_titre;
 
-    document.getElementById("bouton_distance").innerHTML = texte.calculette.bouton_distance;
-    document.getElementById("bouton_omega").innerHTML = texte.calculette.bouton_omega;
-    document.getElementById("bouton_tempsdecalage").innerHTML = texte.calculette.bouton_tempsdecalage;
-    document.getElementById("label_radio_fonction_z").innerHTML = texte.calculette.dependz;
-    document.getElementById("label_radio_fonction_t").innerHTML = texte.calculette.dependt;
+    // // document.getElementById("bouton_distance").innerHTML = texte.calculette.bouton_distance;
+    // document.getElementById("bouton_omega").innerHTML = texte.calculette.bouton_omega;
+    // document.getElementById("bouton_tempsdecalage").innerHTML = texte.calculette.bouton_tempsdecalage;
+    // document.getElementById("label_radio_fonction_z").innerHTML = texte.calculette.dependz;
+    // document.getElementById("label_radio_fonction_t").innerHTML = texte.calculette.dependt;
     document.getElementById("label_check_log_abs").innerHTML = texte.calculette.abscisselog;
     document.getElementById("label_check_log_ord").innerHTML = texte.calculette.ordonneelog;
     if (document.getElementById("OmégaDE0")){
@@ -366,13 +366,13 @@ function texte_univers_calculette() {
     document.getElementById("label_zmin").title = texte.calculette.infobulle_zmin;
     document.getElementById("label_zmax").title = texte.calculette.infobulle_zmax;
     document.getElementById("label_pas").title = texte.calculette.infobulle_pas;
-    document.getElementById("label_radio_fonction_z").title = texte.calculette.infobulle_dependz;
-    document.getElementById("label_radio_fonction_t").title = texte.calculette.infobulle_dependt;
+    // document.getElementById("label_radio_fonction_z").title = texte.calculette.infobulle_dependz;
+    // document.getElementById("label_radio_fonction_t").title = texte.calculette.infobulle_dependt;
     document.getElementById("label_check_log_abs").title = texte.calculette.infobulle_logabsc;
     document.getElementById("label_check_log_ord").title = texte.calculette.infobulle_logord;
-    document.getElementById("bouton_distance").title = texte.calculette.infobulle_dist;
-    document.getElementById("bouton_omega").title = texte.calculette.infobulle_omega;
-    document.getElementById("bouton_tempsdecalage").title = texte.calculette.infobulle_tempsdecalage;
+    // document.getElementById("bouton_distance").title = texte.calculette.infobulle_dist;
+    // document.getElementById("bouton_omega").title = texte.calculette.infobulle_omega;
+    // document.getElementById("bouton_tempsdecalage").title = texte.calculette.infobulle_tempsdecalage;
     document.getElementById("label_omega_totalz1").title = texte.calculette.infobulle_omegatotalz1;
     document.getElementById("label_omega_totalz2").title = texte.calculette.infobulle_omegatotalz2;
 
