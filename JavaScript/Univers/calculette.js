@@ -464,11 +464,7 @@ function generer_graphique_Omega(fonction_EouF,is_t){
         abscisse_calcul.forEach(i => {
             Or = Omega_r(0)*Math.pow((1+i),4)/fonction_EouF(i,true);
             Om = Omega_m(0)*Math.pow((1+i),3)/fonction_EouF(i,true);
-            if (document.getElementById('omegaDE_normalise').checked){
-                Ol=Omega_DE(0)*fonction_Y(1/(1+i))/fonction_F(i,true)
-            }else{
-                Ol= Omega_DE(0) / fonction_F(i,true);
-            }
+            Ol= Omega_DE(0) / fonction_F(i,true);
             Ok = 1-Or-Om-Ol;    
 
             OrArr.push(Or);
