@@ -354,7 +354,7 @@ function texte_univers_calculette() {
     document.getElementById("label_check_log_abs").innerHTML = texte.calculette.abscisselog;
     document.getElementById("label_check_log_ord").innerHTML = texte.calculette.ordonneelog;
     if (document.getElementById("OmégaDE0")){
-        document.getElementById("label_omegaDE_normalise").innerHTML = texte.calculette.omegaDE_normalise
+        // document.getElementById("label_omegaDE_normalise").innerHTML = texte.calculette.omegaDE_normalise
     }
 
     xaxis_temps=texte.calculette.xaxis_temps;
