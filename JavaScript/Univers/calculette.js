@@ -197,6 +197,13 @@ function abscisse_t(fonction_EouF,zmin,zmax,pas){
 
 
 function generer_graphique_distance(fonction_EouF,is_t){
+    if (localStorage.getItem("affichage_d_t")=="True" && is_t == 1) {
+        document.getElementById('graphique_d_t').classList.add('cache')
+        localStorage.setItem("affichage_d_t","False") 
+    } else if (localStorage.getItem("affichage_d_z")=="True" && is_t == 0) {
+        document.getElementById('graphique_d_z').classList.add('cache')
+        localStorage.setItem("affichage_d_z","False")
+    } else {
     let start_temps=Date.now();
     log_abs=document.getElementById('check_log_abs').checked;
     log_ord=document.getElementById('check_log_ord').checked;
@@ -239,6 +246,7 @@ function generer_graphique_distance(fonction_EouF,is_t){
 
 
     if (is_t==1){
+        localStorage.setItem("affichage_d_t","True") 
         plot_title = "d<sub>i</sub>(t)";
         xaxis_title=xaxis_temps;
         graphdivid="graphique_d_t"
@@ -256,6 +264,7 @@ function generer_graphique_distance(fonction_EouF,is_t){
         }
         document.getElementById('graphique_d_t').classList.remove('cache');
     }else{
+        localStorage.setItem("affichage_d_z","True") 
         plot_title = "d<sub>i</sub>(z)";
         xaxis_title = "z";
         graphdivid="graphique_d_z"
@@ -364,9 +373,17 @@ function generer_graphique_distance(fonction_EouF,is_t){
     Plotly.newPlot(graphdivid,data,layout,{displaylogo: false});
 
     document.getElementById("temps_calcul_graph").innerHTML = "Le calcul a duré : " + (Date.now()-start_temps) + " millisecondes !";
+    }
 }
 
 function generer_graphique_Omega(fonction_EouF,is_t){
+    if (localStorage.getItem("affichage_omega_t")=="True" && is_t == 1) {
+        document.getElementById('graphique_omega_t').classList.add('cache')
+        localStorage.setItem("affichage_omega_t","False") 
+    } else if (localStorage.getItem("affichage_omega_z")=="True" && is_t == 0) {
+        document.getElementById('graphique_omega_z').classList.add('cache')
+        localStorage.setItem("affichage_omega_z","False")
+    } else {
     let start_temps=Date.now();
     log_abs=document.getElementById('check_log_abs').checked;
     log_ord=document.getElementById('check_log_ord').checked;
@@ -405,6 +422,7 @@ function generer_graphique_Omega(fonction_EouF,is_t){
         
 
         document.getElementById('graphique_omega_t').classList.remove('cache');
+        localStorage.setItem("affichage_omega_t","True")
     }else{
         plot_title = "&#x3A9;<sub>i</sub>(z)";
         xaxis_title = "z";
@@ -412,6 +430,7 @@ function generer_graphique_Omega(fonction_EouF,is_t){
         abscisse_calcul = linear_scale(zmin,zmax,pas);
         abscisse_display=abscisse_calcul;
         document.getElementById('graphique_omega_z').classList.remove('cache');
+        localStorage.setItem("affichage_omega_z","True")
     }
 
 
@@ -549,9 +568,16 @@ function generer_graphique_Omega(fonction_EouF,is_t){
     Plotly.newPlot(graphdivid,data,layout,{displaylogo: false});
 
     document.getElementById("temps_calcul_graph").innerHTML = "Le calcul a duré : " + (Date.now()-start_temps) + " millisecondes !";
+    }
 }
-
 function generer_graphique_TempsDecalage(fonction_EouF, is_t){
+    if (localStorage.getItem("affichage_z_t")=="True" && is_t == 1) {
+        document.getElementById('graphique_z_t').classList.add('cache')
+        localStorage.setItem("affichage_z_t","False") 
+    } else if (localStorage.getItem("affichage_t_z")=="True" && is_t == 0) {
+        document.getElementById('graphique_t_z').classList.add('cache')
+        localStorage.setItem("affichage_t_z","False")
+    } else {
     let start_temps=Date.now();
     log_abs=document.getElementById('check_log_abs').checked;
     log_ord=document.getElementById('check_log_ord').checked;
@@ -610,12 +636,14 @@ function generer_graphique_TempsDecalage(fonction_EouF, is_t){
         zArr=abscisse;
         abscisse=abscisse_temp;
         document.getElementById('graphique_z_t').classList.remove('cache');
+        localStorage.setItem("affichage_z_t","True")
     }else{
         yaxis_TempsDecalage=yaxis_temps;
         plot_title = "t(z)";
         xaxis_title = "z";
         graphdivid="graphique_t_z"
         document.getElementById('graphique_t_z').classList.remove('cache');
+        localStorage.setItem("affichage_t_z","True")
     }
 
     if (log_abs){
@@ -666,6 +694,7 @@ function generer_graphique_TempsDecalage(fonction_EouF, is_t){
     Plotly.newPlot(graphdivid,data,layout,{displaylogo: false});
 
     document.getElementById("temps_calcul_graph").innerHTML = "Le calcul a duré : " + (Date.now()-start_temps) + " millisecondes !";
+}
 }
 
 //-----------------Calcul diamètre---------
