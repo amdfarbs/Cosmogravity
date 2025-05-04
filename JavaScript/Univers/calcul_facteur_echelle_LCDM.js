@@ -166,5 +166,31 @@ function affichage_site_LCDM() {
     }
 
     graphique_facteur_echelle(donnee, debutEtFin, age_univers)
+    downloadCSV(donnee[0],donnee[1])
     update_point()
 }
+
+function downloadCSV(array1, array2, filename = "data.csv") {
+    // Combine the arrays: assume equal length and 2 columns
+    const rows = array1.map((val, i) => [val, array2[i]]);
+  
+    // Add headers (optional)
+    rows.unshift(["Column1", "Column2"]);
+  
+    // Convert to CSV string
+    const csvContent = rows.map(e => e.join(",")).join("\n");
+  
+    // Create a Blob from the CSV string
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+  
+    // Create a download link and trigger it
+    const link = document.createElement("a");
+    const url = URL.createObjectURL(blob);
+    link.setAttribute("href", url);
+    link.setAttribute("download", filename);
+    link.style.visibility = "hidden";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+  
