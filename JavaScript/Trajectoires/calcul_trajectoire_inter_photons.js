@@ -1687,27 +1687,88 @@ function calcul_rmax(L,r0){
 /**
  * Cette fonction est associé aux bouttons pause, avec les quels on peut pauser et reprendre la simulaiton.
  */
-function pausee() 
-{
-	//si le Timer est en marche
-	if (!Timer.paused) 
-	{
-		Timer.paused = true;  //on met le Timer en pause
-		document.getElementById("pause/resume").innerHTML =texte.pages_trajectoire.bouton_resume; //on change le texte du boutton pause en haut
-		document.getElementById("indic_calculs").innerHTML = texte.pages_trajectoire.calcul_enpause; //on change le texte qui s'affiche "Calculs en pause"
-		document.getElementById("pau").title = texte.pages_trajectoire.bouton_lecture; //infobulle du boutton pause en bas
-		document.getElementById("pau").src = "../Images/lecture.png"; //on change l'icone du boutton pause en bas
-		
-	} 
-	//si le Timer est en pause
-	else 
-	{
-			Timer.paused = false;//on met le Timer en marche
-			document.getElementById("pause/resume").innerHTML = texte.pages_trajectoire.bouton_pause; //on change l'icone du boutton pause en bas
-			document.getElementById("indic_calculs").innerHTML = texte.pages_trajectoire.calcul_encours;//on change le texte qui s'affiche "Calculs en cours"
-			document.getElementById("pau").title = texte.pages_trajectoire.bouton_pause;//infobulle du boutton pause en bas
-			document.getElementById("pau").src = "../Images/pause.png"; //on change l'icone du boutton pause en bas
-	}
+function pausee() {
+    // Vérification que texte.pages_trajectoire existe
+    if (!texte || !texte.pages_trajectoire) {
+        console.error("Erreur: l'objet texte.pages_trajectoire n'est pas défini");
+        return;
+    }
+
+    //si le Timer est en marche
+    if (!Timer.paused) {
+        Timer.paused = true; //on met le Timer en pause
+        
+        // Modification du bouton supérieur
+        const pauseResumeButton = document.getElementById("pause/resume");
+        if (pauseResumeButton) {
+            pauseResumeButton.innerHTML = texte.pages_trajectoire.bouton_resume;
+        } else {
+            console.error("Élément 'pause/resume' introuvable");
+        }
+        
+        // Modification de l'indicateur de calcul
+        const indicCalcElement = document.getElementById("indic_calculs");
+        if (indicCalcElement) {
+            indicCalcElement.innerHTML = texte.pages_trajectoire.calcul_enpause;
+        }
+        
+        // Modification du bouton inférieur
+        const pauseButton = document.getElementById("pau");
+        if (pauseButton) {
+            pauseButton.title = texte.pages_trajectoire.bouton_lecture;
+            
+            // Vérification de l'existence de l'image avant de l'assigner
+            const img = new Image();
+            img.onload = function() {
+                pauseButton.src = "../Images/lecture.png";
+            };
+            img.onerror = function() {
+                console.error("Image 'lecture.png' introuvable");
+                // Utiliser une image par défaut ou une solution alternative
+                pauseButton.textContent = "▶"; // Utilisation d'un symbole Unicode comme solution de secours
+            };
+            img.src = "../Images/lecture.png";
+        } else {
+            console.error("Élément 'pau' introuvable");
+        }
+    }
+    //si le Timer est en pause
+    else {
+        Timer.paused = false; //on met le Timer en marche
+        
+        // Modification du bouton supérieur
+        const pauseResumeButton = document.getElementById("pause/resume");
+        if (pauseResumeButton) {
+            pauseResumeButton.innerHTML = texte.pages_trajectoire.bouton_pause;
+        }
+        
+        // Modification de l'indicateur de calcul
+        const indicCalcElement = document.getElementById("indic_calculs");
+        if (indicCalcElement) {
+            indicCalcElement.innerHTML = texte.pages_trajectoire.calcul_encours;
+        }
+        
+        // Modification du bouton inférieur
+        const pauseButton = document.getElementById("pau");
+        if (pauseButton) {
+            pauseButton.title = texte.pages_trajectoire.bouton_pause;
+            
+            // Vérification de l'existence de l'image avant de l'assigner
+            const img = new Image();
+            img.onload = function() {
+                pauseButton.src = "../Images/pause.png";
+            };
+            img.onerror = function() {
+                console.error("Image 'pause.png' introuvable");
+                // Utiliser une image par défaut ou une solution alternative
+                pauseButton.textContent = "⏸"; // Utilisation d'un symbole Unicode comme solution de secours
+            };
+            img.src = "../Images/pause.png";
+        }
+    }
+    
+    // Déboggage - afficher l'état actuel
+    console.log("État Timer.paused:", Timer.paused);
 }
 
 //----------------------------------------------------{rafraichir2}----------------------------------------------------
