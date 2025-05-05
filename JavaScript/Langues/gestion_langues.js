@@ -152,7 +152,7 @@ function o_recupereJson() {
 // Fonctions chargeant le texte pour chaque page
 
 function texte_navigation() {
-    let isHome = localStorage.getItem("isHome")
+    let isHome = sessionStorage.getItem("isHome")
     let size
     if (isHome == "True") {
         size = "1.5rem";
