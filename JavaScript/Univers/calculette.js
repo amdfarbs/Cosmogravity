@@ -898,3 +898,36 @@ function affichage_t_inverse(fonction_EouF){
 
     document.getElementById('output_z_tem').value=arrondie_affichage(z_em);
 }
+
+function update_rho(isDE){
+	c = Number(document.getElementById("c").value);
+	G = Number(document.getElementById("G").value);
+	h = Number(document.getElementById("h").value);
+	k = Number(document.getElementById("k").value);
+	t0 = Number(document.getElementById("T0").value);
+	h0 = Number(document.getElementById("H0").value);
+	omegam0 = Number(document.getElementById("Omégam0").value);
+		
+	sigma = (2*Math.pow(Math.PI, 5)*Math.pow(k, 4))/(15*Math.pow(h, 3)*Math.pow(c, 2));
+	rho_r = (4*sigma*Math.pow(t0, 4))/(Math.pow(c, 3));
+	rho_r = rho_r.toExponential(4);
+	rho_m = omegam0*3 * Math.pow(h0*1e3/(3.085677581*1e22),2) / (8 * Math.PI * G); // 1parsec=3.085677581*1e16 mètres, H0 est en Km/s/Mpc donc h0*1e3/(3.085677581*1e22),2) nous ramene aux unités SI
+	rho_m = rho_m.toExponential(4);
+	
+	//const_cosmo = Number(document.getElementById("lambda_cosmo_const").value);
+	
+	
+	if(isDE==1){
+		omegaDE0 = Number(document.getElementById("OmégaDE0").value);
+		rho_de = omegaDE0 *3 * Math.pow(h0*1e3/(3.085677581*1e22),2) / (8 * Math.PI * G); 
+		rho_de = rho_de.toExponential(4);
+		document.getElementById("rho_de").innerHTML = rho_de;
+	} else {
+		omegalambda0 = Number(document.getElementById("Omégal0").value);
+		rho_lambda = omegalambda0 *3 * Math.pow(h0*1e3/(3.085677581*1e22),2) / (8 * Math.PI * G);  
+		rho_lambda = rho_lambda.toExponential(4);
+		document.getElementById("rho_l").innerHTML = rho_lambda;
+	}
+		document.getElementById("rho_m").innerHTML = rho_m;
+		document.getElementById("rho_r").innerHTML = rho_r;
+}

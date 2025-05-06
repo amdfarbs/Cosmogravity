@@ -395,10 +395,14 @@ function updateCalculette() {
     document.getElementById("Omégam0").value = Omega_m(0).toExponential(4)
 
     if (document.getElementById("Omégal0")) {
+        update_rho(0)
         resizeCanvas()
         update_graphe_interactif()
         update_point()
+    } else {
+        update_rho(1)
     }
+
 }
 
 /**
