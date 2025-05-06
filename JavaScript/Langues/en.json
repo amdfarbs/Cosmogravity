@@ -25,7 +25,7 @@
 	{
 		"txtUnivers":"Friedmann-Lemaître universes models and cosmological calculator",
 		"txtTrajectoires":"Trajectories in the metrics of Schwarzschild and of Kerr",
-		"version": "Version beta 2.5.2 (06/05/2025)"
+		"version": "Version beta 2.5.2 (07/05/2025)"
 	},
 
 	"univers": {
@@ -99,7 +99,6 @@
 		"bouton_calculer":"Calculate",
 		"unitéanneelumiere":"ly",
 		"unitéannee":"yr",
-
 		"facteurechelle":"Scale Factor",
 		"generateur_graphique_titre":"Graph Generator",
 		"diametre_apparent_titre":"Apparent Diameter",
@@ -144,6 +143,12 @@
 		"infobulle_D_m": "value of the actual diameter in meters",
 		"infobulle_D_kpc": "value of the actual diameter in kiloparsecs",
 		"infobulle_theta": "value of the apparent diameter in arcseconds",
+
+		"densités_titre":"Volumic masses",
+		"infobulle_rho_m":"Matter density",
+		"infobulle_rho_r":"Radiation density",
+		"infobulle_rho_l":"Λ density",
+		"infobulle_rho_DE":"Dark energy density",
 
 		"infobulle_Calcul_inverse": "Allows obtaining the values of z corresponding to a distance or time by dichotomy",
 		"infobulle_dm_inv": "value of the metric distance in meters",
