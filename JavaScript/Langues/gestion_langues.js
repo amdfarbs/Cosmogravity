@@ -152,7 +152,7 @@ function o_recupereJson() {
 // Fonctions chargeant le texte pour chaque page
 
 function texte_navigation() {
-    let isHome = localStorage.getItem("isHome")
+    let isHome = sessionStorage.getItem("isHome")
     let size
     if (isHome == "True") {
         size = "1.5rem";
@@ -329,6 +329,7 @@ function texte_univers_calculette() {
     document.getElementById("Omégar0_optionRien").innerHTML = texte.univers.Omégar0_Rien
     document.getElementById("infoOmégaK0").title = texte.univers.infoOmégaK0
     document.getElementById("label_optionsOmégak0").insertAdjacentHTML("beforeend", texte.univers.label_Omégak0)
+    document.getElementById("rho").insertAdjacentHTML("beforeend", texte.calculette.densités_titre)
 
     document.querySelectorAll(".unite_annee").forEach(function(i){i.innerHTML=texte.calculette.unitéannee});
     document.querySelectorAll(".unite_al").forEach(function(i){i.innerHTML=texte.calculette.unitéanneelumiere});
@@ -394,11 +395,13 @@ function texte_univers_calculette() {
     document.getElementById("label_omegaR_z1").title = texte.calculette.infobulle_orz1;
     document.getElementById("label_omegaM_z1").title = texte.calculette.infobulle_omz1;
     document.getElementById("label_omegaK_z1").title = texte.calculette.infobulle_okz1;
+    document.getElementById("label_rho_m").title = texte.calculette.infobulle_rho_m
+    document.getElementById("label_rho_r").title = texte.calculette.infobulle_rho_r
     if (document.getElementById("label_omegaL_z1")){
         document.getElementById("label_omegaL_z1").title = texte.calculette.infobulle_olz1;
         document.getElementById("label_omegaL_z2").title = texte.calculette.infobulle_olz2;
 
-
+        document.getElementById("label_rho_l").title = texte.calculette.infobulle_rho_l
         document.getElementById('bouton_calculer_horizon').innerHTML=texte.calculette.bouton_calculer;
         document.getElementById("horizons_titre").innerHTML = texte.calculette.horizons_titre;
         document.getElementById("horizons_titre").title = texte.calculette.infobulle_horizon;
@@ -407,6 +410,7 @@ function texte_univers_calculette() {
         document.getElementById("label_dpart").title = texte.calculette.infobulle_dpart;
 
     }else{
+        document.getElementById("label_rho_de").title = texte.calculette.infobulle_rho_DE
         document.getElementById("label_omegaDE_z1").title = texte.calculette.infobulle_odez1;
         document.getElementById("label_omegaDE_z2").title = texte.calculette.infobulle_odez2;
         document.getElementById("label_omegaDEN_z1").title = texte.calculette.infobulle_odenz1;
