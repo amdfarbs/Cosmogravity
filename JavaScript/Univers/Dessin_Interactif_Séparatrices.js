@@ -278,6 +278,35 @@ function update_graphe_interactif() {
     context.fillText(texte.grapheSéparatrices.oscillant, 0, 0);
     context.restore();
     */
+
+    //Tracé de la séparatrice acceleration/deceleration
+    context.beginPath()
+    context.strokeStyle = "#000000";
+
+    for (let omegam = omegaM0Min; omegam <= omegaM0Max; omegam += 0.01) {
+        let omegal = 0.5* omegam; // Calcul de ΩΛ pour chaque Ωm
+        let y = omegal0_to_px(omegal); // Conversion en coordonnées x
+        let x = omegam0_to_px(omegam); // Conversion en coordonnées y
+
+        if (omegam === omegaM0Min) {
+            context.moveTo(x, y); // Point de départ
+        } else if (omegaM0Max >= omegam && omegam >= omegaM0Min ) {
+                context.lineTo(x, y); // Relier les points
+        }
+    }
+    context.stroke(); // Tracer la séparatrice
+
+    context.save(); 
+    context.font = '14px Arial'
+    context.translate(omegam0_to_px(1.5), omegal0_to_px(0.75));
+    context.rotate(-Math.PI/10);
+    context.fillStyle = "#000000"
+    context.fillText(texte.grapheSéparatrices.accelere, 0, -15);
+    context.fillText(texte.grapheSéparatrices.decelere,0 , 15);
+    context.restore();
+
+
+
 }
 
 function update_point() {
