@@ -232,7 +232,9 @@
 		"pBC": "Pas de BigCrunch",
 		"BB": "BigBang",
 		"pBB": "Pas de",
-		"oscillant": "Univers oscillants"
+		"oscillant": "Univers oscillants",
+		"accelere":"Accélère",
+		"decelere":"Décélère"
 	},
 
 	"Apropos": {

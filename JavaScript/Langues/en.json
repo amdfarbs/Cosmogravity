@@ -226,7 +226,9 @@
 		"pBC": "No Big Crunch",
 		"BB": "Big Bang",
 		"pBB": "No",
-		"oscillant": "Oscillating universes"
+		"oscillant": "Oscillating universes",
+		"accelere":"Accelerating",
+		"decelere":"Decelerating"
 	},
 
 	"Apropos": {
