@@ -468,7 +468,10 @@ function trajectoire() {
                 	Delta_L= (Delta_E/E + ((E*r_part*Math.sqrt(delta(r_part)))/(c*L*(r_part -rs)))*X_eff*vp_3)*L
 					puissance_instant=Math.abs((Delta_E/E))*c*c/(temps_acceleration);
 					deltam_sur_m = deltam_sur_m + Math.abs(Delta_E/E); //Calcul de l'énergie ΔE/E consommée au total. 
-
+					if (deltam_sur_m>0.1){ //Si l'énergie consommée est de 90% de l'énergie de masse, plus de pilotage.
+						pilotage_possible = false;  
+						deltam_sur_m = 0.1; //Je bloque la valeur à 10%.
+					}
 					L = L + Delta_L; //Calcul du nouveau L associé à ce mobile.
 					E = E + Delta_E; //Calcul du nouveau E associé à ce mobile. 
 									
@@ -921,51 +924,69 @@ function animate() {
 			1< gradient < 7 ------- jaune
 			gradient > 7 -------  rouge
 		*/
-		if (Number(fm) <= 1) 
-		{
-			document.getElementById('DivClignotante').innerHTML = " <img src='../Images/diodever.gif' height='14px' />";
-			document.getElementById('DivClignotante').style.color = "green";
-		} 
-		else if (1 < Number(fm) && Number(fm) < 7) 
-		{
-			document.getElementById('DivClignotante').innerHTML = " <img src='../Images/diodejaune.gif' height='14px' />";
-			document.getElementById('DivClignotante').style.color = "yellow";
-		} 
-		else if (Number(fm) >= 7) 
-		{
-			document.getElementById('DivClignotante').innerHTML = " <img src='../Images/dioderouge.gif' height='14px' />";
-			document.getElementById('DivClignotante').style.color = "red";
-		} 
-		else 
-		{
-			document.getElementById('DivClignotante').innerHTML = texte.pages_trajectoire.erreur;
-			document.getElementById('DivClignotante').style.color = "blue";
-		}
-	
-		/* Diode pour le nombre de g ressenti
-			g_ressenti < 4 ------- vert
-			4 < g_ressenti < 9------- jaune
-			g_ressenti > 9 -------  rouge
-		*/
 
-		if (nombre_de_g_calcul_memo <= 4) 
-		{
-			document.getElementById('DivClignotanteNbG').innerHTML = " <img src='../Images/diodever.gif' height='14px' />";
-			document.getElementById('DivClignotanteNbG').style.color = "green";
+		//  Gestion de la diode gradient accélération
+	if (element2.value == "mobile"){
+		if (Number(fm) <= 1) {
+			document.getElementById('DivClignotante'+compteur.toString()).innerHTML = " <img src='./Images/diodever.gif' height='14px' />";
+			document.getElementById('DivClignotante'+compteur.toString()).style.color = "green";
 		} 
-		else if (4 < nombre_de_g_calcul_memo && nombre_de_g_calcul_memo <= 9) 
-		{
-			document.getElementById('DivClignotanteNbG').innerHTML = " <img src='../Images/diodejaune.gif' height='14px' />";
-			document.getElementById('DivClignotanteNbG').style.color = "yellow";
+		else if (1 < Number(fm) && Number(fm) < 7) {
+			document.getElementById('DivClignotante'+compteur.toString()).innerHTML = " <img src='./Images/diodejaune.gif' height='14px' />";
+			document.getElementById('DivClignotante'+compteur.toString()).style.color = "yellow";
 		} 
-		else if (nombre_de_g_calcul_memo > 9) 
-		{
-			document.getElementById('DivClignotanteNbG').innerHTML = " <img src='../Images/dioderouge.gif' height='14px' />";
-			document.getElementById('DivClignotanteNbG').style.color = "red";
+		else if (Number(fm) >= 7) {
+			document.getElementById('DivClignotante'+compteur.toString()).innerHTML = " <img src='./Images/dioderouge.gif' height='14px' />";
+			document.getElementById('DivClignotante'+compteur.toString()).style.color = "red";
 		} 
-		
 	}
 
+	    //  Gestion de la diode réserve d'énergie
+	if (element2.value == "mobile"){
+		if (Number(deltam_sur_m) <= 0.3) {
+			document.getElementById('DivClignotantePilot'+compteur.toString()).innerHTML = " <img src='./Images/diodever.gif' height='14px' />";
+			document.getElementById('DivClignotantePilot'+compteur.toString()).style.color = "green";
+		} 
+		else if (0.3 < Number(deltam_sur_m) && Number(deltam_sur_m) < 0.5) {
+			document.getElementById('DivClignotantePilot'+compteur.toString()).innerHTML = " <img src='./Images/diodejaune.gif' height='14px' />";
+			document.getElementById('DivClignotantePilot'+compteur.toString()).style.color = "yellow";
+		} 
+		else if (Number(deltam_sur_m) >= 0.5) {
+			document.getElementById('DivClignotantePilot'+compteur.toString()).innerHTML = " <img src='./Images/dioderouge.gif' height='14px' />";
+			document.getElementById('DivClignotantePilot'+compteur.toString()).style.color = "red";
+		} 
+	}	
+	
+		/* Diode pour le nombre de g ressenti
+     g_ressenti < 4 ------- vert
+     4 < g_ressenti < 9------- jaune
+     g_ressenti > 9 ------- rouge
+     */
+    // Gestion de la diode nombre de g ressenti
+    if (element2.value == "mobile") {
+        if (nombre_de_g_calcul_memo <= 4) {
+            document.getElementById('DivClignotanteNbG'+compteur.toString()).innerHTML = " <img src='./Images/diodever.gif' height='14px' />";
+            document.getElementById('DivClignotanteNbG'+compteur.toString()).style.color = "green";
+        }
+        else if (4 < nombre_de_g_calcul_memo && nombre_de_g_calcul_memo <= 9) {
+            document.getElementById('DivClignotanteNbG'+compteur.toString()).innerHTML = " <img src='./Images/diodejaune.gif' height='14px' />";
+            document.getElementById('DivClignotanteNbG'+compteur.toString()).style.color = "yellow";
+        }
+        else if (nombre_de_g_calcul_memo > 9) {
+            document.getElementById('DivClignotanteNbG'+compteur.toString()).innerHTML = " <img src='./Images/dioderouge.gif' height='14px' />";
+            document.getElementById('DivClignotanteNbG'+compteur.toString()).style.color = "red";
+        }
+    }
+		
+
+	/*si tout les Timers relié aux mobiles sont supprimés on sait que ya plus de calculs en cours alors on met qu'on a fini la simulation*/
+	if (Object.keys(Timer.instances).length === 0) 
+	{
+		document.getElementById("indic_calculs").innerHTML=texte.pages_trajectoire.calcul_termine; //on met que le calculé est fini (voir le Json)
+		document.getElementById("pause/resume").style.display='none';  //on enleve les 2 buttons pause
+		document.getElementById('bouton_pause').style.display='none'; 
+	}
+	} 
 }
 
 
@@ -1157,7 +1178,7 @@ function pausee()
 		document.getElementById("pause/resume").innerHTML =texte.pages_trajectoire.bouton_resume;//on change le texte du boutton pause en haut
 		document.getElementById("indic_calculs").innerHTML = texte.pages_trajectoire.calcul_enpause;//on change le texte qui s'affiche "Calculs en pause"
 		document.getElementById("pau").title = texte.pages_trajectoire.bouton_lecture;//on change l'icone du boutton pause en bas
-		document.getElementById("pau").src = "../Images/lecture.png";//infobulle du boutton pause en bas
+		document.getElementById("pau").src = "./Images/lecture.png";//infobulle du boutton pause en bas
 		clearInterval(myInterval); // on arrete l'appel de animte
 	} 
 	//si la simultion est en pause
@@ -1170,7 +1191,7 @@ function pausee()
 			document.getElementById("pause/resume").innerHTML = texte.pages_trajectoire.bouton_pause;//on change le texte du boutton pause en haut
 			document.getElementById("indic_calculs").innerHTML = texte.pages_trajectoire.calcul_encours;//on change le texte qui s'affiche "Calculs en pause"
 			document.getElementById("pau").title = texte.pages_trajectoire.bouton_pause;//infobulle du boutton pause en bas
-			document.getElementById("pau").src = "../Images/pause.png";//on change l'icone du boutton pause en bas
+			document.getElementById("pau").src = "./Images/pause.png";//on change l'icone du boutton pause en bas
 			myInterval = setInterval(animate, 10 / 6); //on appelle animate à chaque 10/6 ms avec setInterval et on stocke dans myInterval
 		}
 

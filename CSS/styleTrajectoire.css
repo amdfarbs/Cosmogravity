@@ -192,6 +192,13 @@ body {
         padding: 1px;
         border-radius: 15px;
     }
+
+    .boiteEntree input,   
+    .boiteEntree textarea {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+    
     
         .boiteEntree .paramètre {
             display: grid;
@@ -622,7 +629,7 @@ tbody td {
   
 /*Pour l'avertissement*/
   .avertissement_style {
-    background-color:  rgba(69, 145, 148, 0.925);
+    background-color:  rgb(255, 255, 255);
     color: rgb(0, 0, 0);
     font-size: 17px;
     /*border: none;*/

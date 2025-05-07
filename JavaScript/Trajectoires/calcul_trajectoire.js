@@ -1167,9 +1167,9 @@ function trajectoire(compteur,mobile) {
           			Delta_L= (X_eff + Delta_E/mobile.E)*mobile.L;
 					puissance_instant=Math.abs((Delta_E/mobile.E))*c*c/(temps_acceleration);
 					deltam_sur_m = deltam_sur_m + Math.abs(Delta_E/mobile.E); //Calcul de l'énergie ΔE/E consommée au total. 
-					if (deltam_sur_m>0.5){ //Si l'énergie consommée est supérieure à 50% de l'énergie initiale, je ne peux plus piloter.
+					if (deltam_sur_m>0.1){ //Si l'énergie consommée est de 90% de l'énergie de masse, plus de pilotage.
 						pilotage_possible = false;  
-						deltam_sur_m = 0.5; //Je bloque la valeur à 50%.
+						deltam_sur_m = 0.1; //Je bloque la valeur à 10%.
 					}
 					mobile.L = mobile.L + Delta_L; //Calcul du nouveau L associé à ce mobile.
 					mobile.E = mobile.E + Delta_E; //Calcul du nouveau E associé à ce mobile. 
@@ -1771,21 +1771,21 @@ function animate(compteur,mobile,mobilefactor)
      g_ressenti > 9 ------- rouge
      */
     // Gestion de la diode nombre de g ressenti
-    /*if (element2.value == "mobile") {
+    if (element2.value == "mobile") {
         if (nombre_de_g_calcul_memo <= 4) {
-            document.getElementById('DivClignotanteNbG'+compteur.toString()).innerHTML = " <img src='../Images/diodever.gif' height='14px' />";
+            document.getElementById('DivClignotanteNbG'+compteur.toString()).innerHTML = " <img src='./Images/diodever.gif' height='14px' />";
             document.getElementById('DivClignotanteNbG'+compteur.toString()).style.color = "green";
         }
         else if (4 < nombre_de_g_calcul_memo && nombre_de_g_calcul_memo <= 9) {
-            document.getElementById('DivClignotanteNbG'+compteur.toString()).innerHTML = " <img src='../Images/diodejaune.gif' height='14px' />";
+            document.getElementById('DivClignotanteNbG'+compteur.toString()).innerHTML = " <img src='./Images/diodejaune.gif' height='14px' />";
             document.getElementById('DivClignotanteNbG'+compteur.toString()).style.color = "yellow";
         }
         else if (nombre_de_g_calcul_memo > 9) {
-            document.getElementById('DivClignotanteNbG'+compteur.toString()).innerHTML = " <img src='../Images/dioderouge.gif' height='14px' />";
+            document.getElementById('DivClignotanteNbG'+compteur.toString()).innerHTML = " <img src='./Images/dioderouge.gif' height='14px' />";
             document.getElementById('DivClignotanteNbG'+compteur.toString()).style.color = "red";
         }
     }
-		/*
+		
 
 	/*si tout les Timers relié aux mobiles sont supprimés on sait que ya plus de calculs en cours alors on met qu'on a fini la simulation*/
 	if (Object.keys(Timer.instances).length === 0) 
@@ -1932,88 +1932,27 @@ function calcul_rmax(L,r0){
 /**
  * Cette fonction est associé aux bouttons pause, avec les quels on peut pauser et reprendre la simulation.
  */
-function pausee() {
-    // Vérification que texte.pages_trajectoire existe
-    if (!texte || !texte.pages_trajectoire) {
-        console.error("Erreur: l'objet texte.pages_trajectoire n'est pas défini");
-        return;
-    }
-
-    //si le Timer est en marche
-    if (!Timer.paused) {
-        Timer.paused = true; //on met le Timer en pause
-        
-        // Modification du bouton supérieur
-        const pauseResumeButton = document.getElementById("pause/resume");
-        if (pauseResumeButton) {
-            pauseResumeButton.innerHTML = texte.pages_trajectoire.bouton_resume;
-        } else {
-            console.error("Élément 'pause/resume' introuvable");
-        }
-        
-        // Modification de l'indicateur de calcul
-        const indicCalcElement = document.getElementById("indic_calculs");
-        if (indicCalcElement) {
-            indicCalcElement.innerHTML = texte.pages_trajectoire.calcul_enpause;
-        }
-        
-        // Modification du bouton inférieur
-        const pauseButton = document.getElementById("pau");
-        if (pauseButton) {
-            pauseButton.title = texte.pages_trajectoire.bouton_lecture;
-            
-            // Vérification de l'existence de l'image avant de l'assigner
-            const img = new Image();
-            img.onload = function() {
-                pauseButton.src = "../Images/lecture.png";
-            };
-            img.onerror = function() {
-                console.error("Image 'lecture.png' introuvable");
-                // Utiliser une image par défaut ou une solution alternative
-                pauseButton.textContent = "▶"; // Utilisation d'un symbole Unicode comme solution de secours
-            };
-            img.src = "../Images/lecture.png";
-        } else {
-            console.error("Élément 'pau' introuvable");
-        }
-    }
-    //si le Timer est en pause
-    else {
-        Timer.paused = false; //on met le Timer en marche
-        
-        // Modification du bouton supérieur
-        const pauseResumeButton = document.getElementById("pause/resume");
-        if (pauseResumeButton) {
-            pauseResumeButton.innerHTML = texte.pages_trajectoire.bouton_pause;
-        }
-        
-        // Modification de l'indicateur de calcul
-        const indicCalcElement = document.getElementById("indic_calculs");
-        if (indicCalcElement) {
-            indicCalcElement.innerHTML = texte.pages_trajectoire.calcul_encours;
-        }
-        
-        // Modification du bouton inférieur
-        const pauseButton = document.getElementById("pau");
-        if (pauseButton) {
-            pauseButton.title = texte.pages_trajectoire.bouton_pause;
-            
-            // Vérification de l'existence de l'image avant de l'assigner
-            const img = new Image();
-            img.onload = function() {
-                pauseButton.src = "../Images/pause.png";
-            };
-            img.onerror = function() {
-                console.error("Image 'pause.png' introuvable");
-                // Utiliser une image par défaut ou une solution alternative
-                pauseButton.textContent = "⏸"; // Utilisation d'un symbole Unicode comme solution de secours
-            };
-            img.src = "../Images/pause.png";
-        }
-    }
-    
-    // Déboggage - afficher l'état actuel
-    console.log("État Timer.paused:", Timer.paused);
+function pausee() 
+{
+	//si le Timer est en marche
+	if (!Timer.paused) 
+	{
+		Timer.paused = true;  //on met le Timer en pause
+		document.getElementById("pause/resume").innerHTML =texte.pages_trajectoire.bouton_resume; //on change le texte du boutton pause en haut
+		document.getElementById("indic_calculs").innerHTML = texte.pages_trajectoire.calcul_enpause; //on change le texte qui s'affiche "Calculs en pause"
+		document.getElementById("pau").title = texte.pages_trajectoire.bouton_lecture; //infobulle du boutton pause en bas
+		document.getElementById("pau").src = "./Images/lecture.png"; //on change l'icone du boutton pause en bas
+		
+	} 
+	//si le Timer est en pause
+	else 
+	{
+			Timer.paused = false;//on met le Timer en marche
+			document.getElementById("pause/resume").innerHTML = texte.pages_trajectoire.bouton_pause; //on change l'icone du boutton pause en bas
+			document.getElementById("indic_calculs").innerHTML = texte.pages_trajectoire.calcul_encours;//on change le texte qui s'affiche "Calculs en cours"
+			document.getElementById("pau").title = texte.pages_trajectoire.bouton_pause;//infobulle du boutton pause en bas
+			document.getElementById("pau").src = "./Images/pause.png"; //on change l'icone du boutton pause en bas
+	}
 }
 
 //----------------------------------------------------{rafraichir2}----------------------------------------------------
