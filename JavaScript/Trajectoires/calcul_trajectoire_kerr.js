@@ -724,6 +724,7 @@ function animate() {
 			}
 
 			//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> APRES RS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+				
 			else
 			{ 
 				 //on affiche que les vitesses et distance parcourue ne sont plus definies	
@@ -737,6 +738,11 @@ function animate() {
 			document.getElementById("ga").innerHTML = fm.toExponential(3);
 			document.getElementById("r_par").innerHTML = r_part_obs.toExponential(3);
 			document.getElementById("tp").innerHTML = temps_particule.toExponential(3);
+
+			if(r_part_obs<=rs*1.000001)
+				{document.getElementById("ga").innerHTML = 'pas calculable'; // gradient d'acceleration inconnu
+					document.getElementById('DivClignotante').innerHTML = " <img src='./Images/dioderouge.gif' height='14px' />";
+					document.getElementById('DivClignotante').style.color = "red";}
 		}
 
 		//	Quand on arrive à RH+ 
@@ -855,7 +861,9 @@ function animate() {
 			else
 			{
 				document.getElementById("to").innerHTML = temps_observateur.toExponential(3); //temps observateur
-				document.getElementById("ga").innerHTML = fm.toExponential(3);// gradient d'acceleration
+				document.getElementById("ga").innerHTML = 'pas calculable'; // gradient d'acceleration inconnu
+				document.getElementById('DivClignotante').innerHTML = " <img src='./Images/dioderouge.gif' height='14px' />";
+				document.getElementById('DivClignotante').style.color = "red";
 				//on affiche que les vitesses et distance parcourue ne sont plus definies	
 				document.getElementById("v_tot").innerHTML = texte.page_trajectoire_massive_kerr.vitesse_pas_définie; //vitesse total (module)
 				document.getElementById("vrk").innerHTML = texte.page_trajectoire_massive_kerr.vitesse_pas_définie; // vitesse radiale
@@ -863,11 +871,10 @@ function animate() {
 				document.getElementById("distance_parcourue").innerHTML = texte.page_trajectoire_massive_kerr.vitesse_pas_définie; //distance parcourue
 				
 				document.getElementById("joyDiv").style.display = 'none'; //on enleve le pilotage
-				/*Au dela de RH+ le temps observateur et gradient d'acceleration sont infinis */
+				/*Au dela de RH+ le temps observateur est infini */
 				if (r_part<=rhp)
 				{	
-					document.getElementById("to").innerHTML = 1/0; 	
-					document.getElementById("ga").innerHTML = 1/0;
+					document.getElementById("to").innerHTML = 1/0; 
 				}
 			 }
 			 /*Ces variables sont affichées independament de si on a depassé Rs ou RH+ */
@@ -924,68 +931,60 @@ function animate() {
 			1< gradient < 7 ------- jaune
 			gradient > 7 -------  rouge
 		*/
-
-		//  Gestion de la diode gradient accélération
-	if (element2.value == "mobile"){
-		if (Number(fm) <= 1) {
-			document.getElementById('DivClignotante'+compteur.toString()).innerHTML = " <img src='./Images/diodever.gif' height='14px' />";
-			document.getElementById('DivClignotante'+compteur.toString()).style.color = "green";
-		} 
-		else if (1 < Number(fm) && Number(fm) < 7) {
-			document.getElementById('DivClignotante'+compteur.toString()).innerHTML = " <img src='./Images/diodejaune.gif' height='14px' />";
-			document.getElementById('DivClignotante'+compteur.toString()).style.color = "yellow";
-		} 
-		else if (Number(fm) >= 7) {
-			document.getElementById('DivClignotante'+compteur.toString()).innerHTML = " <img src='./Images/dioderouge.gif' height='14px' />";
-			document.getElementById('DivClignotante'+compteur.toString()).style.color = "red";
-		} 
-	}
-
-	    //  Gestion de la diode réserve d'énergie
-	if (element2.value == "mobile"){
-		if (Number(deltam_sur_m) <= 0.3) {
-			document.getElementById('DivClignotantePilot'+compteur.toString()).innerHTML = " <img src='./Images/diodever.gif' height='14px' />";
-			document.getElementById('DivClignotantePilot'+compteur.toString()).style.color = "green";
-		} 
-		else if (0.3 < Number(deltam_sur_m) && Number(deltam_sur_m) < 0.5) {
-			document.getElementById('DivClignotantePilot'+compteur.toString()).innerHTML = " <img src='./Images/diodejaune.gif' height='14px' />";
-			document.getElementById('DivClignotantePilot'+compteur.toString()).style.color = "yellow";
-		} 
-		else if (Number(deltam_sur_m) >= 0.5) {
-			document.getElementById('DivClignotantePilot'+compteur.toString()).innerHTML = " <img src='./Images/dioderouge.gif' height='14px' />";
-			document.getElementById('DivClignotantePilot'+compteur.toString()).style.color = "red";
-		} 
-	}	
+		if (Number(fm) <= 1) 
+			{
+				document.getElementById('DivClignotante').innerHTML = " <img src='./Images/diodever.gif' height='14px' />";
+				document.getElementById('DivClignotante').style.color = "green";
+			} 
+			else if (1 < Number(fm) && Number(fm) < 7) 
+			{
+				document.getElementById('DivClignotante').innerHTML = " <img src='./Images/diodejaune.gif' height='14px' />";
+				document.getElementById('DivClignotante').style.color = "yellow";
+			} 
+			else if (Number(fm) >= 7) 
+			{
+				document.getElementById('DivClignotante').innerHTML = " <img src='./Images/dioderouge.gif' height='14px' />";
+				document.getElementById('DivClignotante').style.color = "red";
+			} 
+			else 
+			{
+				document.getElementById('DivClignotante').innerHTML = texte.pages_trajectoire.erreur;
+				document.getElementById('DivClignotante').style.color = "blue";
+			}
+		// Gestion de la diode réserve d'énergie
+		if (deltam_sur_m <= 0.3) {
+			document.getElementById('DivClignotantePilot').innerHTML = " <img src='./Images/diodever.gif' height='14px' />";
+			document.getElementById('DivClignotantePilot').style.color = "green";
+			}
+			else if (0.3 < deltam_sur_m && deltam_sur_m < 0.5) {
+			document.getElementById('DivClignotantePilot').innerHTML = " <img src='./Images/diodejaune.gif' height='14px' />";
+			document.getElementById('DivClignotantePilot').style.color = "yellow";
+			}
+			else if (deltam_sur_m >= 0.5) {
+			document.getElementById('DivClignotantePilot').innerHTML = " <img src='./Images/dioderouge.gif' height='14px' />";
+			document.getElementById('DivClignotantePilot').style.color = "red";
+			}
+			/* Diode pour le nombre de g ressenti
+				g_ressenti < 4 ------- vert
+				4 < g_ressenti < 9------- jaune
+				g_ressenti > 9 -------  rouge
+			*/
 	
-		/* Diode pour le nombre de g ressenti
-     g_ressenti < 4 ------- vert
-     4 < g_ressenti < 9------- jaune
-     g_ressenti > 9 ------- rouge
-     */
-    // Gestion de la diode nombre de g ressenti
-    if (element2.value == "mobile") {
-        if (nombre_de_g_calcul_memo <= 4) {
-            document.getElementById('DivClignotanteNbG'+compteur.toString()).innerHTML = " <img src='./Images/diodever.gif' height='14px' />";
-            document.getElementById('DivClignotanteNbG'+compteur.toString()).style.color = "green";
-        }
-        else if (4 < nombre_de_g_calcul_memo && nombre_de_g_calcul_memo <= 9) {
-            document.getElementById('DivClignotanteNbG'+compteur.toString()).innerHTML = " <img src='./Images/diodejaune.gif' height='14px' />";
-            document.getElementById('DivClignotanteNbG'+compteur.toString()).style.color = "yellow";
-        }
-        else if (nombre_de_g_calcul_memo > 9) {
-            document.getElementById('DivClignotanteNbG'+compteur.toString()).innerHTML = " <img src='./Images/dioderouge.gif' height='14px' />";
-            document.getElementById('DivClignotanteNbG'+compteur.toString()).style.color = "red";
-        }
-    }
-		
-
-	/*si tout les Timers relié aux mobiles sont supprimés on sait que ya plus de calculs en cours alors on met qu'on a fini la simulation*/
-	if (Object.keys(Timer.instances).length === 0) 
-	{
-		document.getElementById("indic_calculs").innerHTML=texte.pages_trajectoire.calcul_termine; //on met que le calculé est fini (voir le Json)
-		document.getElementById("pause/resume").style.display='none';  //on enleve les 2 buttons pause
-		document.getElementById('bouton_pause').style.display='none'; 
-	}
+			if (nombre_de_g_calcul_memo <= 4) 
+			{
+				document.getElementById('DivClignotanteNbG').innerHTML = " <img src='./Images/diodever.gif' height='14px' />";
+				document.getElementById('DivClignotanteNbG').style.color = "green";
+			} 
+			else if (4 < nombre_de_g_calcul_memo && nombre_de_g_calcul_memo <= 9) 
+			{
+				document.getElementById('DivClignotanteNbG').innerHTML = " <img src='./Images/diodejaune.gif' height='14px' />";
+				document.getElementById('DivClignotanteNbG').style.color = "yellow";
+			} 
+			else if (nombre_de_g_calcul_memo > 9) 
+			{
+				document.getElementById('DivClignotanteNbG').innerHTML = " <img src='./Images/dioderouge.gif' height='14px' />";
+				document.getElementById('DivClignotanteNbG').style.color = "red";
+			}
 	} 
 }
 
