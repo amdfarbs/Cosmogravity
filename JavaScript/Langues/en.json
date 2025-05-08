@@ -135,9 +135,6 @@
 		"infobulle_dependt":"Performs the calculation with redshift as the abscissa axis",
 		"infobulle_logabsc":"logarithmic scale for the abscissas",
 		"infobulle_logord":"logarithmic scale for the ordinates",
-		"infobulle_dist":"generates a graph of metric distance, luminosity distance, apparent diameter distance, and light-travel distance as a function of time or redshift",
-		"infobulle_omega":"generates a graph of cosmological density parameters as a function of time or redshift",
-		"infobulle_tempsdecalage":"generates a graph of time as a function of redshift and vice versa",
 
 		"infobulle_diametre_apparent": "Part to obtain the apparent diameter theta as a function of the actual diameter (and vice versa) of the corresponding z",
 		"infobulle_D_m": "value of the actual diameter in meters",
@@ -160,6 +157,14 @@
 		"infobulle_t_horizon": "value of the time in years for which we want to obtain the cosmological horizons in seconds",
 		"infobulle_deven": "distance of the event horizon in billion light-years",
 		"infobulle_dpart": "distance of the particle horizon in billion light-years",
+
+		"infobulle_dit":"generates a graph of metric distance, luminosity distance, apparent diameter distance, and light-travel distance as a function of time",
+		"infobulle_diz":"generates a graph of metric distance, luminosity distance, apparent diameter distance, and light-travel distance as a function of the spectral redshift",
+		"infobulle_omegaiz":"generates a graph of cosmological density parameters as a function of time",
+		"infobulle_omegait":"generates a graph of cosmological density parameters as a function of the spectral redshift",
+		"infobulle_zt":"Generates a graph of the spectral redshift depending on time",
+		"infobulle_tz":"Generates a graph of time depending on the spectral shift",
+
 		"infobulle_Tz1": "Temperature at the spectral shift z1",
 		"infobulle_Tz2": "Temperature at the spectral shift z2",
 		"infobulle_Hz1": "Expansion rate at the spectral shift z1",

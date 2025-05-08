@@ -354,6 +354,12 @@ function texte_univers_calculette() {
     // document.getElementById("label_radio_fonction_t").innerHTML = texte.calculette.dependt;
     document.getElementById("label_check_log_abs").innerHTML = texte.calculette.abscisselog;
     document.getElementById("label_check_log_ord").innerHTML = texte.calculette.ordonneelog;
+    document.getElementById("label_button_dit").title = texte.calculette.infobulle_dit
+    document.getElementById("label_button_diz").title = texte.calculette.infobulle_diz
+    document.getElementById("label_button_omegait").title = texte.calculette.infobulle_omegait
+    document.getElementById("label_button_omegaiz").title = texte.calculette.infobulle_omegaiz
+    document.getElementById("label_button_zt").title = texte.calculette.infobulle_zt
+    document.getElementById("label_button_tz").title = texte.calculette.infobulle_tz
     if (document.getElementById("OmégaDE0")){
         // document.getElementById("label_omegaDE_normalise").innerHTML = texte.calculette.omegaDE_normalise
     }
