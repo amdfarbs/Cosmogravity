@@ -849,6 +849,8 @@ function animate() {
 				{
 					document.getElementById("to").innerHTML = temps_observateur.toExponential(3); //temps observateur
 					document.getElementById("ga").innerHTML = fm.toExponential(3); // gradient d'acceleration
+					document.getElementById("g_ressenti").innerHTML = nombre_de_g_calcul_memo.toExponential(3); //nombre de g ressenti
+			 		document.getElementById("dernier_g_res").innerHTML = nombre_de_g_calcul.toExponential(3); //dernier g 
 					document.getElementById("vrk").innerHTML = vr_3.toExponential(3); // vitesse radiale
 					document.getElementById("vpk").innerHTML = vp_3.toExponential(3); //vitesse angulaire
 					document.getElementById("v_tot").innerHTML = vtot.toExponential(3); //vitesse total (module)
@@ -864,6 +866,8 @@ function animate() {
 				document.getElementById("ga").innerHTML = 'pas calculable'; // gradient d'acceleration inconnu
 				document.getElementById('DivClignotante').innerHTML = " <img src='./Images/dioderouge.gif' height='14px' />";
 				document.getElementById('DivClignotante').style.color = "red";
+				document.getElementById("g_ressenti").innerHTML = 'pas calculable'; //nombre de g ressenti inconnu
+			    document.getElementById("dernier_g_res").innerHTML = ' ' //case vide
 				//on affiche que les vitesses et distance parcourue ne sont plus definies	
 				document.getElementById("v_tot").innerHTML = texte.page_trajectoire_massive_kerr.vitesse_pas_définie; //vitesse total (module)
 				document.getElementById("vrk").innerHTML = texte.page_trajectoire_massive_kerr.vitesse_pas_définie; // vitesse radiale
@@ -879,8 +883,6 @@ function animate() {
 			 }
 			 /*Ces variables sont affichées independament de si on a depassé Rs ou RH+ */
 			 document.getElementById("r_par").innerHTML = r_part.toExponential(3); //rayon
-			 document.getElementById("g_ressenti").innerHTML = nombre_de_g_calcul_memo.toExponential(3); //nombre de g ressenti
-			 document.getElementById("dernier_g_res").innerHTML = nombre_de_g_calcul.toExponential(3); //dernier g 
 			 document.getElementById("tp").innerHTML = temps_particule.toExponential(3);  //temps du mobile
 		}	
 
