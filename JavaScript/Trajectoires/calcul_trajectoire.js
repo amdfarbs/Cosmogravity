@@ -61,6 +61,7 @@ var temps_acceleration; //Temps d'accélération ou décélération.
 var nombre_de_g_calcul_memo =0 //Dernier nombre de g ressenti.
 var nombre_de_g_calcul=0; //g ressenti instantanné. 
 var puissance_instant =0; //Puissance instantannée initialisée.
+var puissance_instant_memo=0; //Puissance instantannée mémorisée.
 
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>< Boolean ><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
@@ -1161,23 +1162,30 @@ function trajectoire(compteur,mobile) {
 					//Pourcentage_vphi_pilotage = X = Delta v tangentielle / vtangentielle
 
 					X_eff = joy.GetPhi()*X;
-
-					//Je calcule les variations de E et L :
+					
+					//Je calcule les variations de E et L si le pilotage est possible:
+					if (pilotage_possible) {
 					Delta_E= X_eff*vp_1*vp_1/(c*c-vtotal*vtotal)*mobile.E;
           			Delta_L= (X_eff + Delta_E/mobile.E)*mobile.L;
 					puissance_instant=Math.abs((Delta_E/mobile.E))*c*c/(temps_acceleration);
-					deltam_sur_m = deltam_sur_m + Math.abs(Delta_E/mobile.E); //Calcul de l'énergie ΔE/E consommée au total. 
+					// mise à jour puissance seulement si on reste dans la limite
+    				if (deltam_sur_m <= 0.1) {
+        			puissance_instant_memo = puissance_instant;}
+					deltam_sur_m += Math.abs(Delta_E/mobile.E); //Calcul de l'énergie ΔE/E consommée au total. 
 					if (deltam_sur_m>0.1){ //Si l'énergie consommée est de 90% de l'énergie de masse, plus de pilotage.
 						pilotage_possible = false;  
 						deltam_sur_m = 0.1; //Je bloque la valeur à 10%.
+						// Désactivation de l'affichage de la puissance lorsque le seuil est atteint
+						document.getElementById("puissance_consommee" + compteur.toString()).style.display = "none"; // Cache l'élément
 					}
-					mobile.L = mobile.L + Delta_L; //Calcul du nouveau L associé à ce mobile.
-					mobile.E = mobile.E + Delta_E; //Calcul du nouveau E associé à ce mobile. 
-									
+					mobile.L +=  Delta_L; //Calcul du nouveau L associé à ce mobile.
+					mobile.E +=  Delta_E; //Calcul du nouveau E associé à ce mobile. 
+					}
+											
 					document.getElementById("E"+compteur.toString()).innerHTML = mobile.E.toExponential(3); //Affichage sur le site du nouveau E. 
 					document.getElementById("L"+compteur.toString()).innerHTML = mobile.L.toExponential(3); //Affichage sur le site du nouveau L. 
 					document.getElementById("decal"+compteur.toString()).innerHTML = deltam_sur_m.toExponential(3); //Affichage sur le site de l'énergie consommée. 
-					document.getElementById("puissance_consommee"+compteur.toString()).innerHTML = puissance_instant.toExponential(3); //Affichage sur le site de la puissance consommée.
+					document.getElementById("puissance_consommee"+compteur.toString()).innerHTML = puissance_instant_memo.toExponential(3); //Affichage sur le site de la puissance consommée.
 			}
 		}, 50);}
 		
