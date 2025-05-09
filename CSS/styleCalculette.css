@@ -71,5 +71,10 @@
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr;
     margin-bottom: 0.5rem;
+    
 }
 
+
+.js-plotly-plot {
+    align-self: center;
+}
