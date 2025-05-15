@@ -1,20 +1,3 @@
-/** fonction permettant la création d'un array ayant une plus grande densité de points pour les z proche de -1 */
-function array_non_lin(zmin=-1,zmax=5,pas, separation=-0.9,coeff=5) {
-    if (zmin < separation) {
-    arr1=linear_scale(zmin,separation,pas/(1+(1/coeff)*((zmax-separation)/(separation-zmin)))-1);
-    arr2=linear_scale(separation,zmax,pas-pas/(1+(1/coeff)*((zmax-separation)/(separation-zmin)))-1);
-    arr1.pop();
-    arr2.forEach(i => {
-        arr1.push(i);
-    })
-    }
-    else {
-        arr1=linear_scale(zmin,zmax,pas)
-    }
-    return (arr1)
-}
-
-
 /**
  * fonction pour l'affichage de toutes les valeurs correspondant au z1,z2 et luminosité
  * @param {*} fonction_EouF Fonction_E pour univers LCDM Fonction_F pour univers DarkEnergy
@@ -212,6 +195,26 @@ function abscisse_t(fonction_EouF,zmin,zmax,pas){
     return [liste_z,liste_point_t]
 }
 
+/**
+ * Fonction de lerp en x², permet d'avaoir beaucoup plus de points vers zmin et moins vers zmax, utile pour les d(z) et t(z) qui varient beaucoup en zmin
+ * @param {*} zmin 
+ * @param {*} zmax 
+ * @param {*} pas 
+ * @returns
+ */
+function array_lerp(zmin=-1,zmax=5,pas) {
+    let y;
+    if (zmin < -0.8) { 
+    let x = linear_scale(0,1,pas);
+    y = []
+    x.forEach(i => {
+        y.push((zmax-zmin)*i*i+zmin)
+    })
+    } else {
+        y = linear_scale(zmin,zmax,pas)
+    } 
+    return (y)
+}
 
 function generer_graphique_distance(fonction_EouF,is_t){
     if (localStorage.getItem("affichage_d_t")=="True" && is_t == 1) {
@@ -257,7 +260,7 @@ function generer_graphique_distance(fonction_EouF,is_t){
     if (log_abs){
         fonction_log_lin=log_scale;
     }else if (is_t==0) {
-        fonction_log_lin = array_non_lin;
+        fonction_log_lin = array_lerp;
     } else {
         fonction_log_lin=linear_scale;
     }
@@ -625,7 +628,7 @@ function generer_graphique_TempsDecalage(fonction_EouF, is_t){
     let abscisse;
     // valeur des abscisses
     if (is_t == 0) {
-        abscisse = array_non_lin(zmin,zmax,pas);
+        abscisse = array_lerp(zmin,zmax,pas);
     } else {
         abscisse = linear_scale(zmin,zmax,pas);
     }
