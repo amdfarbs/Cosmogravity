@@ -3,6 +3,19 @@
  * @param {*} fonction_EouF Fonction_E pour univers LCDM Fonction_F pour univers DarkEnergy
  * @returns 
  */
+
+function array_non_lin(pas,zmin=-1,zmax=5, separation=-0.5) {
+    arr1=linear_scale(zmin,separation,pas/(1+0.5*((zmax-separation)/(separation-zmin))));
+    arr2=linear_scale(separation,zmax,pas-pas/(1+0.5*((zmax-separation)/(separation-zmin))));
+    arr1.pop()
+    console.log(arr1);
+    console.log(arr2);
+    arr2.forEach(i => {
+        arr1.push(i);
+    })
+    console.log(arr1);
+}
+
 function affichage_des_z(fonction_EouF){
     let start_temps=Date.now(); //commencer le timer pour savoir combien de temps les calculs prennent
     let H0 = Number(document.getElementById("H0").value);
@@ -428,6 +441,7 @@ function generer_graphique_Omega(fonction_EouF,is_t){
         xaxis_title = "z";
         graphdivid="graphique_omega_z"
         abscisse_calcul = linear_scale(zmin,zmax,pas);
+        console.log(abscisse_calcul)
         abscisse_display=abscisse_calcul;
         document.getElementById('graphique_omega_z').classList.remove('cache');
         localStorage.setItem("affichage_omega_z","True")
