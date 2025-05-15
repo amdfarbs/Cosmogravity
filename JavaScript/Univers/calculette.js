@@ -1,21 +1,25 @@
+/** fonction permettant la création d'un array ayant une plus grande densité de points pour les z proche de -1 */
+function array_non_lin(zmin=-1,zmax=5,pas, separation=-0.9,coeff=5) {
+    if (zmin < separation) {
+    arr1=linear_scale(zmin,separation,pas/(1+(1/coeff)*((zmax-separation)/(separation-zmin)))-1);
+    arr2=linear_scale(separation,zmax,pas-pas/(1+(1/coeff)*((zmax-separation)/(separation-zmin)))-1);
+    arr1.pop();
+    arr2.forEach(i => {
+        arr1.push(i);
+    })
+    }
+    else {
+        arr1=linear_scale(zmin,zmax,pas)
+    }
+    return (arr1)
+}
+
+
 /**
  * fonction pour l'affichage de toutes les valeurs correspondant au z1,z2 et luminosité
  * @param {*} fonction_EouF Fonction_E pour univers LCDM Fonction_F pour univers DarkEnergy
  * @returns 
  */
-
-function array_non_lin(pas,zmin=-1,zmax=5, separation=-0.5) {
-    arr1=linear_scale(zmin,separation,pas/(1+0.5*((zmax-separation)/(separation-zmin))));
-    arr2=linear_scale(separation,zmax,pas-pas/(1+0.5*((zmax-separation)/(separation-zmin))));
-    arr1.pop()
-    console.log(arr1);
-    console.log(arr2);
-    arr2.forEach(i => {
-        arr1.push(i);
-    })
-    console.log(arr1);
-}
-
 function affichage_des_z(fonction_EouF){
     let start_temps=Date.now(); //commencer le timer pour savoir combien de temps les calculs prennent
     let H0 = Number(document.getElementById("H0").value);
@@ -247,13 +251,14 @@ function generer_graphique_distance(fonction_EouF,is_t){
     let zmin = Number(document.getElementById("graphique_z_min").value);
 	let zmax = Number(document.getElementById("graphique_z_max").value);
 	let pas = Number(document.getElementById("graphique_pas").value);
-    
     // valeur des abscisses
     let plot_title, xaxis_title, graphdivid, abscisse_calcul, abscisse_display
 
     if (log_abs){
         fonction_log_lin=log_scale;
-    }else{
+    }else if (is_t==0) {
+        fonction_log_lin = array_non_lin;
+    } else {
         fonction_log_lin=linear_scale;
     }
 
@@ -411,7 +416,9 @@ function generer_graphique_Omega(fonction_EouF,is_t){
 
     if (log_abs){
         fonction_log_lin=log_scale;
-    }else{
+    // }else if (is_t == 0){
+    //     fonction_log_lin=array_non_lin;
+    } else {
         fonction_log_lin=linear_scale;
     }
 
@@ -440,8 +447,7 @@ function generer_graphique_Omega(fonction_EouF,is_t){
         plot_title = "&#x3A9;<sub>i</sub>(z)";
         xaxis_title = "z";
         graphdivid="graphique_omega_z"
-        abscisse_calcul = linear_scale(zmin,zmax,pas);
-        console.log(abscisse_calcul)
+        abscisse_calcul = fonction_log_lin(zmin,zmax,pas);
         abscisse_display=abscisse_calcul;
         document.getElementById('graphique_omega_z').classList.remove('cache');
         localStorage.setItem("affichage_omega_z","True")
@@ -616,9 +622,13 @@ function generer_graphique_TempsDecalage(fonction_EouF, is_t){
     let zmin = Number(document.getElementById("graphique_z_min").value);
 	let zmax = Number(document.getElementById("graphique_z_max").value);
 	let pas = Number(document.getElementById("graphique_pas").value);
-    
+    let abscisse;
     // valeur des abscisses
-    let abscisse = linear_scale(zmin,zmax,pas)
+    if (is_t == 0) {
+        abscisse = array_non_lin(zmin,zmax,pas);
+    } else {
+        abscisse = linear_scale(zmin,zmax,pas);
+    }
     // valeurs des ordonnées
     let zArr = [];
 
