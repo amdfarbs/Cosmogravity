@@ -374,7 +374,7 @@ function generer_graphique_distance(fonction_EouF,is_t){
         }
     ];
     //configuration de la fenetre plotly
-    let layout = {  width: 900 , height:450 , 
+    let layout = { width:window.innerWidth/2, height:450, 
         title: plot_title,
         titlefont:{family:"Time New Roman, sans-serif",size:20,color:"#111111"},
         xaxis: {
@@ -383,6 +383,7 @@ function generer_graphique_distance(fonction_EouF,is_t){
             title: xaxis_title,
             titlefont:{family:"Time New Roman, sans-serif",size:16,color:"#111111"},
             showline: true
+            
         },
 
         yaxis: {
@@ -394,6 +395,7 @@ function generer_graphique_distance(fonction_EouF,is_t){
             showline: true
         },
         annotations: annots,
+
     };
 
     graph = $('#'+graphdivid);
@@ -579,7 +581,7 @@ function generer_graphique_Omega(fonction_EouF,is_t){
         }
     ];
     //configuration de la fenetre plotly
-    let layout = {  width: 900 , height:450 , 
+    let layout = {  width:window.innerWidth/2, height:450,  
         title: plot_title,
         titlefont:{family:"Time New Roman, sans-serif",size:20,color:"#111111"},
         xaxis: {
@@ -727,7 +729,7 @@ function generer_graphique_TempsDecalage(fonction_EouF, is_t){
         }
     ];
     //configuration de la fenetre plotly
-    let layout = {  width: 900 , height:450 , 
+    let layout = {  width:window.innerWidth/2, height:450, 
         title: plot_title,
         titlefont:{family:"Time New Roman, sans-serif",size:20,color:"#111111"},
         xaxis: {
@@ -986,4 +988,31 @@ function update_rho(isDE){
 	}
 	document.getElementById("rho_m").innerHTML = rho_m;
 	document.getElementById("rho_r").innerHTML = rho_r;
+}
+
+
+function resize_graphs() {
+    let taille = window.innerWidth
+    var update = {
+        width : taille/2,
+        height : taille/4
+    }
+    if (localStorage.getItem("affichage_d_z")=="True") {
+        Plotly.relayout("graphique_d_z",update)
+    }
+    if (localStorage.getItem("affichage_d_t")=="True") {
+        Plotly.relayout("graphique_d_t",update)
+    }
+    if (localStorage.getItem("affichage_omega_z")=="True") {
+        Plotly.relayout("graphique_omega_z",update)
+    }
+    if (localStorage.getItem("affichage_omega_t")=="True") {
+        Plotly.relayout("graphique_omega_t",update)
+    }
+    if (localStorage.getItem("affichage_z_t")=="True") {
+        Plotly.relayout("graphique_z_t",update)
+    }
+    if (localStorage.getItem("affichage_t_z")=="True") {
+        Plotly.relayout("graphique_t_z",update)
+    }
 }
