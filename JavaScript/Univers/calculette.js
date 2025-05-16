@@ -287,10 +287,18 @@ function generer_graphique_distance(fonction_EouF,is_t){
     }else{
         localStorage.setItem("affichage_d_z","True") 
         plot_title = "d<sub>i</sub>(z)";
-        xaxis_title = "z";
-        graphdivid="graphique_d_z"
         abscisse_calcul = fonction_log_lin(zmin,zmax,pas);
-        abscisse_display=abscisse_calcul;
+        if (log_abs && zmin < 0) {
+            xaxis_title="z+1"
+            abscisse_display = []
+            abscisse_calcul.forEach(i => {
+                abscisse_display.push(i+1)
+            })
+        } else {
+            xaxis_title = "z";
+            abscisse_display=abscisse_calcul;
+        }    
+        graphdivid="graphique_d_z"
         // document.getElementById('check_distance_z').checked=true;
         document.getElementById('graphique_d_z').classList.remove('cache');
     }
@@ -530,6 +538,14 @@ function generer_graphique_Omega(fonction_EouF,is_t){
 
     if (log_abs){
         plot_type_abs="log"
+        // Si zmin < 0 on graphe selon z+1
+        if (is_t == 0 && zmin < 0) {
+            xaxis_title="z+1"
+            abscisse_display = []
+            abscisse_calcul.forEach(i => {
+                abscisse_display.push(i+1)
+            })
+        }
     }else{
         plot_type_abs="scatter"
     }
@@ -675,11 +691,29 @@ function generer_graphique_TempsDecalage(fonction_EouF, is_t){
 
     if (log_abs){
         plot_type_abs="log"
+        // Si zmin est plus petit que 0 on graphe z+1 pour avoir que des z pos
+        if (is_t == 0 && zmin < 0) {
+            xaxis_title="z+1"
+            let abscisse_temp = []
+            abscisse.forEach(i => {
+                abscisse_temp.push(i+1)
+            })
+            abscisse = abscisse_temp
+        }
     }else{
         plot_type_abs="scatter"
     }
     if (log_ord){
         plot_type_ord="log"
+        // Si zmin est plus petit que 0 on graphe z+1 pour avoir que des z pos
+        if (is_t == 1 && zmin < 0) { 
+            yaxis_TempsDecalage="z+1"
+            let ord_temp = []
+            zArr.forEach(i => {
+                ord_temp.push(i+1)
+            })
+            zArr = ord_temp
+        }
     }else{
         plot_type_ord="scatter"
     }
