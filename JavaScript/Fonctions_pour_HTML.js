@@ -380,6 +380,12 @@ function updateUnivers() {
  * Fonction qui permet de rafraîchir les éléments importants de la page calculette
  */
 function updateCalculette() {
+    localStorage.setItem("affichage_d_t","False") 
+    localStorage.setItem("affichage_d_z","False")
+    localStorage.setItem("affichage_omega_t","False") 
+    localStorage.setItem("affichage_omega_z","False") 
+    localStorage.setItem("affichage_z_t","False") 
+    localStorage.setItem("affichage_t_z","False")  
     document.getElementById("Omégak0").value = Omega_k(0).toExponential(4)
 
     if (document.getElementById("Omégal0")) {
