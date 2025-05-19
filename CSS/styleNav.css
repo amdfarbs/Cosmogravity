@@ -33,7 +33,7 @@ nav {
 
         height: fit-content;
         width: 100%;
-        background: linear-gradient(90deg, rgba(121, 20, 123, 0.35), rgba(39, 121, 124, 0.35)),
+        background: linear-gradient(180deg, rgba(255,255,255,0.2), rgba(255,255,255,0.5)),
         url("../Images/DeepFieldWebb.jpg") no-repeat;
         background-size: cover;
     }
@@ -45,7 +45,6 @@ nav {
             box-sizing: border-box;
             /* border-radius: 10px;*/
             color:white;
-            animation: blinker 1.5s alternate infinite;
             cursor: default;
             font-family: Arial, sans-serif;
 
