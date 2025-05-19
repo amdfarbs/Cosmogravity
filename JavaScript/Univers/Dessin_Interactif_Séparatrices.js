@@ -4,6 +4,11 @@ const omegaM0Max = 3;
 const omegaL0Min = -1.5;
 const omegaL0Max = 3;
 
+// Ces constantes gerent respectivement la taille en em des tags (Ouvert/Fermé), des Labels (Omega_m0) et des graduations
+const fontsize = 0.9;
+const fontsize_label = 0.8;
+const fontsize_graduations = 0.7;
+
 window.onload = function() {
     update_graphe_interactif();
 };
@@ -95,7 +100,7 @@ function update_graphe_interactif() {
     context.stroke();
 
     // Ajout des labels aux axes
-    context.font = '14px Arial';
+    context.font = fontsize_label+"em Arial";
     context.fillStyle = '#000000';
     context.textAlign = 'center';
     context.textBaseline = 'top';
@@ -108,7 +113,7 @@ function update_graphe_interactif() {
     context.fillText("Ωm0",omegam0_to_px(omegaM0Max) - 35, omegal0_to_px(omegaL0Min) - 15);  // Label pour l'axe y
 
     // Dessiner les marqueurs des valeurs
-    context.font = '12px Arial';
+    context.font = fontsize_graduations+"em Arial";
     context.fillStyle = '#000000';
     context.textAlign = 'center';
     context.textBaseline = 'top';
@@ -163,13 +168,12 @@ function update_graphe_interactif() {
     context.stroke(); // Tracer la séparatrice
 
     context.save();
-    context.font = '14px Arial'
-    context.translate(omegam0_to_px(0.5), omegal0_to_px(0.5));
+    context.font = fontsize+"em Arial";
+    context.translate(omegam0_to_px(1.7), omegal0_to_px(1-1.7));
     context.rotate(Math.PI / 4.5);
     context.fillStyle = "#fa2076"
-    context.fillText(texte.grapheSéparatrices.plat, 0, 0);
-    context.fillText(texte.grapheSéparatrices.ouvert,0 , 20);
-    context.fillText(texte.grapheSéparatrices.ferme, 0, -20);
+    context.fillText(texte.grapheSéparatrices.ouvert,0 , 15);
+    context.fillText(texte.grapheSéparatrices.ferme, 0, -15);
     context.restore();
 
     // Tracé de la séparatrice univers avec / sans bigCrunch et affichage des textes
@@ -195,10 +199,10 @@ function update_graphe_interactif() {
     context.stroke(); // Tracer la séparatrice
 
     context.save();
-    context.font = '14px Arial'
+    context.font = fontsize+"em Arial";
     context.translate(omegam0_to_px(2.5), omegal0_to_px(0.16));
     context.fillStyle = "#06a106"
-    context.fillText(texte.grapheSéparatrices.BC, -27, 20);
+    context.fillText(texte.grapheSéparatrices.BC, -27, 25);
     context.fillText(texte.grapheSéparatrices.pBC, -27, -10);
     context.restore();
 
@@ -250,13 +254,13 @@ function update_graphe_interactif() {
     context.stroke(); // Tracer la séparatrice
 
     context.save();
-    context.font = '14px Arial'
+    context.font = fontsize+"em Arial";
     context.translate(omegam0_to_px(0.7), omegal0_to_px(2.2));
     context.fillStyle = "#3472b8"
     context.rotate(-Math.PI / 4);
-    context.fillText(texte.grapheSéparatrices.BB, 0, -15);
+    context.fillText(texte.grapheSéparatrices.BB, 0, -20);
     context.fillText(texte.grapheSéparatrices.BB, 0, 15);
-    context.fillText(texte.grapheSéparatrices.pBB, 0, -30);
+    context.fillText(texte.grapheSéparatrices.pBB, 0, -35);
     context.restore();
 
     // Tracé de la zone avec univers oscillants (enlever du commentaire et augmenter les bornes)
@@ -297,7 +301,7 @@ function update_graphe_interactif() {
     context.stroke(); // Tracer la séparatrice
 
     context.save(); 
-    context.font = '14px Arial'
+    context.font = fontsize+"em Arial";
     context.translate(omegam0_to_px(1.5), omegal0_to_px(0.75));
     context.rotate(-Math.PI/10);
     context.fillStyle = "#000000"
