@@ -407,7 +407,6 @@ function texte_univers_calculette() {
         document.getElementById("label_omegaL_z1").title = texte.calculette.infobulle_olz1;
         document.getElementById("label_omegaL_z2").title = texte.calculette.infobulle_olz2;
 
-        document.getElementById("label_rho_l").title = texte.calculette.infobulle_rho_l
         document.getElementById('bouton_calculer_horizon').innerHTML=texte.calculette.bouton_calculer;
         document.getElementById("horizons_titre").innerHTML = texte.calculette.horizons_titre;
         document.getElementById("horizons_titre").title = texte.calculette.infobulle_horizon;

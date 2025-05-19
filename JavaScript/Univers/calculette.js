@@ -922,12 +922,7 @@ function update_rho(isDE){
 		rho_de = omegaDE0 *3 * Math.pow(h0*1e3/(3.085677581*1e22),2) / (8 * Math.PI * G); 
 		rho_de = rho_de.toExponential(4);
 		document.getElementById("rho_de").innerHTML = rho_de;
-	} else {
-		omegalambda0 = Number(document.getElementById("Omégal0").value);
-		rho_lambda = omegalambda0 *3 * Math.pow(h0*1e3/(3.085677581*1e22),2) / (8 * Math.PI * G);  
-		rho_lambda = rho_lambda.toExponential(4);
-		document.getElementById("rho_l").innerHTML = rho_lambda;
 	}
-		document.getElementById("rho_m").innerHTML = rho_m;
-		document.getElementById("rho_r").innerHTML = rho_r;
+	document.getElementById("rho_m").innerHTML = rho_m;
+	document.getElementById("rho_r").innerHTML = rho_r;
 }

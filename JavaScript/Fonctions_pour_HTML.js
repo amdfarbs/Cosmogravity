@@ -471,7 +471,7 @@ function downloadCSV(array1, array2, filename = "data.csv") {
     rows.unshift(["Time", "Reduced Scale Factor"]);
   
     // Convert to CSV string
-    const csvContent = rows.map(e => e.join(",")).join("\n");
+    const csvContent = rows.map(e => e.join(";")).join("\n");
   
     // Create a Blob from the CSV string
     const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
