@@ -1364,8 +1364,8 @@ function animate(compteur,mobile,mobilefactor) {
 			
 			z_obs=((1-(vtotal/c)**2)**(-1/2))*(1-rs/mobile.r_part_obs)**(-1/2)-1; //calcul du decalage spectrale
 			/*Calcul du gradient d'acceleration*/
-			gm = derivee_seconde_externe_massif_obs(mobile.r_part_obs,mobile.E,mobile.L); 
-			gmp = derivee_seconde_externe_massif_obs(mobile.r_part_obs+1,mobile.E,mobile.L);
+			gm = derivee_seconde_externe_massif_obs(mobile.E,mobile.L,mobile.r_part_obs); 
+			gmp = derivee_seconde_externe_massif_obs(mobile.E,mobile.L,mobile.r_part_obs+1);
 			fm = Math.abs(gm - gmp); 	
 			
 		}
@@ -1419,8 +1419,8 @@ function animate(compteur,mobile,mobilefactor) {
 
 			z_obs=((1-(vtotal/c)**2)**(-1/2))*1/beta(mobile.r_part_obs)-1; //calcul du decalage spectral
 			/*Calcul du gradient d'acceleration*/
-			gm = derivee_seconde_interne_massif_obs(mobile.r_part_obs,mobile.E,mobile.L); 
-			gmp = derivee_seconde_interne_massif_obs(mobile.r_part_obs+1,mobile.E,mobile.L); 
+			gm = derivee_seconde_interne_massif_obs(mobile.E,mobile.L,mobile.r_part_obs); 
+			gmp = derivee_seconde_interne_massif_obs(mobile.E,mobile.L,mobile.r_part_obs+1); 
 			fm = Math.abs(gm - gmp); 	
 
 		
