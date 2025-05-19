@@ -545,6 +545,7 @@ function textesimutraj(){
     var texte = o_recupereJson();
     //document.getElementById("txt_trajectoire").innerHTML = "Avertissement";
     document.getElementById("txt_trajectoire").innerHTML = texte.pages_trajectoire.simuavertissement;
+    //document.getElementById("txt_avertissement_trajectoire").innerHTML = texte.pages_trajectoire.avertissement;
     //document.getElementById("acceleration1").title = texte.pages_trajectoire.diffderive;   génère une erreur dans la console pour Kerr car aussi utilisé pour Kerr --> à voir
 }
 

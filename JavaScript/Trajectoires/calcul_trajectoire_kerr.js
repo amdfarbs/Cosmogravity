@@ -739,10 +739,9 @@ function animate() {
 			document.getElementById("r_par").innerHTML = r_part_obs.toExponential(3);
 			document.getElementById("tp").innerHTML = temps_particule.toExponential(3);
 
-			if(r_part_obs<=rs*1.000001)
-				{document.getElementById("ga").innerHTML = 'pas calculable'; // gradient d'acceleration inconnu
-					document.getElementById('DivClignotante').innerHTML = " <img src='./Images/dioderouge.gif' height='14px' />";
-					document.getElementById('DivClignotante').style.color = "red";}
+			if(r_part_obs<=rs*1.000001){
+				document.getElementById('DivClignotante').innerHTML = " <img src='./Images/dioderouge.gif' height='14px' />";
+				document.getElementById('DivClignotante').style.color = "red";}
 		}
 
 		//	Quand on arrive à RH+ 
@@ -848,7 +847,6 @@ function animate() {
 			if (r_part>rs*1.000001)
 				{
 					document.getElementById("to").innerHTML = temps_observateur.toExponential(3); //temps observateur
-					document.getElementById("ga").innerHTML = fm.toExponential(3); // gradient d'acceleration
 					document.getElementById("g_ressenti").innerHTML = nombre_de_g_calcul_memo.toExponential(3); //nombre de g ressenti
 			 		document.getElementById("dernier_g_res").innerHTML = nombre_de_g_calcul.toExponential(3); //dernier g 
 					document.getElementById("vrk").innerHTML = vr_3.toExponential(3); // vitesse radiale
@@ -863,7 +861,6 @@ function animate() {
 			else
 			{
 				document.getElementById("to").innerHTML = temps_observateur.toExponential(3); //temps observateur
-				document.getElementById("ga").innerHTML = 'pas calculable'; // gradient d'acceleration inconnu
 				document.getElementById('DivClignotante').innerHTML = " <img src='./Images/dioderouge.gif' height='14px' />";
 				document.getElementById('DivClignotante').style.color = "red";
 				document.getElementById("g_ressenti").innerHTML = 'pas calculable'; //nombre de g ressenti inconnu
@@ -884,6 +881,7 @@ function animate() {
 			 /*Ces variables sont affichées independament de si on a depassé Rs ou RH+ */
 			 document.getElementById("r_par").innerHTML = r_part.toExponential(3); //rayon
 			 document.getElementById("tp").innerHTML = temps_particule.toExponential(3);  //temps du mobile
+			 document.getElementById("ga").innerHTML = fm.toExponential(3); // gradient d'acceleration
 		}	
 
 		else

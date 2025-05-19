@@ -1172,11 +1172,11 @@ function trajectoire(compteur,mobile) {
     				if (deltam_sur_m <= 0.1) {
         			puissance_instant_memo = puissance_instant;}
 					deltam_sur_m += Math.abs(Delta_E/mobile.E); //Calcul de l'énergie ΔE/E consommée au total. 
-					if (deltam_sur_m>0.1){ //Si l'énergie consommée est de 90% de l'énergie de masse, plus de pilotage.
+					if ((deltam_sur_m>0.1) || (delta_E<=0,1)) { //Si l'énergie consommée est de 90% de l'énergie de masse, plus de pilotage.
 						pilotage_possible = false;  
 						deltam_sur_m = 0.1; //Je bloque la valeur à 10%.
 						// Désactivation de l'affichage de la puissance lorsque le seuil est atteint
-						document.getElementById("puissance_consommee" + compteur.toString()).style.display = "none"; // Cache l'élément
+						// document.getElementById("puissance_consommee" + compteur.toString()).style.display = "none"; // Cache l'élément
 					}
 					mobile.L +=  Delta_L; //Calcul du nouveau L associé à ce mobile.
 					mobile.E +=  Delta_E; //Calcul du nouveau E associé à ce mobile. 
