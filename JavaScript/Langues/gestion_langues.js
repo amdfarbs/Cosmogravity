@@ -156,9 +156,19 @@ function texte_navigation() {
     let size
     if (isHome == "True") {
         size = "1.5rem";
+        const items = document.getElementsByClassName("item");
+        for (let i = 0; i < items.length; i++) {
+            items[i].style.animation = "blinker 1.5s alternate infinite";
+        }
+        document.getElementById("nav").style.background = "linear-gradient(90deg, rgba(121, 20, 123, 0.35), rgba(39, 121, 124, 0.35))"
     } else {
         size= "1rem";
+        const items = document.getElementsByClassName("item");
+            for (let i = 0; i < items.length; i++) {
+        items[i].style.animation = "none";
     }
+    }
+
     document.getElementById("nav").style.fontSize = size
     document.getElementById("txt-théorieTrajectoire").style.fontSize = size
     document.getElementById("txt-tutoTrajectoire").style.fontSize = size
