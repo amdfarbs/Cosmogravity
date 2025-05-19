@@ -120,12 +120,12 @@
 
 				<div id="masse" class="input-wrapper">
 					<label id= "massetxt" for="M">M (kg) =</label>
-					<input id="M" value="2e39" align="left" maxlength="10" type="text" size="10" onchange="verifnbr();initialisation()" oninput="initialisation()"  autocomplete="off">
+					<input id="M" value="2e39" type="text" maxlength="17" onchange="verifnbr();initialisation()" oninput="resizeInput(this);initialisation()"  autocomplete="off">
 				</div>
 				
 				  <div id="momentcinetique" class="input-wrapper">
 					<label  id="moment"for="J">J (kg.m<sup>2</sup>.s<sup>-1</sup>)=</label>
-					<input id="J" value="8e59" align="left" maxlength="15" type="text" size="15" onchange="verifnbr();initialisation()" oninput="initialisation()"  autocomplete="off" >
+					<input id="J" value="8e59" type="text" maxlength="17" onchange="verifnbr();initialisation()" oninput="resizeInput(this);initialisation()"  autocomplete="off" >
 				  </div>
 				
             </div>
@@ -149,20 +149,20 @@
 				
 				<div id="rayon" class="input-wrapper" style="position: relative; right:120px">
 					<label id="ctreastre" title="" for="r0">r<sub>0</sub> (m) =</label>
-					<input id="r0" value="5e12" align="left" maxlength="10" type="text" size="10" onchange="verifnbr();initialisation()" oninput="initialisation()"  autocomplete="off">
+					<input id="r0" value="5e12" maxlength="16" type="text" onchange="verifnbr();initialisation()" oninput="resizeInput(this);initialisation()"  autocomplete="off">
 				</div>
 
 				<div id="vitesse0"class="input-wrapper" style="position: relative; right:120px" >
 					<label id="vitesselabel" title=""  for="V">V (m.s<sup>-1</sup>)=</label>
-					<input id="v0" value="5e7" maxlength="15" type="text" size="15" onchange="verifnbr();initialisation()"  autocomplete="off">
+					<input id="v0" value="5e7" maxlength="16" type="text" onchange="verifnbr();initialisation()" oninput="resizeInput(this)" autocomplete="off">
 				</div>
 				<div id="vitesse2"class="input-wrapper" style="position: relative; right:120px">
 					<label  id="philabel" title="" for="phi0">&phi;<sub>0</sub>°= </label>
-					<input id="phi0" value="0" maxlength="10" type="text" size="10" onchange="verifnbr();initialisation()"  autocomplete="off">
+					<input id="phi0" value="0" maxlength="16" type="text" onchange="verifnbr();initialisation()" oninput="resizeInput(this)" autocomplete="off">
 				</div>
 				<div id="vitesse2"class="input-wrapper" style="position: relative; right:120px">
 					<label  id="theta_label" title="" for="teta"> &#632;<sub>0</sub>° = </label>
-					<input id="teta" value="90" maxlength="10" type="text" size="10" onchange="verifnbr();initialisation()"  autocomplete="off">
+					<input id="teta" value="90" maxlength="16" type="text" onchange="verifnbr();initialisation()" oninput="resizeInput(this)" autocomplete="off">
 				</div>
 			</div>
 		</div>

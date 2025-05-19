@@ -119,12 +119,12 @@
         <div id="champs_a_remplir_haut" class="pls-inputs-container">
             <div id="masse_div" class="input-wrapper">
               <label id="massetxt" title= ""  for="M">M (kg) =</label>
-              <input id="M" value="2e30" align="left" maxlength="10" type="text" size="10" onchange="verifnbr();initialisationGenerale(lenbdefusees)" oninput="initialisationGenerale(lenbdefusees)" autocomplete="off">
+              <input id="M" value="2e30" maxlength="13" type="text" onchange="verifnbr();initialisationGenerale(lenbdefusees)" oninput="resizeInput(this);initialisationGenerale(lenbdefusees)" autocomplete="off">
             </div>
         
             <div id="rayon_phy_div" class="input-wrapper">
               <label title="" for="r_phy" id="txt_rphysique"></label>
-              <input id="r_phy" value="3.5e3" align="left" maxlength="10" type="text" size="10" onchange="verifnbr();initialisationGenerale(lenbdefusees)" oninput="initialisationGenerale(lenbdefusees)" autocomplete="off">
+              <input id="r_phy" value="3.5e3" maxlength="13" type="text" onchange="verifnbr();initialisationGenerale(lenbdefusees)" oninput="resizeInput(this);initialisationGenerale(lenbdefusees)" autocomplete="off">
             </div>
         </div>
       </div>
