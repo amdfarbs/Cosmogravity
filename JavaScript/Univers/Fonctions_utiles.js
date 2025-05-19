@@ -475,7 +475,7 @@ function debut_fin_univers(equa_diff) {
 
 
     // Recherche a = 0 ou da/dtau = Infinity dans le sens négatif
-    while (set_solution[1] >= 0 && (Math.abs(set_solution[1]) < +Infinity || Math.abs(set_solution[2]) < +Infinity) && nombre_point <= 5/Math.abs(pas)) {
+    while (set_solution[1] >= 0 && (Math.abs(set_solution[1]) < +Infinity && Math.abs(set_solution[2]) < +Infinity) && nombre_point <= 5/Math.abs(pas)) {
         save_set_solution = set_solution
         set_solution = RungeKuttaEDO2(-pas, set_solution[0], set_solution[1], set_solution[2], equa_diff)
         nombre_point = nombre_point + 1
@@ -488,8 +488,8 @@ function debut_fin_univers(equa_diff) {
 
     // On récupère le maximum entre la valeur du facteur d'échelle et la dérivée du facteur d'échelle
     let max = Math.max(Math.abs(set_solution[1]))
-
-    if ( option === "optionLDE" || ( max <= limite && set_solution[1] > 1 )) {
+    console.log(max,limite)
+    if ( option === "optionLDE") {
         naissance_univers = texte.univers.pasDebut
         age_debut = 0
     }
@@ -500,9 +500,7 @@ function debut_fin_univers(equa_diff) {
         if (set_solution[1] <= 1) {
             naissance_univers = texte.univers.Debut + "BigBang " + Math.abs(age_debut).toExponential(4) + " Ga = "
                 + gigaannee_vers_seconde(Math.abs(age_debut)).toExponential(4) + " s"
-        }
-
-        if ( max >= limite ) {
+        }else {
             naissance_univers = texte.univers.Debut + "BigFall " + Math.abs(age_debut).toExponential(4) + " Ga = "
                 + gigaannee_vers_seconde(Math.abs(age_debut)).toExponential(4) + " s"
         }
@@ -513,11 +511,12 @@ function debut_fin_univers(equa_diff) {
     nombre_point = 0;
 
     // Recherche a = 0 / da/dtau = Infinity dans le sens positif
-    while (set_solution[1] >= 0 && (Math.abs(set_solution[1]) < +Infinity || Math.abs(set_solution[2]) < +Infinity) && nombre_point <= 5/Math.abs(pas)) {
+    while (set_solution[1] >= 0 && (Math.abs(set_solution[1]) < +Infinity && Math.abs(set_solution[2]) < +Infinity) && nombre_point <= 5/Math.abs(pas)) {
         save_set_solution = set_solution
         set_solution = RungeKuttaEDO2(pas, set_solution[0], set_solution[1], set_solution[2], equa_diff)
         nombre_point = nombre_point + 1
     }
+    console.log(set_solution)
 
     if ( isNaN(set_solution[1]) || isNaN(set_solution[2]) ) {
         set_solution = save_set_solution
@@ -527,7 +526,7 @@ function debut_fin_univers(equa_diff) {
     // On récupère le maximum entre la valeur du facteur d'échelle
     max = Math.max(Math.abs(set_solution[1]))
 
-    if ( option === "optionLDE" || ( max <= limite && set_solution[1] > 1 )) {
+    if ( option === "optionLDE") {
         mort_univers = texte.univers.pasMort
     }
     else {
@@ -537,9 +536,7 @@ function debut_fin_univers(equa_diff) {
         if (set_solution[1] <= 1) {
             mort_univers = texte.univers.Mort + "BigCrunch " + Math.abs(age_fin).toExponential(4) + " Ga = "
                 + gigaannee_vers_seconde(Math.abs(age_fin)).toExponential(4) + " s"
-        }
-
-        if ( max >= limite ) {
+        } else {
             mort_univers = texte.univers.Mort + "BigRip " + Math.abs(age_fin).toExponential(4) + " Ga = "
                 + gigaannee_vers_seconde(Math.abs(age_fin)).toExponential(4) + " s"
         }
@@ -552,7 +549,7 @@ function debut_fin_univers(equa_diff) {
     } else {
         duree_univers = false
     }
-
+    console.log(naissance_univers, mort_univers, age_debut, age_fin, duree_univers)
     return [naissance_univers, mort_univers, age_debut, age_fin, duree_univers]
 }
 
@@ -758,7 +755,7 @@ function graphique_facteur_echelle(solution,debutEtFin , t_0) {
     }];
 
     const BigFallRegEx = /BigFall/;
-    if (BigFallRegEx.test(naissance) && temps_debut < Math.abs(t_fin - t_debut) * 10/100 ) {
+    if (BigFallRegEx.test(naissance)) {
         donnee.push({
             type: 'line',
             x:[0, 0],
@@ -773,7 +770,7 @@ function graphique_facteur_echelle(solution,debutEtFin , t_0) {
     }
 
     const BigRipRegEx = /BigRip/;
-    if (BigRipRegEx.test(mort) && temps_fin > Math.abs(t_fin - t_debut) * (1 - 10/100)) {
+    if (BigRipRegEx.test(mort)) {
         let x_assymptote;
         if (t_fin && t_debut) {
             x_assymptote = Math.abs(Math.abs(t_fin) + Math.abs(t_debut))
