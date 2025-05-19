@@ -195,6 +195,26 @@ function abscisse_t(fonction_EouF,zmin,zmax,pas){
     return [liste_z,liste_point_t]
 }
 
+/**
+ * Fonction de lerp en x², permet d'avaoir beaucoup plus de points vers zmin et moins vers zmax, utile pour les d(z) et t(z) qui varient beaucoup en zmin
+ * @param {*} zmin 
+ * @param {*} zmax 
+ * @param {*} pas 
+ * @returns
+ */
+function array_lerp(zmin=-1,zmax=5,pas) {
+    let y;
+    if (zmin < -0.8) { 
+    let x = linear_scale(0,1,pas);
+    y = []
+    x.forEach(i => {
+        y.push((zmax-zmin)*i*i+zmin)
+    })
+    } else {
+        y = linear_scale(zmin,zmax,pas)
+    } 
+    return (y)
+}
 
 function generer_graphique_distance(fonction_EouF,is_t){
     if (localStorage.getItem("affichage_d_t")=="True" && is_t == 1) {
@@ -234,13 +254,14 @@ function generer_graphique_distance(fonction_EouF,is_t){
     let zmin = Number(document.getElementById("graphique_z_min").value);
 	let zmax = Number(document.getElementById("graphique_z_max").value);
 	let pas = Number(document.getElementById("graphique_pas").value);
-    
     // valeur des abscisses
     let plot_title, xaxis_title, graphdivid, abscisse_calcul, abscisse_display
 
     if (log_abs){
         fonction_log_lin=log_scale;
-    }else{
+    }else if (is_t==0) {
+        fonction_log_lin = array_lerp;
+    } else {
         fonction_log_lin=linear_scale;
     }
 
@@ -266,10 +287,18 @@ function generer_graphique_distance(fonction_EouF,is_t){
     }else{
         localStorage.setItem("affichage_d_z","True") 
         plot_title = "d<sub>i</sub>(z)";
-        xaxis_title = "z";
-        graphdivid="graphique_d_z"
         abscisse_calcul = fonction_log_lin(zmin,zmax,pas);
-        abscisse_display=abscisse_calcul;
+        if (log_abs && zmin < 0) {
+            xaxis_title="z+1"
+            abscisse_display = []
+            abscisse_calcul.forEach(i => {
+                abscisse_display.push(i+1)
+            })
+        } else {
+            xaxis_title = "z";
+            abscisse_display=abscisse_calcul;
+        }    
+        graphdivid="graphique_d_z"
         // document.getElementById('check_distance_z').checked=true;
         document.getElementById('graphique_d_z').classList.remove('cache');
     }
@@ -345,7 +374,7 @@ function generer_graphique_distance(fonction_EouF,is_t){
         }
     ];
     //configuration de la fenetre plotly
-    let layout = {  width: 900 , height:450 , 
+    let layout = { width:window.innerWidth/2, height:450, 
         title: plot_title,
         titlefont:{family:"Time New Roman, sans-serif",size:20,color:"#111111"},
         xaxis: {
@@ -354,6 +383,7 @@ function generer_graphique_distance(fonction_EouF,is_t){
             title: xaxis_title,
             titlefont:{family:"Time New Roman, sans-serif",size:16,color:"#111111"},
             showline: true
+            
         },
 
         yaxis: {
@@ -365,6 +395,7 @@ function generer_graphique_distance(fonction_EouF,is_t){
             showline: true
         },
         annotations: annots,
+
     };
 
     graph = $('#'+graphdivid);
@@ -398,7 +429,9 @@ function generer_graphique_Omega(fonction_EouF,is_t){
 
     if (log_abs){
         fonction_log_lin=log_scale;
-    }else{
+    // }else if (is_t == 0){
+    //     fonction_log_lin=array_non_lin;
+    } else {
         fonction_log_lin=linear_scale;
     }
 
@@ -427,7 +460,7 @@ function generer_graphique_Omega(fonction_EouF,is_t){
         plot_title = "&#x3A9;<sub>i</sub>(z)";
         xaxis_title = "z";
         graphdivid="graphique_omega_z"
-        abscisse_calcul = linear_scale(zmin,zmax,pas);
+        abscisse_calcul = fonction_log_lin(zmin,zmax,pas);
         abscisse_display=abscisse_calcul;
         document.getElementById('graphique_omega_z').classList.remove('cache');
         localStorage.setItem("affichage_omega_z","True")
@@ -507,6 +540,14 @@ function generer_graphique_Omega(fonction_EouF,is_t){
 
     if (log_abs){
         plot_type_abs="log"
+        // Si zmin < 0 on graphe selon z+1
+        if (is_t == 0 && zmin < 0) {
+            xaxis_title="z+1"
+            abscisse_display = []
+            abscisse_calcul.forEach(i => {
+                abscisse_display.push(i+1)
+            })
+        }
     }else{
         plot_type_abs="scatter"
     }
@@ -540,7 +581,7 @@ function generer_graphique_Omega(fonction_EouF,is_t){
         }
     ];
     //configuration de la fenetre plotly
-    let layout = {  width: 900 , height:450 , 
+    let layout = {  width:window.innerWidth/2, height:450,  
         title: plot_title,
         titlefont:{family:"Time New Roman, sans-serif",size:20,color:"#111111"},
         xaxis: {
@@ -602,9 +643,13 @@ function generer_graphique_TempsDecalage(fonction_EouF, is_t){
     let zmin = Number(document.getElementById("graphique_z_min").value);
 	let zmax = Number(document.getElementById("graphique_z_max").value);
 	let pas = Number(document.getElementById("graphique_pas").value);
-    
+    let abscisse;
     // valeur des abscisses
-    let abscisse = linear_scale(zmin,zmax,pas)
+    if (is_t == 0) {
+        abscisse = array_lerp(zmin,zmax,pas);
+    } else {
+        abscisse = linear_scale(zmin,zmax,pas);
+    }
     // valeurs des ordonnées
     let zArr = [];
 
@@ -648,11 +693,29 @@ function generer_graphique_TempsDecalage(fonction_EouF, is_t){
 
     if (log_abs){
         plot_type_abs="log"
+        // Si zmin est plus petit que 0 on graphe z+1 pour avoir que des z pos
+        if (is_t == 0 && zmin < 0) {
+            xaxis_title="z+1"
+            let abscisse_temp = []
+            abscisse.forEach(i => {
+                abscisse_temp.push(i+1)
+            })
+            abscisse = abscisse_temp
+        }
     }else{
         plot_type_abs="scatter"
     }
     if (log_ord){
         plot_type_ord="log"
+        // Si zmin est plus petit que 0 on graphe z+1 pour avoir que des z pos
+        if (is_t == 1 && zmin < 0) { 
+            yaxis_TempsDecalage="z+1"
+            let ord_temp = []
+            zArr.forEach(i => {
+                ord_temp.push(i+1)
+            })
+            zArr = ord_temp
+        }
     }else{
         plot_type_ord="scatter"
     }
@@ -666,7 +729,7 @@ function generer_graphique_TempsDecalage(fonction_EouF, is_t){
         }
     ];
     //configuration de la fenetre plotly
-    let layout = {  width: 900 , height:450 , 
+    let layout = {  width:window.innerWidth/2, height:450, 
         title: plot_title,
         titlefont:{family:"Time New Roman, sans-serif",size:20,color:"#111111"},
         xaxis: {
@@ -925,4 +988,31 @@ function update_rho(isDE){
 	}
 	document.getElementById("rho_m").innerHTML = rho_m;
 	document.getElementById("rho_r").innerHTML = rho_r;
+}
+
+
+function resize_graphs() {
+    let taille = window.innerWidth
+    var update = {
+        width : taille/2,
+        height : taille/4
+    }
+    if (localStorage.getItem("affichage_d_z")=="True") {
+        Plotly.relayout("graphique_d_z",update)
+    }
+    if (localStorage.getItem("affichage_d_t")=="True") {
+        Plotly.relayout("graphique_d_t",update)
+    }
+    if (localStorage.getItem("affichage_omega_z")=="True") {
+        Plotly.relayout("graphique_omega_z",update)
+    }
+    if (localStorage.getItem("affichage_omega_t")=="True") {
+        Plotly.relayout("graphique_omega_t",update)
+    }
+    if (localStorage.getItem("affichage_z_t")=="True") {
+        Plotly.relayout("graphique_z_t",update)
+    }
+    if (localStorage.getItem("affichage_t_z")=="True") {
+        Plotly.relayout("graphique_t_z",update)
+    }
 }
