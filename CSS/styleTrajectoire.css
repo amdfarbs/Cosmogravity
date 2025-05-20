@@ -434,7 +434,11 @@ body {
     width: calc(50% - 20px);
     margin: 10px;
 }
-
+.input-block {
+    display: block;
+    width: 100%;
+    margin-bottom: 8px; /* Espace entre les champs */
+  }
 .input-group label {
     width: 100px; /* Largeur fixe du label */
     font-size: 15;
@@ -804,7 +808,3 @@ background-color: #4FA7AD; /* Couleur bleue au survol */
 option[disabled]:first-child {
     color: #aaaaaa;
 }
-
-
-  
- 

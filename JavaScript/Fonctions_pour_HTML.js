@@ -380,12 +380,6 @@ function updateUnivers() {
  * Fonction qui permet de rafraîchir les éléments importants de la page calculette
  */
 function updateCalculette() {
-    localStorage.setItem("affichage_d_t","False") 
-    localStorage.setItem("affichage_d_z","False")
-    localStorage.setItem("affichage_omega_t","False") 
-    localStorage.setItem("affichage_omega_z","False") 
-    localStorage.setItem("affichage_z_t","False") 
-    localStorage.setItem("affichage_t_z","False")  
     document.getElementById("Omégak0").value = Omega_k(0).toExponential(4)
 
     if (document.getElementById("Omégal0")) {
@@ -494,5 +488,7 @@ function downloadCSV(array1, array2, filename = "data.csv") {
   }
 
   //Agrandir taille case si nécessaire
-function resizeInput(item) {
-	item.style.width = Math.max(100, 7.86 * (2 + item.value.length)) + 'px';}
+  function resizeInput(item) {
+    item.style.width = Math.max(100, 7.86 * (2 + item.value.length)) + 'px';
+}
+
