@@ -312,19 +312,26 @@ function genereHtml()
 		var newlabel = document.createElement("Label");
 		newlabel.setAttribute("id","label"+count.toString()+"");
 		newlabel.innerHTML = "Mobile "+count.toString();
-		newlabel.style.position = 'relative';
-		newlabel.style.left = '40px'; 
+		newlabel.style.textAlign = 'center';
+		newlabel.style.display = 'block';
+		newlabel.style.width = '100%';
+		newlabel.style.marginBottom = '10px';
 		divchamp_a_remplir.appendChild(newlabel);
 
 		var	divchampsr = document.createElement("div");
 		divchampsr.setAttribute("id","divmobile"+count.toString()+"");
 		divchampsr.setAttribute("class",'form-container');
+		divchampsr.style.textAlign = 'center';
 		divchamp_a_remplir.appendChild(divchampsr);
 
 		/*SPAN*/
 		var span = document.createElement("span"); //on crée un span 
 		span.setAttribute("id","rayon"+count.toString()+""); //on lui met un id
-		span.setAttribute("class",'input-group');//on met le style css
+		span.setAttribute("class",'input-group input-block');//on met le style css
+		//span.style.display = 'flex';
+		span.style.justifyContent = 'center';
+		span.style.alignItems = 'center';
+		span.style.marginBottom = '10px';
 		divchampsr.appendChild(span);//on ajoute le span
 
 		/* LABEL */
@@ -336,21 +343,22 @@ function genereHtml()
 		(pour que si on clique sur le label ça focalise sur l'input)*/
 		newlabel.setAttribute("for","r01"); 
 		newlabel.innerHTML = " r<sub>0</sub> (m) ="; //on met le texte du label
+		newlabel.style.margin = '0 5px 0 0';
 		span.appendChild(newlabel); //on ajoute le label créé au span
 
 		/* INPUT */
 		var newinput = document.createElement("Input"); //on crée le input
 		newinput.setAttribute("id","r0"+count.toString()+"");//on lui met un id
 		newinput.setAttribute("value","2e13"); // on met la valeur par defaut
-		//newinput.setAttribute("align","left"); // on met la position du texte dans l'input
 		newinput.setAttribute("maxlength","18");//on peut mettre que 18 caracteres 
 		newinput.setAttribute("type","text"); //on met que c'est du text
 		newinput.setAttribute("size","5");	//on met la taille de la case
-		//newinput.setAttribute("minlength","5");
 		/*On lui associe la fonction *verifnbr* et *initialisationGenerale*,
 			si jamais y a un changement on appelle les deux fonctions*/
 		newinput.setAttribute("onchange","verifnbr();initialisationGenerale("+nbredefuseesgenere.toString()+")"); 
 		newinput.setAttribute("oninput","resizeInput(this);initialisationGenerale("+nbredefuseesgenere.toString()+")"); 
+		//newinput.style.width = '100px';
+		//newinput.style.boxSizing = 'border-box';
 		span.appendChild(newinput);//on ajoute l'input créé au span
 
 		/*----------------Entrée pour le v_0-------------------- */
@@ -363,7 +371,11 @@ function genereHtml()
 		/* SPAN */
 		var span = document.createElement("span");
 		span.setAttribute("id","vitesseu"+count.toString()+"");
-		span.setAttribute("class",'input-group');
+		span.setAttribute("class",'input-group input-block');
+		//span.style.display = 'flex';
+		span.style.justifyContent = 'center';
+		span.style.alignItems = 'center';
+		span.style.marginBottom = '10px';
 		divchampsr.appendChild(span);
 
 		/* LABEL */
@@ -373,17 +385,19 @@ function genereHtml()
 		newlabel.setAttribute("title","");
 		newlabel.setAttribute("for","v01");
 		newlabel.innerHTML = " v<sub>0</sub> (m/s) =";
+		newlabel.style.margin = '0 5px 0 0';
 		span.appendChild(newlabel);
 		
 		/* INPUT */
 		var newinput = document.createElement("Input");
 		newinput.setAttribute("id","v0"+count.toString()+"");
 		newinput.setAttribute("value","7.75e7");
-		newinput.setAttribute("maxlength","25");
+		newinput.setAttribute("maxlength","18");
 		newinput.setAttribute("type","text");
 		newinput.setAttribute("size","5");
 		newinput.setAttribute("onchange","verifnbr();initialisationGenerale("+nbredefuseesgenere.toString()+")");
 		newinput.setAttribute("oninput", "resizeInput(this)");
+		//newinput.style.width = '100px';
 
 		span.appendChild(newinput);
 
@@ -399,7 +413,11 @@ function genereHtml()
 		/* SPAN */
 		var span = document.createElement("span");
 		span.setAttribute("id","idphie"+count.toString()+"");
-		span.setAttribute("class",'input-group');
+		span.setAttribute("class",'input-group input-block');
+		//span.style.display = 'flex';
+		span.style.justifyContent = 'center';
+		span.style.alignItems = 'center';
+		span.style.marginBottom = '10px';
 		divchampsr.appendChild(span);
 
 		/* LABEL */
@@ -408,6 +426,7 @@ function genereHtml()
 		newlabel.setAttribute("title","");
 		newlabel.setAttribute("for","phi01");
 		newlabel.innerHTML =" "+htmlDecode("&phi;")+"<sub>0</sub>° =";
+		newlabel.style.margin = '0 5px 0 0';
 		span.appendChild(newlabel);
 		
 
@@ -415,11 +434,12 @@ function genereHtml()
 		var newinput = document.createElement("Input");
 		newinput.setAttribute("id","phi0"+count.toString()+"");
 		newinput.setAttribute("value","0");
-		newinput.setAttribute("maxlength","10");
+		newinput.setAttribute("maxlength","18");
 		newinput.setAttribute("type","text");
 		newinput.setAttribute("size","5");
 		newinput.setAttribute("onchange","verifnbr();initialisationGenerale("+nbredefuseesgenere.toString()+")");
 		newinput.setAttribute("oninput", "resizeInput(this)");
+		//newinput.style.width = '100px';
 		span.appendChild(newinput);
 
 		/*----------------Entrée pour le teta_0-------------------- */
@@ -433,7 +453,11 @@ function genereHtml()
 		/* SPAN */
 		var span = document.createElement("span");
 		span.setAttribute("id","tetaid"+count.toString()+"");
-		span.setAttribute("class",'input-group');
+		span.setAttribute("class",'input-group input-block');
+		//span.style.display = 'flex';
+		span.style.justifyContent = 'center';
+		span.style.alignItems = 'center';
+		span.style.marginBottom = '10px';
 		divchampsr.appendChild(span);
 
 		/* LABEL */
@@ -442,17 +466,20 @@ function genereHtml()
 		newlabel.setAttribute("title","");
 		newlabel.setAttribute("for","teta1");
 		newlabel.innerHTML = " "+htmlDecode("&#632;")+"<sub>0</sub>° =";      //  &#632; c'est phi majuscule
+		newlabel.style.margin = '0 5px 0 0';
 		span.appendChild(newlabel);
 
 		/* INPUT */
 		var newinput = document.createElement("Input");
 		newinput.setAttribute("id","teta"+count.toString()+"");
 		newinput.setAttribute("value","90");
-		newinput.setAttribute("maxlength","10");
+		newinput.setAttribute("maxlength","18");
 		newinput.setAttribute("type","text");
 		newinput.setAttribute("size","5");
 		newinput.setAttribute("onchange","verifnbr();initialisationGenerale("+nbredefuseesgenere.toString()+")");
 		newinput.setAttribute("oninput", "resizeInput(this)");
+		//newinput.style.minWidth = '100px';
+		//newinput.style.width = 'auto';
 		span.appendChild(newinput);
 	}
 

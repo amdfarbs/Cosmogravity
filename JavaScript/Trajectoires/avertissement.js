@@ -10,24 +10,24 @@
  * Fonction qui fait apparaître ou disparaître le message d'avertissement de Trajectoires en fonction de si il
  * était visible ou non.
  */
-function avertissement_trajectoire(variable) {
+function avertissement_trajectoire(typePage) {
 
   var texte = o_recupereJson(); //Je récupère les textes du json.
   //Je récupère l'élément span d'ID "txt_avertissement_trajectoire" qui est l'espace pour l'avertissement :
   var span = document.getElementById("txt_avertissement_trajectoire"); 
 
   //Remplit l'espace avec le texte de l'avertissement :
-  if (variable == 1)
+  if (typePage == 1)
     span.innerHTML = texte.pages_trajectoire.avertissement;
-  else if (variable == 2)
+  else if (typePage == 2)
     span.innerHTML = texte.pages_trajectoire.avertissementSCH2;
-  else if (variable == 3)
+  else if (typePage == 3)
     span.innerHTML = texte.pages_trajectoire.avertissementSCH3;
-  else if (variable == 4)
+  else if (typePage == 4)
     span.innerHTML = texte.pages_trajectoire.avertissementSCH3;
-  else if (variable == 5)
+  else if (typePage == 5)
     span.innerHTML = texte.pages_trajectoire.avertissementKERR;
-  else if (variable == 6)
+  else if (typePage == 6)
     span.innerHTML = texte.pages_trajectoire.avertissementKERR2;
 
 

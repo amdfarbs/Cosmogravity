@@ -72,6 +72,10 @@ Source: http://www.cssscript.com/multi-level-toggle-responsive-navigation-menu-u
 
 
 <title>Simulateur de trajectoire pour particule massive</title>
+<script>
+	var typePage = 1; // change selon la page : 1, 2, 3...
+</script>
+  
 </head>
 
 <body>
@@ -172,7 +176,7 @@ ga('send', 'pageview');
 
     <div id="panneauGraphe" class="Graphe" style="position: relative;">
 		
-		<button style="position: absolute; top: 20px; right: 10px; cursor: pointer;" class="avertissement_style" onclick=avertissement_trajectoire(1);>
+		<button style="position: absolute; top: 20px; right: 10px; cursor: pointer;" class="avertissement_style" onclick=avertissement_trajectoire(typePage);>
             <img id="panneauAvertissement"
                  style="width: 25px; height: 25px"
                  src="./Images/panneau_avertissement.png"

@@ -71,6 +71,10 @@
 	<script src="./JavaScript/Trajectoires/rem.min.js"></script>
 
 		<title>Simulateur de trajectoire pour particule massive</title>
+		<script>
+			var typePage = 3; // change selon la page : 1, 2, 3...
+		  </script>
+		  
 	</head>
 
 	<body>
@@ -158,7 +162,7 @@
 
 		<div id="panneauGraphe" class="Graphe" style="position: relative;">
 	
-			<button style="position: absolute; top: 20px; right: 10px; cursor: pointer;" class="avertissement_style" onclick=avertissement_trajectoire(3);>
+			<button style="position: absolute; top: 20px; right: 10px; cursor: pointer;" class="avertissement_style" onclick=avertissement_trajectoire(typePage);>
 				<img id="panneauAvertissement"
 						style="width: 25px; height: 25px"
 						src="./Images/panneau_avertissement.png"
