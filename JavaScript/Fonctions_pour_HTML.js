@@ -492,3 +492,7 @@ function downloadCSV(array1, array2, filename = "data.csv") {
     link.click();
     document.body.removeChild(link);
   }
+
+  //Agrandir taille case si nécessaire
+function resizeInput(item) {
+	item.style.width = Math.max(100, 7.86 * (2 + item.value.length)) + 'px';}

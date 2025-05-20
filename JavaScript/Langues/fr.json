@@ -25,7 +25,7 @@
 	{
 		"txtUnivers": "Modèles d'univers de Friedmann-Lemaître et calculette cosmologique",
 		"txtTrajectoires": "Trajectoires dans les métriques de Schwarzschild et de Kerr",
-		"version": "Version bêta 2.5.2 (07/05/2025)"
+		"version": "Version bêta 2.5.3 (20/05/2025)"
 	},
 
 	"univers": {
@@ -370,6 +370,11 @@
 		"lancerInterdit":"Lancer depuis l'intérieur du rayon physique interdit !",
 		"simuavertissement":"Avertissement",
 		"avertissement":"Les simulations trajectoires respectent la cinématique. Pour certaines  conditions initiales le pas de calcul devient trop grand  près des périastres et cela entraine des erreurs sur la suite de la trajectoire. Pour la matière non baryonique, les trajectoires calculées numériquement au voisinage de r=0 sont parfois imprévisibles (les équations des géodésiques ont « r » en dénominateur). <br> Le bouton « Décélérer » permet, en diminuant interactivement le pas de calcul, de palier (la plupart du temps) à ces  difficultés numériques.<br><br> Pour le calcul des vitesses on suppose qu'un observateur fixe (suivant une géodésique) mesure la vitesse du mobile quand celui-ci passe à sa position. Dans le cas de la métrique de Kerr lorsque r est inférieur à rs il ne peut y avoir de géodésique ayant la propriété précédente donc aucun observateur de ne peut demeurer fixe. Ainsi une fois rs dépassé le calcul des vitesses n'est pas possible d'où le 'pas définie'. <br><br> Le changement brusque de rotation de la trajectoire du mobile/photon à Rh+/Rh- est prédit dans la théorie.",
+		"avertissementSCH2":"Le mobile est en mouvement libre, il n'y a pas de forces appliquées sur lui. Il n'y a pas de frottement, ni d'autres forces que la gravité.",
+		"avertissementSCH3":"SCH3",
+		"avertissementSCH4":"SCH3",
+		"avertissementKERR":"KERR1",
+		"avertissementKERR2":"KERR2",
 		"message_enregistrer":"Il faut tracer avant d'enregistrer.",
 		"entrees":"Entrées :",
 		"horiz_ext_atteint":"Horizon extérieur atteint !",

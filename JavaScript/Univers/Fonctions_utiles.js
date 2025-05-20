@@ -801,7 +801,8 @@ function graphique_facteur_echelle(solution,debutEtFin , t_0) {
             title: texte.univers.axeY,
             gridcolor: "#b1b1b1",
             zerolinewidth: 2,
-            zeroline: true
+            zeroline: true,
+            range:[-0.1,max]
         },
         showlegend: false,
 

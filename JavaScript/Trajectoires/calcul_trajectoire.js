@@ -342,14 +342,15 @@ function genereHtml()
 		var newinput = document.createElement("Input"); //on crée le input
 		newinput.setAttribute("id","r0"+count.toString()+"");//on lui met un id
 		newinput.setAttribute("value","2e13"); // on met la valeur par defaut
-		newinput.setAttribute("align","left"); // on met la position du texte dans l'input
+		//newinput.setAttribute("align","left"); // on met la position du texte dans l'input
 		newinput.setAttribute("maxlength","18");//on peut mettre que 18 caracteres 
 		newinput.setAttribute("type","text"); //on met que c'est du text
 		newinput.setAttribute("size","5");	//on met la taille de la case
+		//newinput.setAttribute("minlength","5");
 		/*On lui associe la fonction *verifnbr* et *initialisationGenerale*,
 			si jamais y a un changement on appelle les deux fonctions*/
 		newinput.setAttribute("onchange","verifnbr();initialisationGenerale("+nbredefuseesgenere.toString()+")"); 
-		newinput.setAttribute("oninput","initialisationGenerale("+nbredefuseesgenere.toString()+")"); 
+		newinput.setAttribute("oninput","resizeInput(this);initialisationGenerale("+nbredefuseesgenere.toString()+")"); 
 		span.appendChild(newinput);//on ajoute l'input créé au span
 
 		/*----------------Entrée pour le v_0-------------------- */
@@ -382,6 +383,8 @@ function genereHtml()
 		newinput.setAttribute("type","text");
 		newinput.setAttribute("size","5");
 		newinput.setAttribute("onchange","verifnbr();initialisationGenerale("+nbredefuseesgenere.toString()+")");
+		newinput.setAttribute("oninput", "resizeInput(this)");
+
 		span.appendChild(newinput);
 
 
@@ -416,6 +419,7 @@ function genereHtml()
 		newinput.setAttribute("type","text");
 		newinput.setAttribute("size","5");
 		newinput.setAttribute("onchange","verifnbr();initialisationGenerale("+nbredefuseesgenere.toString()+")");
+		newinput.setAttribute("oninput", "resizeInput(this)");
 		span.appendChild(newinput);
 
 		/*----------------Entrée pour le teta_0-------------------- */
@@ -448,6 +452,7 @@ function genereHtml()
 		newinput.setAttribute("type","text");
 		newinput.setAttribute("size","5");
 		newinput.setAttribute("onchange","verifnbr();initialisationGenerale("+nbredefuseesgenere.toString()+")");
+		newinput.setAttribute("oninput", "resizeInput(this)");
 		span.appendChild(newinput);
 	}
 
@@ -1172,11 +1177,11 @@ function trajectoire(compteur,mobile) {
     				if (deltam_sur_m <= 0.1) {
         			puissance_instant_memo = puissance_instant;}
 					deltam_sur_m += Math.abs(Delta_E/mobile.E); //Calcul de l'énergie ΔE/E consommée au total. 
-					if (deltam_sur_m>0.1){ //Si l'énergie consommée est de 90% de l'énergie de masse, plus de pilotage.
+					if ((deltam_sur_m>0.1) || (delta_E<=0,1)) { //Si l'énergie consommée est de 90% de l'énergie de masse, plus de pilotage.
 						pilotage_possible = false;  
 						deltam_sur_m = 0.1; //Je bloque la valeur à 10%.
 						// Désactivation de l'affichage de la puissance lorsque le seuil est atteint
-						document.getElementById("puissance_consommee" + compteur.toString()).style.display = "none"; // Cache l'élément
+						// document.getElementById("puissance_consommee" + compteur.toString()).style.display = "none"; // Cache l'élément
 					}
 					mobile.L +=  Delta_L; //Calcul du nouveau L associé à ce mobile.
 					mobile.E +=  Delta_E; //Calcul du nouveau E associé à ce mobile. 
@@ -2258,14 +2263,6 @@ function creation_blocs(context,mobilefactor,rmaxjson,r0ou2){
 
 	context.stroke();
 }
-//Agrandir taille case si nécessaire
-function resizeInput(item) {
-	item.style.width = Math.max(100, 7.86 * (2 + item.value.length)) + 'px';}
-
-  // Appeler la fonction au chargement de la page
-  window.addEventListener('load', function() {
-	resizeInput(document.getElementById('M'));
-  });
 
 //----------------------------------------------------{choixTrajectoire}----------------------------------------------------
 
