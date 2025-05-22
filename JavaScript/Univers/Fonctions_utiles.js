@@ -459,7 +459,7 @@ function debut_fin_univers(equa_diff) {
     // Déclaration des variables et des valeurs retournés
     let set_solution = [0, 1 ,1]
     let save_set_solution;
-    let pas = 1e-3 * H0 / Math.abs(H0)
+    let pas = 1e-2 * H0 / Math.abs(H0)
     let limite = Math.abs(100000 / pas)
     let nombre_point = 0
     let option = document.getElementById("optionsMonofluide").value
@@ -472,12 +472,12 @@ function debut_fin_univers(equa_diff) {
 
     let boolDebut;
     let boolFin;
-    let seuil = 1e3 //Ce seuil sers a détecter quand da/dtau devient tres grand (big rip)
-    let nb_max = 1e5//nb de point maximul
+    let seuil = +Infinity //Ce seuil sers a détecter quand da/dtau devient tres grand (big rip)
+    let nb_max = 1e5    //nb de point maximul
 
     // Recherche a = 0 ou da/dtau = Infinity dans le sens négatif
     // while (set_solution[1] >= 0 && (Math.abs(set_solution[1]) < +Infinity && set_solution[2] < seuil) && nombre_point <= 5/Math.abs(pas)) {
-    while (set_solution[1] >= 0 && (Math.abs(set_solution[1]) < +Infinity && Math.abs(set_solution[2]) < seuil) && nombre_point <= nb_max) {
+    while (set_solution[1] >= 0 && (Math.abs(set_solution[1]) < +Infinity) && nombre_point <= nb_max) {
         save_set_solution = set_solution
         set_solution = RungeKuttaEDO2(-pas, set_solution[0], set_solution[1], set_solution[2], equa_diff)
         nombre_point = nombre_point + 1
@@ -491,7 +491,7 @@ function debut_fin_univers(equa_diff) {
     // On récupère le maximum entre la valeur du facteur d'échelle et la dérivée du facteur d'échelle
     let max = Math.max(Math.abs(set_solution[1]),Math.abs(set_solution[2]))
     console.log("pts :"+nombre_point)
-    if ( option === "optionLDE") {
+    if ( option === "optionLDE" || (set_solution[1] > 1 && Math.abs(set_solution[2]) < seuil)) {
         naissance_univers = texte.univers.pasDebut
         age_debut = 0
     }
@@ -514,7 +514,7 @@ function debut_fin_univers(equa_diff) {
     nombre_point = 0;
 
     // Recherche a = 0 / da/dtau = Infinity dans le sens positif
-    while (set_solution[1] >= 0 && (Math.abs(set_solution[1]) < +Infinity && Math.abs(set_solution[2])<seuil) && nombre_point <= nb_max) {
+    while (set_solution[1] >= 0 && (Math.abs(set_solution[1]) < +Infinity) && nombre_point <= nb_max) {
         save_set_solution = set_solution
         set_solution = RungeKuttaEDO2(pas, set_solution[0], set_solution[1], set_solution[2], equa_diff)
         nombre_point = nombre_point + 1
@@ -529,7 +529,7 @@ function debut_fin_univers(equa_diff) {
     // On récupère le maximum entre la valeur du facteur d'échelle
     max = Math.max(Math.abs(set_solution[1]))
 
-    if ( option === "optionLDE") {
+    if ( option === "optionLDE"|| (set_solution[1] > 1 && Math.abs(set_solution[2]) < seuil)) {
         mort_univers = texte.univers.pasMort
     }
     else {
