@@ -459,7 +459,7 @@ function debut_fin_univers(equa_diff) {
     // Déclaration des variables et des valeurs retournés
     let set_solution = [0, 1 ,1]
     let save_set_solution;
-    let pas = 1e-2 * H0 / Math.abs(H0)
+    let pas = 1e-1 * H0 / Math.abs(H0)
     let limite = Math.abs(100000 / pas)
     let nombre_point = 0
     let option = document.getElementById("optionsMonofluide").value
@@ -759,7 +759,8 @@ function graphique_facteur_echelle(solution,debutEtFin , t_0) {
     }];
 
     const BigFallRegEx = /BigFall/;
-    if (BigFallRegEx.test(naissance)) {
+    let coeff = 10; //Ce coeff permet de gerer quand on veut afficher ou non les assymptotes
+    if (BigFallRegEx.test(naissance) && coeff*Math.abs(temps_fin-temps_debut) > temps_debut) {
         donnee.push({
             type: 'line',
             x:[0, 0],
@@ -772,7 +773,6 @@ function graphique_facteur_echelle(solution,debutEtFin , t_0) {
             },
         });
     }
-
     const BigRipRegEx = /BigRip/;
     if (BigRipRegEx.test(mort)) {
         let x_assymptote;
@@ -781,6 +781,7 @@ function graphique_facteur_echelle(solution,debutEtFin , t_0) {
         } else {
             x_assymptote = t_fin
         }
+        if (x_assymptote < (temps_fin+coeff*Math.abs(temps_fin-temps_debut))) {
         donnee.push({
             type: 'line',
             x:[x_assymptote, x_assymptote],
@@ -793,7 +794,7 @@ function graphique_facteur_echelle(solution,debutEtFin , t_0) {
             },
         });
     }
-
+}
     let apparence = {
         xaxis: {
             title: texte.univers.axeX,
