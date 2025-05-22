@@ -528,7 +528,8 @@ function debut_fin_univers(equa_diff) {
 
     if ( isNaN(set_solution[1]) || isNaN(set_solution[2]) ) {
         set_solution = save_set_solution
-        set_solution = save_set_solution
+        set_solution[1] = +Infinity
+        set_solution[2] = +Infinity
     }
 
     // On récupère le maximum entre la valeur du facteur d'échelle
