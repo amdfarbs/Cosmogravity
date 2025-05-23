@@ -494,7 +494,7 @@ function debut_fin_univers(equa_diff) {
 
     // On récupère le maximum entre la valeur du facteur d'échelle et la dérivée du facteur d'échelle
     let max = Math.max(Math.abs(set_solution[1]),Math.abs(set_solution[2]))
-    if ( option === "optionLDE" || (set_solution[1] > 1 && Math.abs(set_solution[2]) < seuil)) {
+    if ( option === "optionLDE" || (set_solution[1] > 0 && Math.abs(set_solution[2]) < seuil)) {
         naissance_univers = texte.univers.pasDebut
         age_debut = 0
     }
@@ -502,7 +502,7 @@ function debut_fin_univers(equa_diff) {
         age_debut = set_solution[0] / H0_parGAnnees(H0)
         boolDebut = true
 
-        if (set_solution[1] <= 1) {
+        if (set_solution[1] <= 0) {
             naissance_univers = texte.univers.Debut + "BigBang " + Math.abs(age_debut).toExponential(2) + " Ga = "
                 + gigaannee_vers_seconde(Math.abs(age_debut)).toExponential(2) + " s"
         }else if(!(Math.abs(set_solution[2]) < seuil)) {
@@ -535,14 +535,14 @@ function debut_fin_univers(equa_diff) {
     // On récupère le maximum entre la valeur du facteur d'échelle
     max = Math.max(Math.abs(set_solution[1]))
 
-    if ( option === "optionLDE"|| (set_solution[1] > 1 && Math.abs(set_solution[2]) < seuil)) {
+    if ( option === "optionLDE"|| (set_solution[1] > 0 && Math.abs(set_solution[2]) < seuil)) {
         mort_univers = texte.univers.pasMort
     }
     else {
         age_fin = set_solution[0] / H0_parGAnnees(H0)
         boolFin = true
 
-        if (set_solution[1] <= 1) {
+        if (set_solution[1] <= 0) {
             mort_univers = texte.univers.Mort + "BigCrunch " + Math.abs(age_fin).toExponential(2) + " Ga = "
                 + gigaannee_vers_seconde(Math.abs(age_fin)).toExponential(2) + " s"
         } else if(!(Math.abs(set_solution[2]) < seuil)) {
