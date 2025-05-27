@@ -11,7 +11,7 @@
 
 @keyframes blinker {
     from { color:rgba(255,255,255,1) }
-    to{ color: rgba(255, 255, 255, 0.6)}
+    to{ color: rgba(255, 255, 255, 0.4)}
   }
 
 nav {
@@ -22,6 +22,7 @@ nav {
     margin-left: 0;
     z-index: 900;
     font-size: 1rem;
+    animation: blinker 1s infinite alternate;
 
 }
 
