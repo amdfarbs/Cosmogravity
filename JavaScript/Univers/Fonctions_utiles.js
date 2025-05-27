@@ -466,11 +466,9 @@ function debut_fin_univers(equa_diff) {
     let age_debut;
     let age_fin;
     let duree_univers;
-    let delta = 1e-2; //Uniquement pour vérifier que le big bang soit entre 0 et 0+delta car le 0 n'est pas toujours exactemet atteint
     let pas = 1e-3 * H0 / Math.abs(H0)
     let boolDebut;
     let boolFin;
-    let seuil = +Infinity //Ce seuil sers a détecter quand da/dtau devient tres grand (big rip)
     let nb_max = 1e4  //nb de point maximum
 
     // Recherche a = 0 ou da/dtau = Infinity dans le sens négatif
@@ -513,8 +511,6 @@ function debut_fin_univers(equa_diff) {
 
 
     mort_univers = texte.univers.pasMort
-    console.log(save_set_solution)
-    console.log(save_set_solution[2] < 0)
     if ( option != "optionLDE") {
         if (set_solution[1] <= 0 || (isNaN(set_solution[1]) && save_set_solution[2]<0)) {
             if (isNaN(set_solution[1])) {
@@ -707,7 +703,6 @@ function graphique_facteur_echelle(solution,debutEtFin , t_0) {
         abscisse.reverse()
         ordonnee.reverse()
     }
-    console.log("test")
     let naissance = debutEtFin[0]
     let mort = debutEtFin[1]
     let t_debut = debutEtFin[2]
@@ -769,7 +764,6 @@ function graphique_facteur_echelle(solution,debutEtFin , t_0) {
         } else {
             x_assymptote = t_fin
         }
-        console.log("ui")
         donnee.push({
             type: 'line',
             x:[x_assymptote, x_assymptote],
