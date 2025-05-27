@@ -135,7 +135,7 @@ function calcul_facteur_echelle_DE(equa_diff_1, equa_diff_2, fonction_simplifian
         t_0 = t_0 / (nbrJours() * 24 * 3600 * 1e9)
     }
 
-    let debutEtFin = debut_fin_univers(equa_diff_2)
+    let debutEtFin = debut_fin_univers(equa_diff_2,pas)
 
     taus = tauEnTemps(taus, debutEtFin[2])
 
@@ -154,7 +154,6 @@ function affichage_site_DE() {
 
     let sorties = calcul_facteur_echelle_DE(equa_diff_1, equa_diff_2, fonction_1)
     let donnee = sorties[0]
-
     let age_univers = sorties[1]
     let debutEtFin = sorties[2]
 
@@ -165,5 +164,5 @@ function affichage_site_DE() {
         document.getElementById("duree").innerHTML = debutEtFin[4]
     }
 
-    graphique_facteur_echelle(donnee, debutEtFin, age_univers)
+    graphique_facteur_echelle(donnee, debutEtFin, age_univers,)
 }
