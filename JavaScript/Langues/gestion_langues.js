@@ -158,9 +158,9 @@ function texte_navigation() {
         size = "1.5rem";
         const items = document.getElementsByClassName("item");
         for (let i = 0; i < items.length; i++) {
-            items[i].style.animation = "blinker 1.5s alternate infinite";
+            items[i].style.animation = "blinker 1s alternate infinite";
         }
-        document.getElementById("nav").style.background = "linear-gradient(90deg, rgba(121, 20, 123, 0.35), rgba(39, 121, 124, 0.35))"
+        document.getElementById("nav").style.background = "linear-gradient(90deg, rgba(121, 20, 123, 0.7), rgba(39, 121, 124, 0.7))"
     } else {
         size= "1rem";
         const items = document.getElementsByClassName("item");
