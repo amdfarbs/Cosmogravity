@@ -459,100 +459,85 @@ function debut_fin_univers(equa_diff) {
     // Déclaration des variables et des valeurs retournés
     let set_solution = [0, 1 ,1]
     let save_set_solution;
-    let pas = 1e-3 * H0 / Math.abs(H0)
-    let limite = Math.abs(100000 / pas)
     let nombre_point = 0
     let option = document.getElementById("optionsMonofluide").value
-
     let naissance_univers;
     let mort_univers;
     let age_debut;
     let age_fin;
     let duree_univers;
-
+    let pas = 1e-3 * H0 / Math.abs(H0)
     let boolDebut;
     let boolFin;
-
+    let nb_max = 1e4  //nb de point maximum
 
     // Recherche a = 0 ou da/dtau = Infinity dans le sens négatif
-    while (set_solution[1] >= 0 && (Math.abs(set_solution[1]) < +Infinity || Math.abs(set_solution[2]) < +Infinity) && nombre_point <= 5/Math.abs(pas)) {
+    while (set_solution[1] >= 0 && (Math.abs(set_solution[1]) < +Infinity) && (Math.abs(set_solution[2]) < +Infinity) && nombre_point <= nb_max) {
         save_set_solution = set_solution
         set_solution = RungeKuttaEDO2(-pas, set_solution[0], set_solution[1], set_solution[2], equa_diff)
         nombre_point = nombre_point + 1
     }
-
-    // Si le dernier set de solution contient des valeurs non définies on utilise celui du pas précédent
-    if ( (isNaN(set_solution[1]) && isNaN(set_solution[2])) ) {
-        set_solution = save_set_solution
-    }
-
-    // On récupère le maximum entre la valeur du facteur d'échelle et la dérivée du facteur d'échelle
-    let max = Math.max(Math.abs(set_solution[1]))
-
-    if ( option === "optionLDE" || ( max <= limite && set_solution[1] > 1 )) {
-        naissance_univers = texte.univers.pasDebut
-        age_debut = 0
-    }
-    else {
-        age_debut = set_solution[0] / H0_parGAnnees(H0)
-        boolDebut = true
-
-        if (set_solution[1] <= 1) {
-            naissance_univers = texte.univers.Debut + "BigBang " + Math.abs(age_debut).toExponential(4) + " Ga = "
-                + gigaannee_vers_seconde(Math.abs(age_debut)).toExponential(4) + " s"
-        }
-
-        if ( max >= limite ) {
-            naissance_univers = texte.univers.Debut + "BigFall " + Math.abs(age_debut).toExponential(4) + " Ga = "
-                + gigaannee_vers_seconde(Math.abs(age_debut)).toExponential(4) + " s"
+    naissance_univers = texte.univers.pasDebut
+    age_debut = 0
+    if (option != "optionLDE") {
+        if (set_solution[1] <= 0 || (isNaN(set_solution[1]) && save_set_solution[2]>0)) {
+            if (isNaN(set_solution[1])) {
+                set_solution = save_set_solution
+            }
+            age_debut = set_solution[0] / H0_parGAnnees(H0)
+            boolDebut = true
+            naissance_univers = texte.univers.Debut + "BigBang " + Math.abs(age_debut).toExponential(2) + " Ga = "
+                + gigaannee_vers_seconde(Math.abs(age_debut)).toExponential(2) + " s"
+        }else if((set_solution[1]>= +Infinity) || (isNaN(set_solution[1]) && save_set_solution[2]<0)) {
+            if (isNaN(set_solution[1])) {
+                set_solution = save_set_solution
+            }
+            age_debut = set_solution[0] / H0_parGAnnees(H0)
+            boolDebut = true
+            naissance_univers = texte.univers.Debut + "BigFall " + Math.abs(age_debut).toExponential(2) + " Ga = "
+                + gigaannee_vers_seconde(Math.abs(age_debut)).toExponential(2) + " s"
         }
     }
-
     // On réinitialise
     set_solution = [0, 1, 1];
     nombre_point = 0;
 
     // Recherche a = 0 / da/dtau = Infinity dans le sens positif
-    while (set_solution[1] >= 0 && (Math.abs(set_solution[1]) < +Infinity || Math.abs(set_solution[2]) < +Infinity) && nombre_point <= 5/Math.abs(pas)) {
+    while (set_solution[1] >= 0 && (Math.abs(set_solution[1]) < +Infinity) && (Math.abs(set_solution[2]) < +Infinity) && nombre_point <= nb_max) {
         save_set_solution = set_solution
         set_solution = RungeKuttaEDO2(pas, set_solution[0], set_solution[1], set_solution[2], equa_diff)
         nombre_point = nombre_point + 1
     }
 
-    if ( isNaN(set_solution[1]) || isNaN(set_solution[2]) ) {
-        set_solution = save_set_solution
-        set_solution = save_set_solution
-    }
 
-    // On récupère le maximum entre la valeur du facteur d'échelle
-    max = Math.max(Math.abs(set_solution[1]))
-
-    if ( option === "optionLDE" || ( max <= limite && set_solution[1] > 1 )) {
-        mort_univers = texte.univers.pasMort
-    }
-    else {
-        age_fin = set_solution[0] / H0_parGAnnees(H0)
-        boolFin = true
-
-        if (set_solution[1] <= 1) {
-            mort_univers = texte.univers.Mort + "BigCrunch " + Math.abs(age_fin).toExponential(4) + " Ga = "
-                + gigaannee_vers_seconde(Math.abs(age_fin)).toExponential(4) + " s"
-        }
-
-        if ( max >= limite ) {
-            mort_univers = texte.univers.Mort + "BigRip " + Math.abs(age_fin).toExponential(4) + " Ga = "
-                + gigaannee_vers_seconde(Math.abs(age_fin)).toExponential(4) + " s"
+    mort_univers = texte.univers.pasMort
+    if ( option != "optionLDE") {
+        if (set_solution[1] <= 0 || (isNaN(set_solution[1]) && save_set_solution[2]<0)) {
+            if (isNaN(set_solution[1])) {
+                set_solution = save_set_solution
+            }
+            age_fin = set_solution[0] / H0_parGAnnees(H0)
+            boolFin = true
+            mort_univers = texte.univers.Mort + "BigCrunch " + Math.abs(age_fin).toExponential(2) + " Ga = "
+                + gigaannee_vers_seconde(Math.abs(age_fin)).toExponential(2) + " s"
+        } else if((set_solution[1]>= +Infinity) || (isNaN(set_solution[1]) && save_set_solution[2]>0)) {
+            if (isNaN(set_solution[1])) {
+                set_solution = save_set_solution
+            }
+            age_fin = set_solution[0] / H0_parGAnnees(H0)
+            boolFin = true
+            mort_univers = texte.univers.Mort + "BigRip " + Math.abs(age_fin).toExponential(2) + " Ga = "
+                + gigaannee_vers_seconde(Math.abs(age_fin)).toExponential(2) + " s"
         }
     }
 
     if (boolDebut && boolFin) {
         let duree = Math.abs(age_fin) + Math.abs(age_debut)
-        duree_univers = texte.univers.Duree + duree.toExponential(4) + " Ga = "
-            + gigaannee_vers_seconde(duree).toExponential(4) + " s"
+        duree_univers = texte.univers.Duree + duree.toExponential(2) + " Ga = "
+            + gigaannee_vers_seconde(duree).toExponential(2) + " s"
     } else {
         duree_univers = false
     }
-
     return [naissance_univers, mort_univers, age_debut, age_fin, duree_univers]
 }
 
@@ -718,7 +703,6 @@ function graphique_facteur_echelle(solution,debutEtFin , t_0) {
         abscisse.reverse()
         ordonnee.reverse()
     }
-
     let naissance = debutEtFin[0]
     let mort = debutEtFin[1]
     let t_debut = debutEtFin[2]
@@ -758,7 +742,8 @@ function graphique_facteur_echelle(solution,debutEtFin , t_0) {
     }];
 
     const BigFallRegEx = /BigFall/;
-    if (BigFallRegEx.test(naissance) && temps_debut < Math.abs(t_fin - t_debut) * 10/100 ) {
+    let coeff = +Infinity; //Ce coeff permet de gerer quand on veut afficher ou non les assymptotes
+    if (BigFallRegEx.test(naissance)) {
         donnee.push({
             type: 'line',
             x:[0, 0],
@@ -771,9 +756,8 @@ function graphique_facteur_echelle(solution,debutEtFin , t_0) {
             },
         });
     }
-
     const BigRipRegEx = /BigRip/;
-    if (BigRipRegEx.test(mort) && temps_fin > Math.abs(t_fin - t_debut) * (1 - 10/100)) {
+    if (BigRipRegEx.test(mort)) {
         let x_assymptote;
         if (t_fin && t_debut) {
             x_assymptote = Math.abs(Math.abs(t_fin) + Math.abs(t_debut))
@@ -792,7 +776,6 @@ function graphique_facteur_echelle(solution,debutEtFin , t_0) {
             },
         });
     }
-
     let apparence = {
         xaxis: {
             title: texte.univers.axeX,
