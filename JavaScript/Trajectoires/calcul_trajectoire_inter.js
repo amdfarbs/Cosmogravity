@@ -1668,15 +1668,15 @@ function animate(compteur,mobile,mobilefactor) {
 
 	    //  Gestion de la diode réserve d'énergie
 	if (element2.value == "mobile"){
-		if (Number(deltam_sur_m) <= 0.3) {
+		if (Number(deltam_sur_m) <= 0.01) {
 			document.getElementById('DivClignotantePilot'+compteur.toString()).innerHTML = " <img src='./Images/diodever.gif' height='14px' />";
 			document.getElementById('DivClignotantePilot'+compteur.toString()).style.color = "green";
 		} 
-		else if (0.3 < Number(deltam_sur_m) && Number(deltam_sur_m) < 0.5) {
+		else if (0.01 < Number(deltam_sur_m) && Number(deltam_sur_m) < 0.1) {
 			document.getElementById('DivClignotantePilot'+compteur.toString()).innerHTML = " <img src='./Images/diodejaune.gif' height='14px' />";
 			document.getElementById('DivClignotantePilot'+compteur.toString()).style.color = "yellow";
 		} 
-		else if (Number(deltam_sur_m) >= 0.5) {
+		else if (Number(deltam_sur_m) >= 0.1) {
 			document.getElementById('DivClignotantePilot'+compteur.toString()).innerHTML = " <img src='./Images/dioderouge.gif' height='14px' />";
 			document.getElementById('DivClignotantePilot'+compteur.toString()).style.color = "red";
 		} 
