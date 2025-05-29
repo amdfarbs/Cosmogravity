@@ -946,15 +946,15 @@ function animate() {
 				document.getElementById('DivClignotante').style.color = "blue";
 			}
 		// Gestion de la diode réserve d'énergie
-		if (deltam_sur_m <= 0.3) {
+		if (deltam_sur_m <= 0.01) {
 			document.getElementById('DivClignotantePilot').innerHTML = " <img src='./Images/diodever.gif' height='14px' />";
 			document.getElementById('DivClignotantePilot').style.color = "green";
 			}
-			else if (0.3 < deltam_sur_m && deltam_sur_m < 0.5) {
+			else if (0.01 < deltam_sur_m && deltam_sur_m < 0.1) {
 			document.getElementById('DivClignotantePilot').innerHTML = " <img src='./Images/diodejaune.gif' height='14px' />";
 			document.getElementById('DivClignotantePilot').style.color = "yellow";
 			}
-			else if (deltam_sur_m >= 0.5) {
+			else if (deltam_sur_m >= 0.1) {
 			document.getElementById('DivClignotantePilot').innerHTML = " <img src='./Images/dioderouge.gif' height='14px' />";
 			document.getElementById('DivClignotantePilot').style.color = "red";
 			}
