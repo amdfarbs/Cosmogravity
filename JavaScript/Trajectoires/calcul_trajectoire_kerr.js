@@ -738,10 +738,6 @@ function animate() {
 			document.getElementById("ga").innerHTML = fm.toExponential(3);
 			document.getElementById("r_par").innerHTML = r_part_obs.toExponential(3);
 			document.getElementById("tp").innerHTML = temps_particule.toExponential(3);
-
-			if(r_part_obs<=rs*1.000001){
-				document.getElementById('DivClignotante').innerHTML = " <img src='./Images/dioderouge.gif' height='14px' />";
-				document.getElementById('DivClignotante').style.color = "red";}
 		}
 
 		//	Quand on arrive à RH+ 
@@ -861,9 +857,7 @@ function animate() {
 			else
 			{
 				document.getElementById("to").innerHTML = temps_observateur.toExponential(3); //temps observateur
-				document.getElementById('DivClignotante').innerHTML = " <img src='./Images/dioderouge.gif' height='14px' />";
-				document.getElementById('DivClignotante').style.color = "red";
-				document.getElementById("g_ressenti").innerHTML = 'pas calculable'; //nombre de g ressenti inconnu
+				document.getElementById("g_ressenti").innerHTML = ' '; //nombre de g ressenti inconnu
 			    document.getElementById("dernier_g_res").innerHTML = ' ' //case vide
 				//on affiche que les vitesses et distance parcourue ne sont plus definies	
 				document.getElementById("v_tot").innerHTML = texte.page_trajectoire_massive_kerr.vitesse_pas_définie; //vitesse total (module)

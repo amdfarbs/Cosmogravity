@@ -24,7 +24,7 @@ function avertissement_trajectoire(typePage) {
   else if (typePage == 3)
     span.innerHTML = texte.pages_trajectoire.avertissementSCH3;
   else if (typePage == 4)
-    span.innerHTML = texte.pages_trajectoire.avertissementSCH3;
+    span.innerHTML = texte.pages_trajectoire.avertissementSCH4;
   else if (typePage == 5)
     span.innerHTML = texte.pages_trajectoire.avertissementKERR;
   else if (typePage == 6)
