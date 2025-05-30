@@ -311,8 +311,8 @@ function genereHtml()
 		var newlabel = document.createElement("Label");
 		newlabel.setAttribute("id","label"+count.toString()+"");
 		newlabel.innerHTML = "Mobile "+count.toString();
-		newlabel.style.position = 'relative';
-		newlabel.style.left = '40px'; 
+		//newlabel.style.position = 'relative';
+		//newlabel.style.left = '40px'; 
 		divchamp_a_remplir.appendChild(newlabel);
 
 		var	divchampsr = document.createElement("div");
@@ -341,10 +341,12 @@ function genereHtml()
 		var newinput = document.createElement("Input"); //on crée le input
 		newinput.setAttribute("id","r0"+count.toString()+"");//on lui met un id
 		newinput.setAttribute("value","2e13"); // on met la valeur par defaut
-		newinput.setAttribute("align","left"); // on met la position du texte dans l'input
+		//newinput.setAttribute("align","left"); // on met la position du texte dans l'input
 		newinput.setAttribute("maxlength","18");//on peut mettre que 18 caracteres 
 		newinput.setAttribute("type","text"); //on met que c'est du text
-		newinput.setAttribute("size","5");	//on met la taille de la case
+		//newinput.setAttribute("size","5");	//on met la taille de la case
+		//newinput.style.width = "60px"; // équivalent à size="5" environ
+    	//newinput.style.minWidth = "60px"; // largeur minimale
 		/*On lui associe la fonction *verifnbr* et *initialisationGenerale*,
 			si jamais y a un changement on appelle les deux fonctions*/
 		newinput.setAttribute("onchange","verifnbr();initialisationGenerale("+nbredefuseesgenere.toString()+")"); 
