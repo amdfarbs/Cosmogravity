@@ -436,19 +436,6 @@ function trajectoire() {
 		if (element2.value=="mobile"){//Dans le cas spationaute
 			setInterval(function(){ //J'effectue les actions suivantes toutes les 50 ms. 
 
-				if (Number(deltam_sur_m) <= 0.03) { //Si je consomme moins de ΔE/E=0.03 la led près du décalage spectrale est verte.
-					document.getElementById('DivClignotantePilot').innerHTML = " <img src='../Images/diodever.gif' height='14px' />";
-					document.getElementById('DivClignotantePilot').style.color = "green";
-				}
-				else if (0.3 < Number(deltam_sur_m) && Number(deltam_sur_m) < 0.05) { //Si je consomme entre ΔE/E=0.03 et ΔE/E=0.05 la led près du décalage spectrale est orange.
-					document.getElementById('DivClignotantePilot').innerHTML = " <img src='../Images/diodejaune.gif' height='14px' />";
-					document.getElementById('DivClignotantePilot').style.color = "yellow";
-				} 
-				else if (Number(deltam_sur_m) >= 0.05) { //Si je consomme plus de ΔE/E=0.05 la led près du décalage spectrale est rouge. 
-					document.getElementById('DivClignotantePilot').innerHTML = " <img src='../Images/dioderouge.gif' height='14px' />";
-					document.getElementById('DivClignotantePilot').style.color = "red";
-				}
-
 				if (isNaN(vtot) || vtot >=c){ //Si jamais la vitesse du mobile a déja atteint la vitesse de la lumière ou que la vitesse n'est pas définie, on ne peut pas piloter. 
 					pilotage_possible = false;
 				}else{
@@ -946,15 +933,15 @@ function animate() {
 				document.getElementById('DivClignotante').style.color = "blue";
 			}
 		// Gestion de la diode réserve d'énergie
-		if (deltam_sur_m <= 0.01) {
+		if (deltam_sur_m <= 0.01) {   //Si je consomme moins de ΔE/E=0.01 la led près du décalage spectrale est verte.
 			document.getElementById('DivClignotantePilot').innerHTML = " <img src='./Images/diodever.gif' height='14px' />";
 			document.getElementById('DivClignotantePilot').style.color = "green";
 			}
-			else if (0.01 < deltam_sur_m && deltam_sur_m < 0.1) {
+			else if (0.01 < deltam_sur_m && deltam_sur_m < 0.1) { //Si je consomme entre ΔE/E=0.01 et ΔE/E=0.1 la led près du décalage spectrale est orange.
 			document.getElementById('DivClignotantePilot').innerHTML = " <img src='./Images/diodejaune.gif' height='14px' />";
 			document.getElementById('DivClignotantePilot').style.color = "yellow";
 			}
-			else if (deltam_sur_m >= 0.1) {
+			else if (deltam_sur_m >= 0.1) {  //Si je consomme plus de ΔE/E=0.1 la led près du décalage spectrale est rouge.
 			document.getElementById('DivClignotantePilot').innerHTML = " <img src='./Images/dioderouge.gif' height='14px' />";
 			document.getElementById('DivClignotantePilot').style.color = "red";
 			}
@@ -963,7 +950,7 @@ function animate() {
 				4 < g_ressenti < 9------- jaune
 				g_ressenti > 9 -------  rouge
 			*/
-	
+		if (r_part>rs*1.000001){
 			if (nombre_de_g_calcul_memo <= 4) 
 			{
 				document.getElementById('DivClignotanteNbG').innerHTML = " <img src='./Images/diodever.gif' height='14px' />";
@@ -978,8 +965,12 @@ function animate() {
 			{
 				document.getElementById('DivClignotanteNbG').innerHTML = " <img src='./Images/dioderouge.gif' height='14px' />";
 				document.getElementById('DivClignotanteNbG').style.color = "red";
-			}
-	} 
+			}}
+			else {
+				// Désactiver l'affichage de la diode quand r < rs
+				document.getElementById('DivClignotanteNbG').innerHTML = "";
+				document.getElementById('DivClignotanteNbG').style.color = "";
+			}}
 }
 
 
