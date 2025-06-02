@@ -772,23 +772,46 @@ function graphique_facteur_echelle(solution,debutEtFin , t_0) {
                 color: "black",
                 simplify: false,
                 shape: 'linear',
-                dash: 'dash'
+                dash: 'dash',
             },
         });
     }
+    donnee.push({
+        type:'line',
+        x:[temps_debut-(temps_fin-temps_debut),temps_fin+(temps_fin-temps_debut)],
+        y:[1,1],
+        line: {
+            color:"black",
+            simplify:"true",
+            width: 1,
+        }
+    })
+    let ticks = [1]
+    let step = a_max/6
+    step = parseFloat(step.toExponential(0))
+    console.log(step)
+    let a = step
+    while (a < a_max) {
+        ticks.push(a),
+        a = a+step
+    }
+
     let apparence = {
         xaxis: {
             title: texte.univers.axeX,
             gridcolor: "#b1b1b1",
             zerolinewidth: 2,
-            zeroline: true
+            zeroline: true,
+            range:[temps_debut-0.1*(temps_fin-temps_debut),temps_fin+0.1*(temps_fin-temps_debut)]
         },
         yaxis: {
             title: texte.univers.axeY,
             gridcolor: "#b1b1b1",
             zerolinewidth: 2,
             zeroline: true,
-            range:[-0.1,max]
+            range:[-0.1,max],
+            tickmode: "array",
+            tickvals: ticks,
         },
         showlegend: false,
 
