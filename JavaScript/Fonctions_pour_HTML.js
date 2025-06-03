@@ -442,23 +442,28 @@ function enregistrer() {
         let abs = sessionStorage.getItem("abs").split(",")
         let ord = sessionStorage.getItem("ord").split(",")
         downloadCSV(abs,ord, nom+".csv")
-    } else {
+    } else if(format == "PNG"){
     if (document.getElementById("graphique_LCDM")) {
         element = document.getElementById("panneauGraphe")
     }
-
     if (document.getElementById("graphique_DE")) {
         element = document.getElementById("panneauGraphe")
     }
-
     html2canvas(element).then(canvas => {
         const URLimage = canvas.toDataURL("image/"+format)
         const lien = document.createElement("a")
         lien.href = URLimage
-        lien.download = nom+"."+format
-
+        lien.download = nom+"."+format.toLowerCase()
         lien.click()
     })
+    } else {
+        if (document.getElementById("graphique_LCDM")) {
+            graph = "graphique_LCDM"
+        } else {
+            graph = "graphique_DE"
+        }
+        format = format.toLowerCase()
+        Plotly.downloadImage(graph, {format: format, filename: nom})
     }
 
 }
