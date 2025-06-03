@@ -279,7 +279,7 @@ function texte_univers_DE() {
     document.getElementById("Monofluide_optionNull").innerHTML = texte.univers.monofluide_null
     document.getElementById("Monofluide_optionM").innerHTML = texte.univers.monofluide_M
     document.getElementById("Monofluide_optionR").innerHTML = texte.univers.monofluide_R
-    document.getElementById("Monofluide_optionLDE").innerHTML = texte.univers.monofluide_DE
+    document.getElementById("Monofluide_optionDE").innerHTML = texte.univers.monofluide_DE
     document.getElementById("Monofluide_optionK").innerHTML = texte.univers.monofluide_K
     document.getElementById("infoOmégam0").title = texte.univers.infoOmégam0
     document.getElementById("infoOmégaLDE0").title = texte.univers.infoOmégaDE0
@@ -326,7 +326,12 @@ function texte_univers_calculette() {
     document.getElementById("Monofluide_optionNull").innerHTML = texte.univers.monofluide_null
     document.getElementById("Monofluide_optionM").innerHTML = texte.univers.monofluide_M
     document.getElementById("Monofluide_optionR").innerHTML = texte.univers.monofluide_R
-    document.getElementById("Monofluide_optionLDE").innerHTML = texte.univers.monofluide_LDE
+    if (document.getElementById("Monofluide_optionDE")) {
+        document.getElementById("Monofluide_optionDE").innerHTML = texte.univers.monofluide_DE
+    } else {
+        console.log("test")
+        document.getElementById("Monofluide_optionLDE").innerHTML = texte.univers.monofluide_L
+    }
     document.getElementById("Monofluide_optionK").innerHTML = texte.univers.monofluide_K
     document.getElementById("infoOmégam0").title = texte.univers.infoOmégam0
     document.getElementById("infoOmégaLDE0").title = texte.univers.infoOmégaL0
