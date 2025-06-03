@@ -776,6 +776,17 @@ function graphique_facteur_echelle(solution,debutEtFin , t_0) {
             },
         });
     }
+    temps_debut = abscisse[0]
+    temps_fin =abscisse[abscisse.length-1]
+    let ticks = [1]
+    let step = a_max/6
+    step = parseFloat(step.toExponential(0))
+
+    let a = step
+    while (a < a_max) {
+        ticks.push(a),
+        a = a+step
+    }
     donnee.push({
         type:'line',
         x:[temps_debut-(temps_fin-temps_debut),temps_fin+(temps_fin-temps_debut)],
@@ -786,16 +797,6 @@ function graphique_facteur_echelle(solution,debutEtFin , t_0) {
             width: 1,
         }
     })
-    let ticks = [1]
-    let step = a_max/6
-    step = parseFloat(step.toExponential(0))
-    console.log(step)
-    let a = step
-    while (a < a_max) {
-        ticks.push(a),
-        a = a+step
-    }
-
     let apparence = {
         xaxis: {
             title: texte.univers.axeX,
@@ -806,7 +807,7 @@ function graphique_facteur_echelle(solution,debutEtFin , t_0) {
         },
         yaxis: {
             title: texte.univers.axeY,
-            gridcolor: "#000000",
+            gridcolor: "#b1b1b1",
             zerolinewidth: 2,
             zeroline: true,
             range:[-0.1,max],

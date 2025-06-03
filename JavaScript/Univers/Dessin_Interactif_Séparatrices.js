@@ -5,7 +5,7 @@ const omegaL0Min = -1.5;
 const omegaL0Max = 3;
 
 // Ces constantes gerent respectivement la taille en em des tags (Ouvert/Fermé), des Labels (Omega_m0) et des graduations
-const fontsize = 0.9;
+const fontsize = 1.1;
 const fontsize_label = 0.8;
 const fontsize_graduations = 0.7;
 
@@ -260,7 +260,7 @@ function update_graphe_interactif() {
     context.rotate(-Math.PI / 4);
     context.fillText(texte.grapheSéparatrices.BB, 0, -20);
     context.fillText(texte.grapheSéparatrices.BB, 0, 15);
-    context.fillText(texte.grapheSéparatrices.pBB, 0, -35);
+    context.fillText(texte.grapheSéparatrices.pBB, 0, -40);
     context.restore();
 
     // Tracé de la zone avec univers oscillants (enlever du commentaire et augmenter les bornes)
