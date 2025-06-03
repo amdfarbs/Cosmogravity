@@ -806,7 +806,7 @@ function graphique_facteur_echelle(solution,debutEtFin , t_0) {
         },
         yaxis: {
             title: texte.univers.axeY,
-            gridcolor: "#b1b1b1",
+            gridcolor: "#000000",
             zerolinewidth: 2,
             zeroline: true,
             range:[-0.1,max],
@@ -823,8 +823,8 @@ function graphique_facteur_echelle(solution,debutEtFin , t_0) {
             t: 50,
             pad: 4
         },
-        plot_bgcolor: "rgba(255,255,255,0)",
-        paper_bgcolor: "rgba(255,255,255,0)"
+        plot_bgcolor: "rgb(255,255,255)",
+        paper_bgcolor: "rgb(255,255,255)"
     };
 
     let configuration = {
