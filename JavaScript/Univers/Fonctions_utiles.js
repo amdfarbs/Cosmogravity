@@ -776,7 +776,7 @@ function graphique_facteur_echelle(solution,debutEtFin , t_0) {
             },
         });
     }
-    let ticks = [1]
+    let ticks = [0,1]
     let step = a_max/6
     step = parseFloat(step.toExponential(0))
 
