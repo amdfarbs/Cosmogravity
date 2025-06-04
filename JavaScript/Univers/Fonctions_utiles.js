@@ -742,7 +742,6 @@ function graphique_facteur_echelle(solution,debutEtFin , t_0) {
     }];
 
     const BigFallRegEx = /BigFall/;
-    let coeff = +Infinity; //Ce coeff permet de gerer quand on veut afficher ou non les assymptotes
     if (BigFallRegEx.test(naissance)) {
         donnee.push({
             type: 'line',
@@ -757,8 +756,8 @@ function graphique_facteur_echelle(solution,debutEtFin , t_0) {
         });
     }
     const BigRipRegEx = /BigRip/;
+    let x_assymptote;
     if (BigRipRegEx.test(mort)) {
-        let x_assymptote;
         if (t_fin && t_debut) {
             x_assymptote = Math.abs(Math.abs(t_fin) + Math.abs(t_debut))
         } else {
@@ -797,6 +796,9 @@ function graphique_facteur_echelle(solution,debutEtFin , t_0) {
             width: 1,
         }
     })
+    if (x_assymptote) {
+        temps_fin = x_assymptote
+    }
     let apparence = {
         xaxis: {
             title: texte.univers.axeX,
