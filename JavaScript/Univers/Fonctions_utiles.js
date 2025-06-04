@@ -480,7 +480,7 @@ function debut_fin_univers(equa_diff) {
     naissance_univers = texte.univers.pasDebut
     age_debut = 0
     if (option != "optionLDE") {
-        if (set_solution[1] <= 0 || (isNaN(set_solution[1]) && save_set_solution[2]>0)) {
+        if (set_solution[1] <= 0 || (isNaN(set_solution[1]) && save_set_solution[2]*Math.sign(H0)>0)) {
             if (isNaN(set_solution[1])) {
                 set_solution = save_set_solution
             }
@@ -488,7 +488,7 @@ function debut_fin_univers(equa_diff) {
             boolDebut = true
             naissance_univers = texte.univers.Debut + "BigBang " + Math.abs(age_debut).toExponential(2) + " Ga = "
                 + gigaannee_vers_seconde(Math.abs(age_debut)).toExponential(2) + " s"
-        }else if((set_solution[1]>= +Infinity) || (isNaN(set_solution[1]) && save_set_solution[2]<0)) {
+        }else if((set_solution[1]>= +Infinity) || (isNaN(set_solution[1]) && save_set_solution[2]*Math.sign(H0)<0)) {
             if (isNaN(set_solution[1])) {
                 set_solution = save_set_solution
             }
@@ -508,11 +508,9 @@ function debut_fin_univers(equa_diff) {
         set_solution = RungeKuttaEDO2(pas, set_solution[0], set_solution[1], set_solution[2], equa_diff)
         nombre_point = nombre_point + 1
     }
-
-
     mort_univers = texte.univers.pasMort
     if ( option != "optionLDE") {
-        if (set_solution[1] <= 0 || (isNaN(set_solution[1]) && save_set_solution[2]<0)) {
+        if (set_solution[1] <= 0 || (isNaN(set_solution[1]) && save_set_solution[2]*Math.sign(H0)<0)) {
             if (isNaN(set_solution[1])) {
                 set_solution = save_set_solution
             }
@@ -520,7 +518,7 @@ function debut_fin_univers(equa_diff) {
             boolFin = true
             mort_univers = texte.univers.Mort + "BigCrunch " + Math.abs(age_fin).toExponential(2) + " Ga = "
                 + gigaannee_vers_seconde(Math.abs(age_fin)).toExponential(2) + " s"
-        } else if((set_solution[1]>= +Infinity) || (isNaN(set_solution[1]) && save_set_solution[2]>0)) {
+        } else if((set_solution[1]>= +Infinity) || (isNaN(set_solution[1]) && save_set_solution[2]*Math.sign(H0)>0)) {
             if (isNaN(set_solution[1])) {
                 set_solution = save_set_solution
             }
@@ -740,13 +738,15 @@ function graphique_facteur_echelle(solution,debutEtFin , t_0) {
         name: "Facteur d'échelle",
         line: { color: 'purple' }
     }];
-
+    let x_min = abscisse[0];
+    let x_max = abscisse[abscisse.length-1];
     const BigFallRegEx = /BigFall/;
     if (BigFallRegEx.test(naissance)) {
+        x_min = 0
         donnee.push({
             type: 'line',
             x:[0, 0],
-            y:[min, max],
+            y:[-1, max*2],
             line: {
                 color: "black",
                 simplify: false,
@@ -763,10 +763,11 @@ function graphique_facteur_echelle(solution,debutEtFin , t_0) {
         } else {
             x_assymptote = t_fin
         }
+        x_max = x_assymptote
         donnee.push({
             type: 'line',
             x:[x_assymptote, x_assymptote],
-            y:[min, max],
+            y:[-1, max*2],
             line: {
                 color: "black",
                 simplify: false,
@@ -775,8 +776,6 @@ function graphique_facteur_echelle(solution,debutEtFin , t_0) {
             },
         });
     }
-    temps_debut = abscisse[0]
-    temps_fin =abscisse[abscisse.length-1]
     let ticks = [1]
     let step = a_max/6
     step = parseFloat(step.toExponential(0))
@@ -788,7 +787,7 @@ function graphique_facteur_echelle(solution,debutEtFin , t_0) {
     }
     donnee.push({
         type:'line',
-        x:[temps_debut-(temps_fin-temps_debut),temps_fin+(temps_fin-temps_debut)],
+        x:[x_min-(x_max-x_min),x_max+(x_max-x_min)],
         y:[1,1],
         line: {
             color:"black",
@@ -796,16 +795,13 @@ function graphique_facteur_echelle(solution,debutEtFin , t_0) {
             width: 1,
         }
     })
-    if (x_assymptote) {
-        temps_fin = x_assymptote
-    }
     let apparence = {
         xaxis: {
             title: texte.univers.axeX,
             gridcolor: "#b1b1b1",
             zerolinewidth: 2,
             zeroline: true,
-            range:[temps_debut-0.1*(temps_fin-temps_debut),temps_fin+0.1*(temps_fin-temps_debut)]
+            range:[x_min-0.1*(x_max-x_min),x_max+0.1*(x_max-x_min)]
         },
         yaxis: {
             title: texte.univers.axeY,
