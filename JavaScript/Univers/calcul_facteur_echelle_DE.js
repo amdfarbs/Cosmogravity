@@ -164,5 +164,8 @@ function affichage_site_DE() {
         document.getElementById("duree").innerHTML = debutEtFin[4]
     }
 
-    graphique_facteur_echelle(donnee, debutEtFin, age_univers,)
+    graphique_facteur_echelle(donnee, debutEtFin, age_univers)
+    sessionStorage.setItem("abs",donnee[0])
+    sessionStorage.setItem("ord",donnee[1])
+    update_point()
 }

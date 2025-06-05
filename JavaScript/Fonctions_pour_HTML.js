@@ -371,11 +371,11 @@ function updateUnivers() {
        
 
         
-    if (document.getElementById("Omégal0")) {
+    
         update_graphe_interactif();
         update_point()
     }
-}
+    
 /**
  * Fonction qui permet de rafraîchir les éléments importants de la page calculette
  */

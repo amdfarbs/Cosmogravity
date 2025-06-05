@@ -480,7 +480,7 @@ function debut_fin_univers(equa_diff) {
     naissance_univers = texte.univers.pasDebut
     age_debut = 0
     if (option != "optionLDE") {
-        if (set_solution[1] <= 0 || (isNaN(set_solution[1]) && save_set_solution[2]*Math.sign(H0)>0)) {
+        if (set_solution[1] <= 0 || (set_solution[2]>= +Infinity) || (isNaN(set_solution[1]) && save_set_solution[2]*Math.sign(H0)>0)) {
             if (isNaN(set_solution[1])) {
                 set_solution = save_set_solution
             }
@@ -488,7 +488,7 @@ function debut_fin_univers(equa_diff) {
             boolDebut = true
             naissance_univers = texte.univers.Debut + "BigBang " + Math.abs(age_debut).toExponential(2) + " Ga = "
                 + gigaannee_vers_seconde(Math.abs(age_debut)).toExponential(2) + " s"
-        }else if((set_solution[1]>= +Infinity) || (isNaN(set_solution[1]) && save_set_solution[2]*Math.sign(H0)<0)) {
+        }else if((set_solution[1]>= +Infinity) || (set_solution[2]<= -Infinity) || (isNaN(set_solution[1]) && save_set_solution[2]*Math.sign(H0)<0)) {
             if (isNaN(set_solution[1])) {
                 set_solution = save_set_solution
             }
@@ -508,9 +508,11 @@ function debut_fin_univers(equa_diff) {
         set_solution = RungeKuttaEDO2(pas, set_solution[0], set_solution[1], set_solution[2], equa_diff)
         nombre_point = nombre_point + 1
     }
+
+    console.log(set_solution," : ",save_set_solution)
     mort_univers = texte.univers.pasMort
     if ( option != "optionLDE") {
-        if (set_solution[1] <= 0 || (isNaN(set_solution[1]) && save_set_solution[2]*Math.sign(H0)<0)) {
+        if (set_solution[1] <= 0 || (set_solution[2]<= -Infinity) || (isNaN(set_solution[1]) && save_set_solution[2]*Math.sign(H0)<0)) {
             if (isNaN(set_solution[1])) {
                 set_solution = save_set_solution
             }
@@ -518,7 +520,7 @@ function debut_fin_univers(equa_diff) {
             boolFin = true
             mort_univers = texte.univers.Mort + "BigCrunch " + Math.abs(age_fin).toExponential(2) + " Ga = "
                 + gigaannee_vers_seconde(Math.abs(age_fin)).toExponential(2) + " s"
-        } else if((set_solution[1]>= +Infinity) || (isNaN(set_solution[1]) && save_set_solution[2]*Math.sign(H0)>0)) {
+        } else if((set_solution[1]>= +Infinity) || (set_solution[2]>= +Infinity) || (isNaN(set_solution[1]) && save_set_solution[2]*Math.sign(H0)>0)) {
             if (isNaN(set_solution[1])) {
                 set_solution = save_set_solution
             }
