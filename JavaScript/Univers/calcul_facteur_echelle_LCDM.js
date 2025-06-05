@@ -156,7 +156,6 @@ function affichage_site_LCDM() {
 
     let sorties = calcul_facteur_echelle_LCDM(equa_diff_1, equa_diff_2, fonction)
     let donnee = sorties[0]
-
     let age_univers = sorties[1]
     let debutEtFin = sorties[2]
 
