@@ -106,32 +106,33 @@ function px_to_omegal0(y) {
 }
 
 let x_min;
-    let x_max;
-    let y_min;
-    let y_max;
-    let x_to_px;
-    let y_to_px;
-    if (document.getElementById("w0")) {
-        x_min = w0min
-        x_max = w0max
-        y_min = w0min
-        y_max = w0max
-        x_to_px = w0_to_px
-        y_to_px = w1_to_px
-        label_x = "w0"
-        label_y = "w1"
-        pas = 2
-    } else {
-        x_min = omegaM0Min
-        x_max = omegaM0Max
-        y_min = omegaL0Min
-        y_max = omegaL0Max
-        x_to_px = omegam0_to_px
-        y_to_px = omegal0_to_px
-        label_x = "Ωm0"
-        label_y = "ΩΛ0"
-        pas = 1
-    }
+let x_max;
+let y_min;
+let y_max;
+let x_to_px;
+let y_to_px;
+let pas
+if (document.getElementById("w0")) {
+    x_min = w0min
+    x_max = w0max
+    y_min = w0min
+    y_max = w0max
+    x_to_px = w0_to_px
+    y_to_px = w1_to_px
+    label_x = "w0"
+    label_y = "w1"
+    pas = 2
+} else {
+    x_min = omegaM0Min
+    x_max = omegaM0Max
+    y_min = omegaL0Min
+    y_max = omegaL0Max
+    x_to_px = omegam0_to_px
+    y_to_px = omegal0_to_px
+    label_x = "Ωm0"
+    label_y = "ΩΛ0"
+    pas = 1
+}
 
 function update_graphe_interactif() {
     resizeCanvas();
