@@ -479,6 +479,10 @@ function debut_fin_univers(equa_diff) {
     }
     naissance_univers = texte.univers.pasDebut
     age_debut = 0
+
+    // Debug bien pratique
+    // console.log(set_solution," : ",save_set_solution)
+
     if (option != "optionLDE") {
         if (set_solution[1] <= 0 || (set_solution[2]>= +Infinity) || (isNaN(set_solution[1]) && save_set_solution[2]*Math.sign(H0)>0)) {
             if (isNaN(set_solution[1])) {
@@ -509,7 +513,6 @@ function debut_fin_univers(equa_diff) {
         nombre_point = nombre_point + 1
     }
 
-    console.log(set_solution," : ",save_set_solution)
     mort_univers = texte.univers.pasMort
     if ( option != "optionLDE") {
         if (set_solution[1] <= 0 || (set_solution[2]<= -Infinity) || (isNaN(set_solution[1]) && save_set_solution[2]*Math.sign(H0)<0)) {

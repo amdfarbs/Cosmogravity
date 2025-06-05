@@ -369,8 +369,50 @@ function update_graphe_interactif() {
     context.restore();
 } else {
     context.beginPath()
+    context.strokeStyle = "red";
+    for (let w0 = w0min; w0 <= -1; w0 += 0.01) {
+        let w1 = 0; // Calcul de ΩΛ pour chaque Ωm
+        let y = y_to_px(w1); // Conversion en coordonnées x
+        let x = x_to_px(w0); // Conversion en coordonnées y
+        if (w0 === w0min) {
+            context.moveTo(x, y); // Point de départ
+        } else if (-1 >= w0 && w0 >= w0min ) {
+                context.lineTo(x, y); // Relier les points
+        }
+    }
+    context.stroke(); // Tracer la séparatrice
+    context.save(); 
+    context.beginPath()
     context.strokeStyle = "#000000";
+    for (let w0 = -1; w0 <= w0max; w0 += 0.01) {
+        let w1 = 0; // Calcul de ΩΛ pour chaque Ωm
+        let y = y_to_px(w1); // Conversion en coordonnées x
+        let x = x_to_px(w0); // Conversion en coordonnées y
+        if (w0 === 1) {
+            context.moveTo(x, y); // Point de départ
+        } else if (w0max >= w0 && w0 >= -1 ) {
+                context.lineTo(x, y); // Relier les points
+        }
+    }
+    context.stroke(); 
+    context.save(); 
 
+    context.beginPath()
+    context.strokeStyle = "#000000";
+    context.moveTo(x_to_px(-1),y_to_px(0.1))
+    context.lineTo(x_to_px(-1),y_to_px(-0.1))
+    context.stroke(); 
+    context.save(); 
+
+    context.font = fontsize+"em Arial";
+    context.translate(x_to_px(0), y_to_px(0));
+    context.rotate(0);
+    context.fillStyle = "red"
+    context.fillText(texte.grapheSéparatrices.BigRip, 0, -150);
+    context.fillStyle = "#000000"
+    context.fillText(texte.grapheSéparatrices.pBB,0 ,130);
+    context.fillText(texte.grapheSéparatrices.BigRip,0,150)
+    context.restore();
 }
 
 
