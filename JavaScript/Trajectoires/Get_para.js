@@ -50,20 +50,20 @@ function save_generalise(SCH, baryonique_SCH){
 		J = document.getElementById("J").value;
 		teta = document.getElementById("teta").value;
 		phi0 = document.getElementById("phi0").value;
-		var rh_moins_check = true;
+		//var rh_moins_check = true;
 
-		if (document.getElementById("traject_type2").value == "mobile") { //Si je suis en mode spationaute/photon. 
-			if (document.getElementById("depasser").checked == false){ //Si le case dépasser Rh- n'est pas cochée.
-				rh_moins_check = false; //Je stocke false dans la variable.
-			}
-		}
+		//if (document.getElementById("traject_type2").value == "mobile") { //Si je suis en mode spationaute/photon. 
+		//	if (document.getElementById("depasser").checked == false){ //Si le case dépasser Rh- n'est pas cochée.
+		//		rh_moins_check = false; //Je stocke false dans la variable.
+		//	}
+		//}
 
 		//Sauvegarde des données communes à la métrique de Kerr.
 		sessionStorage.setItem("r0", r0);
 		sessionStorage.setItem("J", J);
 		sessionStorage.setItem("teta", teta);
 		sessionStorage.setItem("phi0", phi0);
-		sessionStorage.setItem("rh_moins_check", rh_moins_check);
+		//sessionStorage.setItem("rh_moins_check", rh_moins_check);
 	}
 
 	if(baryonique_SCH){ //Si je suis dans la métrique de SCH et que je suis en baryonique.
@@ -273,7 +273,7 @@ function load_generalise(SCH){
 			document.getElementById("traject_type2").value = sessionStorage.getItem("traject_type2");
 
 			var graph_check = sessionStorage.getItem("graph_check");
-			var rh_moins_check = sessionStorage.getItem("rh_moins_check");
+			//var rh_moins_check = sessionStorage.getItem("rh_moins_check");
 
 			if (graph_check == "false") { //Si la case pour le potentiel n'est pas cochée :
 				document.getElementById("toggle").checked = false; //Alors je la décoche. 
@@ -291,9 +291,9 @@ function load_generalise(SCH){
 				pressionBouttonObservateur(true);
 			} else if (document.getElementById("traject_type2").value == "mobile") {
 				pressionBouttonMobile(true);
-				if (rh_moins_check=="true"){ //Dans le cas où la case dépasser rh- était cochée :
-					document.getElementById("depasser").checked = true; //Alors je la coche. 
-				}
+				//if (rh_moins_check=="true"){ //Dans le cas où la case dépasser rh- était cochée :
+				//	document.getElementById("depasser").checked = true; //Alors je la coche. 
+				//}
 			}
 
 		}

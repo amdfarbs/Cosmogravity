@@ -620,7 +620,7 @@ function textegravetetc_Kerr(){
 
     if(canvaswidthheightt=="750"){
         document.getElementById("labelgp").innerHTML = texte.pages_trajectoire.labelgp;
-        document.getElementById("label_depasser").innerHTML = texte.pages_trajectoire.label_depasser;
+        //document.getElementById("label_depasser").innerHTML = texte.pages_trajectoire.label_depasser;
     }
 
 }

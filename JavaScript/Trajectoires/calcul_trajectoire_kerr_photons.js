@@ -576,7 +576,7 @@ function animate() {
 	//Tout ce qui est dans cette condition concerne le cas du referentiel du spationaute
 	{
 		/* Une condition pour ne pas calculer audela attiendre zero */
-		if(r_part>0)
+		if(r_part>rhp*1.000001)
 		{	
 			//-----------------------------------------------------PARTIE CALCULE-----------------------------------------------------------
 
@@ -658,11 +658,11 @@ function animate() {
 		context22.lineWidth = "1";	
 		context22.fill();
 
-		//-----------------------------------------------------NE PAS DEPASSER RH_ -------------------------------------------------
+		//-----------------------------------------------------NE PAS DEPASSER RH+ -------------------------------------------------
 
-		if(r_part<=rhm && ! document.getElementById("depasser").checked)
+		if(r_part<=rhp)
 		{
-			r_part=rhm ; // le rayon est egale à RH-
+			r_part=rhp ; // le rayon est egale à RH+
 			document.getElementById("r_par").innerHTML = r_part.toExponential(3); // on l'affiche
 			textesfinarret_kerrphoton();
 			onestarrete=1; //on met à jour la variable qui gere l'arret
