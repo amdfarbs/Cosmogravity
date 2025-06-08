@@ -781,15 +781,10 @@ function graphique_facteur_echelle(solution,debutEtFin , t_0) {
             },
         });
     }
-    let ticks = [0,1]
+    let ticks = [0]
     let step = a_max/6
-    step = parseFloat(step.toExponential(0))
-
-    let a = step
-    while (a < a_max) {
-        ticks.push(a),
-        a = a+step
-    }
+    if (a_max <= 10) {
+    ticks = [0,1]
     donnee.push({
         type:'line',
         x:[x_min-(x_max-x_min),x_max+(x_max-x_min)],
@@ -800,6 +795,20 @@ function graphique_facteur_echelle(solution,debutEtFin , t_0) {
             width: 1,
         }
     })
+    if (a_max/6 < 0.02) {
+        step = 0.02
+    } else if (a_max/6 < 0.2) {
+        step = 0.2
+    } else {
+        step = 1
+    }} else { 
+    step = parseFloat(step.toExponential(0))
+    }
+    let a = step
+    while (a < a_max) {
+        ticks.push(a),
+        a = a+step
+    }
     let apparence = {
         xaxis: {
             title: texte.univers.axeX,

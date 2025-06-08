@@ -3,10 +3,10 @@ const omegaM0Max = 3;
 
 const omegaL0Min = -1.5;
 const omegaL0Max = 3;
-const w0min = -6
-const w0max = 6
-const w1min = -6
-const w1max = 6
+const w0min = -3
+const w0max = 1
+const w1min = -2
+const w1max = 2
 
 
 // Ces constantes gerent respectivement la taille en em des tags (Ouvert/Fermé), des Labels (Omega_m0) et des graduations
@@ -115,13 +115,13 @@ let pas
 if (document.getElementById("w0")) {
     x_min = w0min
     x_max = w0max
-    y_min = w0min
-    y_max = w0max
+    y_min = w1min
+    y_max = w1max
     x_to_px = w0_to_px
     y_to_px = w1_to_px
     label_x = "w0"
     label_y = "w1"
-    pas = 2
+    pas = 1
 } else {
     x_min = omegaM0Min
     x_max = omegaM0Max
@@ -405,13 +405,16 @@ function update_graphe_interactif() {
     context.save(); 
 
     context.font = fontsize+"em Arial";
-    context.translate(x_to_px(0), y_to_px(0));
+    context.translate(x_to_px(-2), y_to_px(0));
     context.rotate(0);
     context.fillStyle = "red"
-    context.fillText(texte.grapheSéparatrices.BigRip, 0, -150);
+    context.fillText(texte.grapheSéparatrices.BigRip, 0, -15);
+    context.restore();
+    context.font = fontsize+"em Arial";
     context.fillStyle = "#000000"
-    context.fillText(texte.grapheSéparatrices.pBB,0 ,130);
-    context.fillText(texte.grapheSéparatrices.BigRip,0,150)
+    context.translate(x_to_px(0), y_to_px(0));
+    context.fillText(texte.grapheSéparatrices.pBB,0 ,15);
+    context.fillText(texte.grapheSéparatrices.BigRip,0,35)
     context.restore();
 }
 
