@@ -79,19 +79,21 @@ function calcul_facteur_echelle_LCDM(equa_diff_1, equa_diff_2, fonction_simplifi
             pas = Math.abs(tau_max - tau_min) * 1e-3
             universInconnu = false
         }
+        if (document.getElementById("Omégam0").value == 0 && document.getElementById("Omégal0").value == 1 && document.getElementById("Omégar0").value == 0 && document.getElementById("Omégak0").value == 0) {
+            pas = 1e-3
+        }
 
         if (universInconnu && option === "optionNull") {
             if (a_min > 1) {a_min = 1}
             if (a_max < 1) {a_max = 1}
         }
-
         return [tau_init, a_init, ap_init, pas]
     }
 
     let params = bornes_temps_CI();
-
     let set_solution = [params[0], params[1], params[2]];
     let pas = params[3];
+
 
     let taus = [set_solution[0]]
     let facteur_echelle = [set_solution[1]]
@@ -154,7 +156,6 @@ function affichage_site_LCDM() {
 
     let sorties = calcul_facteur_echelle_LCDM(equa_diff_1, equa_diff_2, fonction)
     let donnee = sorties[0]
-
     let age_univers = sorties[1]
     let debutEtFin = sorties[2]
 

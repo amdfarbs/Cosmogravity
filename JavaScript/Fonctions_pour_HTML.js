@@ -319,8 +319,7 @@ function updateUnivers() {
         fonction_simplifiante = fonction_F;
         equa_diff_2 = equa_diff_2_DE;
     }
-    
-
+        let horizon_BB_BC = true //True si on veut les afficher false sinon mais dans tous les cas c'est sensé etre nan donc ca change rien
         //affichage des horizons seulement dans certains cas
         if (!(document.getElementById('optionsMonofluide').value === "optionNull")){//aucun horizons si univers monofluide (existe bien mais implementation pour le futur car différente formule)
             document.getElementById('horizonEvenement').style.display="none";
@@ -329,12 +328,12 @@ function updateUnivers() {
             document.getElementById('hp_enregistrer').style.display="none"
         }else {
             let val_debut_fin=debut_fin_univers(equa_diff_2);
-            if (val_debut_fin[2] === 0){//detecter s'il n'y a pas de big bang alors pas d'horizon des particules
+            if (val_debut_fin[2] === 0 && !horizon_BB_BC){//detecter s'il n'y a pas de big bang alors pas d'horizon des particules
                 document.getElementById('horizonParticule').style.display="none";
                 document.getElementById('hp_enregistrer').style.display="none"
             }else{
                 let dm_horizon_particule_m = calcul_horizon_particule(fonction_simplifiante);
-                if (isNaN(dm_horizon_particule_m)){
+                if (isNaN(dm_horizon_particule_m) || (Math.sign(dm_horizon_particule_m)==-1)){
                     document.getElementById('horizonParticule').style.display="none";
                     document.getElementById('hp_enregistrer').style.display="none"
                 }else{
@@ -347,13 +346,13 @@ function updateUnivers() {
                 document.getElementById("resultat_dm_particule_al").innerHTML = arrondie_affichage(dm_horizon_particule_al);
                 document.getElementById("hp_enregistrer").innerHTML = "d<sub>p<sub>0</sub></sub> = " + dm_horizon_particule_pc.toExponential(4) + " pc"
             }
-            if(! isNaN(val_debut_fin[3])){//detecter si il y a big crunch alors pas d'horizon des evenements
+            if(val_debut_fin[3] === 0 && !horizon_BB_BC){//detecter si il y a big crunch alors pas d'horizon des evenements
                 document.getElementById('horizonEvenement').style.display="none";
                 document.getElementById('he_enregistrer').style.display="none"
             }else{
                 document.getElementById('horizonEvenement').style.display="block";
                 let dm_horizon_evenement_m = calcul_horizon_evenements(fonction_simplifiante);
-                if (isNaN(dm_horizon_evenement_m)){
+                if (isNaN(dm_horizon_evenement_m) || (Math.sign(dm_horizon_evenement_m)==-1)){
                     document.getElementById('horizonEvenement').style.display="none";
                     document.getElementById('he_enregistrer').style.display="none"
                 }else{
@@ -371,11 +370,11 @@ function updateUnivers() {
        
 
         
-    if (document.getElementById("Omégal0")) {
+    
         update_graphe_interactif();
         update_point()
     }
-}
+    
 /**
  * Fonction qui permet de rafraîchir les éléments importants de la page calculette
  */
@@ -442,23 +441,28 @@ function enregistrer() {
         let abs = sessionStorage.getItem("abs").split(",")
         let ord = sessionStorage.getItem("ord").split(",")
         downloadCSV(abs,ord, nom+".csv")
-    } else {
+    } else if(format == "PNG"){
     if (document.getElementById("graphique_LCDM")) {
         element = document.getElementById("panneauGraphe")
     }
-
     if (document.getElementById("graphique_DE")) {
         element = document.getElementById("panneauGraphe")
     }
-
     html2canvas(element).then(canvas => {
         const URLimage = canvas.toDataURL("image/"+format)
         const lien = document.createElement("a")
         lien.href = URLimage
-        lien.download = nom+"."+format
-
+        lien.download = nom+"."+format.toLowerCase()
         lien.click()
     })
+    } else {
+        if (document.getElementById("graphique_LCDM")) {
+            graph = "graphique_LCDM"
+        } else {
+            graph = "graphique_DE"
+        }
+        format = format.toLowerCase()
+        Plotly.downloadImage(graph, {format: format, filename: nom})
     }
 
 }
