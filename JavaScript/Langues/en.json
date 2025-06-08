@@ -418,7 +418,7 @@
 		"rayon_physique": "r<sub>physical</sub> (m) =",
 		"particule_arretee": "Projectile has landed on the surface of the celestial body.",
 		"particule_ecrasee": "Projectile has crashed onto the surface of the celestial body.",
-		"particule_atteint_rh": "Projectile has reached Rh-.",
+		"particule_atteint_rh": "Projectile has reached Rh+.",
 		"rebond": "Rebound",
 		"amortissement": "Damping coefficient: Limited bounce at impact speed < 300 m/s",
 		"non_baryonique": "Mass and/or non-baryonic mobile(s)",

@@ -341,7 +341,7 @@ function genereHtml()
 		var newinput = document.createElement("Input"); //on crée le input
 		newinput.setAttribute("id","r0"+count.toString()+"");//on lui met un id
 		newinput.setAttribute("value","2e13"); // on met la valeur par defaut
-		newinput.setAttribute("align","left"); // on met la position du texte dans l'input
+		//newinput.setAttribute("align","left"); // on met la position du texte dans l'input
 		newinput.setAttribute("maxlength","18");//on peut mettre que 18 caracteres 
 		newinput.setAttribute("type","text"); //on met que c'est du text
 		newinput.setAttribute("size","5");	//on met la taille de la case
@@ -1174,7 +1174,7 @@ function trajectoire(compteur,mobile) {
     				if (deltam_sur_m <= 0.1) {
         			puissance_instant_memo = puissance_instant;}
 					deltam_sur_m += Math.abs(Delta_E/mobile.E); //Calcul de l'énergie ΔE/E consommée au total. 
-					if ((deltam_sur_m>0.1) || (delta_E<=0,1)) { //Si l'énergie consommée est de 90% de l'énergie de masse, plus de pilotage.
+					if ((deltam_sur_m>0.1)) { //Si l'énergie consommée est de 90% de l'énergie de masse, plus de pilotage.
 						pilotage_possible = false;  
 						deltam_sur_m = 0.1; //Je bloque la valeur à 10%.
 						// Désactivation de l'affichage de la puissance lorsque le seuil est atteint
@@ -1761,15 +1761,15 @@ function animate(compteur,mobile,mobilefactor)
 
 	    //  Gestion de la diode réserve d'énergie
 	if (element2.value == "mobile"){
-		if (Number(deltam_sur_m) <= 0.3) {
+		if (Number(deltam_sur_m) <= 0.01) {
 			document.getElementById('DivClignotantePilot'+compteur.toString()).innerHTML = " <img src='./Images/diodever.gif' height='14px' />";
 			document.getElementById('DivClignotantePilot'+compteur.toString()).style.color = "green";
 		} 
-		else if (0.3 < Number(deltam_sur_m) && Number(deltam_sur_m) < 0.5) {
+		else if (0.01 < Number(deltam_sur_m) && Number(deltam_sur_m) < 0.1) {
 			document.getElementById('DivClignotantePilot'+compteur.toString()).innerHTML = " <img src='./Images/diodejaune.gif' height='14px' />";
 			document.getElementById('DivClignotantePilot'+compteur.toString()).style.color = "yellow";
 		} 
-		else if (Number(deltam_sur_m) >= 0.5) {
+		else if (Number(deltam_sur_m) >= 0.1) {
 			document.getElementById('DivClignotantePilot'+compteur.toString()).innerHTML = " <img src='./Images/dioderouge.gif' height='14px' />";
 			document.getElementById('DivClignotantePilot'+compteur.toString()).style.color = "red";
 		} 
