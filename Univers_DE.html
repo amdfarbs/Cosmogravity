@@ -67,7 +67,7 @@
                     <option id="Monofluide_optionNull" value="optionNull"></option>
                     <option id="Monofluide_optionM" value="optionM"></option>
                     <option id="Monofluide_optionR" value="optionR"></option>
-                    <option id="Monofluide_optionLDE" value="optionLDE"></option>
+                    <option id="Monofluide_optionDE" value="optionLDE"></option>
                     <option id="Monofluide_optionK" value="optionK"></option>
                 </select>
             </div>
@@ -123,9 +123,10 @@
                 </label>
                 <input id="OptionsOmégak0" type="checkbox">
             </div>
-
+            <div id="conteneurCanvas">
+                <canvas id="canvas"></canvas>
+            </div>
         </div>
-
         <div class="boiteEntree">
             <div id="Tracé"></div>
 
@@ -173,7 +174,7 @@
             <div class="avertissement" id="avertissementUnivers"></div>
 
             <div id="graphique_DE"></div>
-
+            
             <div style="display: flex; gap: 10px">
                 <div style="justify-self: left">
                     <h3 id="entreeEnregistrer" style="text-align: center"></h3>
@@ -275,7 +276,7 @@
                 <select name="Format enregistrement" id="optionsEnregistrement">
                     <option value="PNG">PNG</option>
                     <option value="SVG">SVG</option>
-                    <option value="JPG">JPG</option>
+                    <option value="jpeg">JPG</option>
                     <option value="CSV">CSV</option>
                 </select>
             </div>
@@ -297,6 +298,7 @@
     <script src="./JavaScript/Univers/Fonctions_utiles.js"></script>
     <script src="./JavaScript/Univers/calcul_facteur_echelle_DE.js"></script>
     <script src="./JavaScript/MéthodesNumériques.js"></script>
+    <script src="./JavaScript/Univers/Dessin_Interactif_Séparatrices.js"></script>
 
 <script>
     sessionStorage.setItem("isHome","False");

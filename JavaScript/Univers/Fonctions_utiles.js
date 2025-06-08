@@ -479,8 +479,12 @@ function debut_fin_univers(equa_diff) {
     }
     naissance_univers = texte.univers.pasDebut
     age_debut = 0
+
+    // Debug bien pratique
+    // console.log(set_solution," : ",save_set_solution)
+
     if (option != "optionLDE") {
-        if (set_solution[1] <= 0 || (isNaN(set_solution[1]) && save_set_solution[2]>0)) {
+        if (set_solution[1] <= 0 || (set_solution[2]>= +Infinity) || (isNaN(set_solution[1]) && save_set_solution[2]*Math.sign(H0)>0)) {
             if (isNaN(set_solution[1])) {
                 set_solution = save_set_solution
             }
@@ -488,7 +492,7 @@ function debut_fin_univers(equa_diff) {
             boolDebut = true
             naissance_univers = texte.univers.Debut + "BigBang " + Math.abs(age_debut).toExponential(2) + " Ga = "
                 + gigaannee_vers_seconde(Math.abs(age_debut)).toExponential(2) + " s"
-        }else if((set_solution[1]>= +Infinity) || (isNaN(set_solution[1]) && save_set_solution[2]<0)) {
+        }else if((set_solution[1]>= +Infinity) || (set_solution[2]<= -Infinity) || (isNaN(set_solution[1]) && save_set_solution[2]*Math.sign(H0)<0)) {
             if (isNaN(set_solution[1])) {
                 set_solution = save_set_solution
             }
@@ -509,10 +513,9 @@ function debut_fin_univers(equa_diff) {
         nombre_point = nombre_point + 1
     }
 
-
     mort_univers = texte.univers.pasMort
     if ( option != "optionLDE") {
-        if (set_solution[1] <= 0 || (isNaN(set_solution[1]) && save_set_solution[2]<0)) {
+        if (set_solution[1] <= 0 || (set_solution[2]<= -Infinity) || (isNaN(set_solution[1]) && save_set_solution[2]*Math.sign(H0)<0)) {
             if (isNaN(set_solution[1])) {
                 set_solution = save_set_solution
             }
@@ -520,7 +523,7 @@ function debut_fin_univers(equa_diff) {
             boolFin = true
             mort_univers = texte.univers.Mort + "BigCrunch " + Math.abs(age_fin).toExponential(2) + " Ga = "
                 + gigaannee_vers_seconde(Math.abs(age_fin)).toExponential(2) + " s"
-        } else if((set_solution[1]>= +Infinity) || (isNaN(set_solution[1]) && save_set_solution[2]>0)) {
+        } else if((set_solution[1]>= +Infinity) || (set_solution[2]>= +Infinity) || (isNaN(set_solution[1]) && save_set_solution[2]*Math.sign(H0)>0)) {
             if (isNaN(set_solution[1])) {
                 set_solution = save_set_solution
             }
@@ -740,14 +743,15 @@ function graphique_facteur_echelle(solution,debutEtFin , t_0) {
         name: "Facteur d'échelle",
         line: { color: 'purple' }
     }];
-
+    let x_min = abscisse[0];
+    let x_max = abscisse[abscisse.length-1];
     const BigFallRegEx = /BigFall/;
-    let coeff = +Infinity; //Ce coeff permet de gerer quand on veut afficher ou non les assymptotes
     if (BigFallRegEx.test(naissance)) {
+        x_min = 0
         donnee.push({
             type: 'line',
             x:[0, 0],
-            y:[min, max],
+            y:[-1, max*2],
             line: {
                 color: "black",
                 simplify: false,
@@ -757,38 +761,70 @@ function graphique_facteur_echelle(solution,debutEtFin , t_0) {
         });
     }
     const BigRipRegEx = /BigRip/;
+    let x_assymptote;
     if (BigRipRegEx.test(mort)) {
-        let x_assymptote;
         if (t_fin && t_debut) {
             x_assymptote = Math.abs(Math.abs(t_fin) + Math.abs(t_debut))
         } else {
             x_assymptote = t_fin
         }
+        x_max = x_assymptote
         donnee.push({
             type: 'line',
             x:[x_assymptote, x_assymptote],
-            y:[min, max],
+            y:[-1, max*2],
             line: {
                 color: "black",
                 simplify: false,
                 shape: 'linear',
-                dash: 'dash'
+                dash: 'dash',
             },
         });
+    }
+    let ticks = [0]
+    let step = a_max/6
+    if (a_max <= 10) {
+    ticks = [0,1]
+    donnee.push({
+        type:'line',
+        x:[x_min-(x_max-x_min),x_max+(x_max-x_min)],
+        y:[1,1],
+        line: {
+            color:"black",
+            simplify:"true",
+            width: 1,
+        }
+    })
+    if (a_max/6 < 0.02) {
+        step = 0.02
+    } else if (a_max/6 < 0.2) {
+        step = 0.2
+    } else {
+        step = 1
+    }} else { 
+    step = parseFloat(step.toExponential(0))
+    }
+    let a = step
+    while (a < a_max) {
+        ticks.push(a),
+        a = a+step
     }
     let apparence = {
         xaxis: {
             title: texte.univers.axeX,
             gridcolor: "#b1b1b1",
             zerolinewidth: 2,
-            zeroline: true
+            zeroline: true,
+            range:[x_min-0.1*(x_max-x_min),x_max+0.1*(x_max-x_min)]
         },
         yaxis: {
             title: texte.univers.axeY,
             gridcolor: "#b1b1b1",
             zerolinewidth: 2,
             zeroline: true,
-            range:[-0.1,max]
+            range:[-0.1,max],
+            tickmode: "array",
+            tickvals: ticks,
         },
         showlegend: false,
 
@@ -800,8 +836,8 @@ function graphique_facteur_echelle(solution,debutEtFin , t_0) {
             t: 50,
             pad: 4
         },
-        plot_bgcolor: "rgba(255,255,255,0)",
-        paper_bgcolor: "rgba(255,255,255,0)"
+        plot_bgcolor: "rgb(255,255,255)",
+        paper_bgcolor: "rgb(255,255,255)"
     };
 
     let configuration = {

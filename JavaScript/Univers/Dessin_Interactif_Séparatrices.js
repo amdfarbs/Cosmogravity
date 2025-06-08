@@ -3,18 +3,26 @@ const omegaM0Max = 3;
 
 const omegaL0Min = -1.5;
 const omegaL0Max = 3;
+const w0min = -3
+const w0max = 1
+const w1min = -2
+const w1max = 2
+
 
 // Ces constantes gerent respectivement la taille en em des tags (Ouvert/Fermé), des Labels (Omega_m0) et des graduations
-const fontsize = 0.9;
+const fontsize = 1.1;
 const fontsize_label = 0.8;
 const fontsize_graduations = 0.7;
 
+
 window.onload = function() {
     update_graphe_interactif();
+    update_point()
 };
 
 window.onresize = function() {
     update_graphe_interactif()
+    update_point()
 };
 
 function resizeCanvas() {
@@ -38,6 +46,16 @@ function omegam0_to_px(value) {
     return echelle * (value - omegaM0Min) + 15;
 }
 
+/**
+* @param value {number} Valeur de w0
+* @return {number} Valeur de w0 convertis en pixel sur le canvas
+*/
+function w0_to_px(value) {
+   let canvas = document.getElementById("canvas");
+   let echelle = (canvas.width - 30) / Math.abs(w0max - w0min);
+   return echelle * (value - w0min) + 15;
+}
+
 // Ol est dans le sens des y
 /**
  * Fonction permettant de convertir une valeur de oméga matière en pixel
@@ -48,6 +66,17 @@ function omegal0_to_px(value) {
     let canvas = document.getElementById("canvas");
     let echelle = (canvas.height - 30) / Math.abs(omegaL0Max - omegaL0Min);
     return (canvas.height - 15) - (echelle * (value - omegaL0Min));
+}
+
+/**
+ * Fonction permettant de convertir une valeur de oméga matière en pixel
+ * @param value {number} Valeur de oméga
+ * @return {number} Valeur de oméga convertis en pixel sur le canvas
+ */
+function w1_to_px(value) {
+    let canvas = document.getElementById("canvas");
+    let echelle = (canvas.height - 30) / Math.abs(w1max - w1min);
+    return (canvas.height - 15) - (echelle * (value - w1min));
 }
 
 /**
@@ -76,6 +105,35 @@ function px_to_omegal0(y) {
     return omegaL0Min + ((y - pxMin) / (pxMax - pxMin)) * (omegaL0Max - omegaL0Min);
 }
 
+let x_min;
+let x_max;
+let y_min;
+let y_max;
+let x_to_px;
+let y_to_px;
+let pas
+if (document.getElementById("w0")) {
+    x_min = w0min
+    x_max = w0max
+    y_min = w1min
+    y_max = w1max
+    x_to_px = w0_to_px
+    y_to_px = w1_to_px
+    label_x = "w0"
+    label_y = "w1"
+    pas = 1
+} else {
+    x_min = omegaM0Min
+    x_max = omegaM0Max
+    y_min = omegaL0Min
+    y_max = omegaL0Max
+    x_to_px = omegam0_to_px
+    y_to_px = omegal0_to_px
+    label_x = "Ωm0"
+    label_y = "ΩΛ0"
+    pas = 1
+}
+
 function update_graphe_interactif() {
     resizeCanvas();
 
@@ -89,11 +147,11 @@ function update_graphe_interactif() {
 
     // Dessiner les axes
     context.beginPath();
-    context.moveTo(omegam0_to_px(omegaM0Min), omegal0_to_px(omegaL0Min));
-    context.lineTo(omegam0_to_px(omegaM0Min), omegal0_to_px(omegaL0Max));
-    context.lineTo(omegam0_to_px(omegaM0Max), omegal0_to_px(omegaL0Max));
-    context.lineTo(omegam0_to_px(omegaM0Max), omegal0_to_px(omegaL0Min));
-    context.lineTo(omegam0_to_px(omegaM0Min), omegal0_to_px(omegaL0Min));
+    context.moveTo(x_to_px(x_min), y_to_px(y_min));
+    context.lineTo(x_to_px(x_min), y_to_px(y_max));
+    context.lineTo(x_to_px(x_max), y_to_px(y_max));
+    context.lineTo(x_to_px(x_max), y_to_px(y_min));
+    context.lineTo(x_to_px(x_min), y_to_px(y_min));
 
     context.lineWidth = 1;
     context.strokeStyle = "#000000";
@@ -105,12 +163,12 @@ function update_graphe_interactif() {
     context.textAlign = 'center';
     context.textBaseline = 'top';
     context.save()
-    context.translate(omegam0_to_px(omegaM0Min), omegal0_to_px(omegaL0Max));
+    context.translate(x_to_px(x_min), y_to_px(y_max));
     context.rotate(-Math.PI / 2)
-    context.fillText("ΩΛ0",-17, 3);
+    context.fillText(label_y,-17, 3);
     context.restore()
     context.textAlign = 'left';
-    context.fillText("Ωm0",omegam0_to_px(omegaM0Max) - 35, omegal0_to_px(omegaL0Min) - 15);  // Label pour l'axe y
+    context.fillText(label_x,x_to_px(x_max) - 35, y_to_px(y_min) - 15);  // Label pour l'axe y
 
     // Dessiner les marqueurs des valeurs
     context.font = fontsize_graduations+"em Arial";
@@ -119,17 +177,17 @@ function update_graphe_interactif() {
     context.textBaseline = 'top';
     context.textBaseline = 'middle';
 
-    for (let marqueur = omegaL0Min; marqueur <= omegaL0Max; marqueur = marqueur + 1) {
+    for (let marqueur = y_min; marqueur <= y_max; marqueur = marqueur + pas) {
         context.beginPath();
-        context.moveTo(omegam0_to_px(omegaM0Min) - 5, omegal0_to_px(marqueur));
-        context.lineTo(omegam0_to_px(omegaM0Min) + 5, omegal0_to_px(marqueur));
+        context.moveTo(x_to_px(x_min) - 5, y_to_px(marqueur));
+        context.lineTo(x_to_px(x_min) + 5, y_to_px(marqueur));
         context.lineWidth = 1;
         context.strokeStyle = "#000000";
         context.stroke();
         context.textAlign = 'center';
         if (marqueur !== -3) {
             context.save();
-            context.translate(omegam0_to_px(omegaM0Min) - 7, omegal0_to_px(marqueur));
+            context.translate(x_to_px(x_min) - 7, y_to_px(marqueur));
             context.rotate(-Math.PI / 2);
             context.textAlign = 'center';
             context.fillText(marqueur.toFixed(1), 0, 0);
@@ -137,25 +195,26 @@ function update_graphe_interactif() {
         }
     }
 
-    for (let marqueur = omegaM0Min; marqueur <= omegaM0Max; marqueur = marqueur + 1) {
+    for (let marqueur = x_min; marqueur <= x_max; marqueur = marqueur + pas) {
         context.beginPath();
-        context.moveTo(omegam0_to_px(marqueur), omegal0_to_px(omegaL0Min) - 5);
-        context.lineTo(omegam0_to_px(marqueur), omegal0_to_px(omegaL0Min) + 5);
+        context.moveTo(x_to_px(marqueur), y_to_px(y_min) - 5);
+        context.lineTo(x_to_px(marqueur), y_to_px(y_min) + 5);
         context.lineWidth = 1;
         context.strokeStyle = "#000000";
         context.stroke();
         context.textAlign = 'center';
-        context.fillText(marqueur.toFixed(1), omegam0_to_px(marqueur), omegal0_to_px(omegaL0Min) + 10);
+        context.fillText(marqueur.toFixed(1), x_to_px(marqueur), y_to_px(y_min) + 10);
     }
 
+    if (document.getElementById("Omégal0")) {
     // Tracé de la séparatrice univers fermé / ouvert et affichage des textes
     context.beginPath();
     context.strokeStyle = "#fa2076";
 
     for (let omegal = omegaL0Min; omegal <= omegaL0Max; omegal += 0.01) {
         let omegam = 1 - omegal; // Calcul de Ωm pour chaque ΩΛ
-        let y = omegal0_to_px(omegal); // Conversion en coordonnées x
-        let x = omegam0_to_px(omegam); // Conversion en coordonnées y
+        let y = y_to_px(omegal); // Conversion en coordonnées x
+        let x = x_to_px(omegam); // Conversion en coordonnées y
 
         if (omegal === omegaL0Min) {
             context.moveTo(x, y); // Point de départ
@@ -169,7 +228,7 @@ function update_graphe_interactif() {
 
     context.save();
     context.font = fontsize+"em Arial";
-    context.translate(omegam0_to_px(1.7), omegal0_to_px(1-1.7));
+    context.translate(x_to_px(1.7), y_to_px(1-1.7));
     context.rotate(Math.PI / 4.5);
     context.fillStyle = "#fa2076"
     context.fillText(texte.grapheSéparatrices.ouvert,0 , 15);
@@ -185,8 +244,8 @@ function update_graphe_interactif() {
         let terme_2 = (1 / omegam) - 1
         let terme_3 = Math.cos(1/3 * Math.acos(terme_2) + 4 * Math.PI / 3 )
         let omegal = terme_1 * Math.pow(terme_3, 3); // Calcul de Ωm pour chaque ΩΛ
-        let y = omegal0_to_px(omegal); // Conversion en coordonnées x
-        let x = omegam0_to_px(omegam); // Conversion en coordonnées y
+        let y = y_to_px(omegal); // Conversion en coordonnées x
+        let x = x_to_px(omegam); // Conversion en coordonnées y
 
         if (omegal === 1) {
             context.moveTo(x, y); // Point de départ
@@ -194,13 +253,13 @@ function update_graphe_interactif() {
             context.lineTo(x, y); // Relier les points
         }
     }
-    context.moveTo(omegam0_to_px(1), omegal0_to_px(0))
-    context.lineTo(omegam0_to_px(0), omegal0_to_px(0));
+    context.moveTo(x_to_px(1), y_to_px(0))
+    context.lineTo(x_to_px(0), y_to_px(0));
     context.stroke(); // Tracer la séparatrice
 
     context.save();
     context.font = fontsize+"em Arial";
-    context.translate(omegam0_to_px(2.5), omegal0_to_px(0.16));
+    context.translate(x_to_px(2.5), y_to_px(0.16));
     context.fillStyle = "#06a106"
     context.fillText(texte.grapheSéparatrices.BC, -27, 25);
     context.fillText(texte.grapheSéparatrices.pBC, -27, -10);
@@ -209,7 +268,7 @@ function update_graphe_interactif() {
     // Tracé de la séparatrice univers avec / sans Big Bang et affichage des textes
     context.beginPath();
     context.strokeStyle = "#3472b8";
-    context.moveTo(omegam0_to_px(0), omegal0_to_px(0))
+    context.moveTo(x_to_px(0), y_to_px(0))
 
 // Première portion de la courbe (cosh)
     for (let omegam = omegaM0Min; omegam <= 0.5; omegam += 0.01) {
@@ -218,8 +277,8 @@ function update_graphe_interactif() {
         let terme_3 = Math.sqrt((terme_2 * terme_2) - 1);
         let terme_4 = Math.cosh(Math.log(terme_2 + terme_3) / 3);
         let omegal = terme_1 * Math.pow(terme_4, 3); // Calcul de ΩΛ pour chaque Ωm
-        let y = omegal0_to_px(omegal); // Conversion en coordonnées x
-        let x = omegam0_to_px(omegam); // Conversion en coordonnées y
+        let y = y_to_px(omegal); // Conversion en coordonnées x
+        let x = x_to_px(omegam); // Conversion en coordonnées y
 
         if (omegam === 0) {
         } else {
@@ -233,8 +292,8 @@ function update_graphe_interactif() {
     let terme_2 = (1 / omegam) - 1;
     let terme_3 = Math.acos(terme_2) / 3;
     let omegal = terme_1 * Math.pow(Math.cos(terme_3), 3); // Calcul de ΩΛ pour chaque Ωm
-    let y = omegal0_to_px(omegal); // Conversion en coordonnées x
-    let x = omegam0_to_px(omegam); // Conversion en coordonnées y
+    let y = y_to_px(omegal); // Conversion en coordonnées x
+    let x = x_to_px(omegam); // Conversion en coordonnées y
     context.lineTo(x, y); // Relier les points
 
 // Deuxième portion de la courbe (acos)
@@ -244,8 +303,8 @@ function update_graphe_interactif() {
         let terme_3 = Math.acos(terme_2) / 3;
         let omegal = terme_1 * Math.pow(Math.cos(terme_3), 3); // Calcul de ΩΛ pour chaque Ωm
         if (omegal <= omegaL0Max) {
-            let y = omegal0_to_px(omegal); // Conversion en coordonnées x
-            let x = omegam0_to_px(omegam); // Conversion en coordonnées y
+            let y = y_to_px(omegal); // Conversion en coordonnées x
+            let x = x_to_px(omegam); // Conversion en coordonnées y
 
             context.lineTo(x, y); // Relier les points
         }
@@ -255,20 +314,20 @@ function update_graphe_interactif() {
 
     context.save();
     context.font = fontsize+"em Arial";
-    context.translate(omegam0_to_px(0.7), omegal0_to_px(2.2));
+    context.translate(x_to_px(0.7), y_to_px(2.2));
     context.fillStyle = "#3472b8"
     context.rotate(-Math.PI / 4);
     context.fillText(texte.grapheSéparatrices.BB, 0, -20);
     context.fillText(texte.grapheSéparatrices.BB, 0, 15);
-    context.fillText(texte.grapheSéparatrices.pBB, 0, -35);
+    context.fillText(texte.grapheSéparatrices.pBB, 0, -40);
     context.restore();
 
     // Tracé de la zone avec univers oscillants (enlever du commentaire et augmenter les bornes)
     /*
     context.beginPath();
-    context.moveTo(omegam0_to_px(omegaM0Min), omegal0_to_px(0));
-    context.lineTo(omegam0_to_px(0), omegal0_to_px(0));
-    context.lineTo(omegam0_to_px(0), omegal0_to_px(omegaL0Min));
+    context.moveTo(x_to_px(omegaM0Min), y_to_px(0));
+    context.lineTo(x_to_px(0), y_to_px(0));
+    context.lineTo(x_to_px(0), y_to_px(omegaL0Min));
 
     context.lineWidth = 1;
     context.strokeStyle = "#b88121";
@@ -276,7 +335,7 @@ function update_graphe_interactif() {
 
     context.save();
     context.font = '14px Arial'
-    context.translate(omegam0_to_px(-1.5), omegal0_to_px(-1.5));
+    context.translate(x_to_px(-1.5), y_to_px(-1.5));
     context.fillStyle = "#ac791f"
     context.rotate(0);
     context.fillText(texte.grapheSéparatrices.oscillant, 0, 0);
@@ -289,8 +348,8 @@ function update_graphe_interactif() {
 
     for (let omegam = omegaM0Min; omegam <= omegaM0Max; omegam += 0.01) {
         let omegal = 0.5* omegam; // Calcul de ΩΛ pour chaque Ωm
-        let y = omegal0_to_px(omegal); // Conversion en coordonnées x
-        let x = omegam0_to_px(omegam); // Conversion en coordonnées y
+        let y = y_to_px(omegal); // Conversion en coordonnées x
+        let x = x_to_px(omegam); // Conversion en coordonnées y
 
         if (omegam === omegaM0Min) {
             context.moveTo(x, y); // Point de départ
@@ -302,13 +361,62 @@ function update_graphe_interactif() {
 
     context.save(); 
     context.font = fontsize+"em Arial";
-    context.translate(omegam0_to_px(1.5), omegal0_to_px(0.75));
+    context.translate(x_to_px(1.5), y_to_px(0.75));
     context.rotate(-Math.PI/10);
     context.fillStyle = "#000000"
     context.fillText(texte.grapheSéparatrices.accelere, 0, -15);
     context.fillText(texte.grapheSéparatrices.decelere,0 , 15);
     context.restore();
+} else {
+    context.beginPath()
+    context.strokeStyle = "red";
+    for (let w0 = w0min; w0 <= -1; w0 += 0.01) {
+        let w1 = 0; // Calcul de ΩΛ pour chaque Ωm
+        let y = y_to_px(w1); // Conversion en coordonnées x
+        let x = x_to_px(w0); // Conversion en coordonnées y
+        if (w0 === w0min) {
+            context.moveTo(x, y); // Point de départ
+        } else if (-1 >= w0 && w0 >= w0min ) {
+                context.lineTo(x, y); // Relier les points
+        }
+    }
+    context.stroke(); // Tracer la séparatrice
+    context.save(); 
+    context.beginPath()
+    context.strokeStyle = "#000000";
+    for (let w0 = -1; w0 <= w0max; w0 += 0.01) {
+        let w1 = 0; // Calcul de ΩΛ pour chaque Ωm
+        let y = y_to_px(w1); // Conversion en coordonnées x
+        let x = x_to_px(w0); // Conversion en coordonnées y
+        if (w0 === 1) {
+            context.moveTo(x, y); // Point de départ
+        } else if (w0max >= w0 && w0 >= -1 ) {
+                context.lineTo(x, y); // Relier les points
+        }
+    }
+    context.stroke(); 
+    context.save(); 
 
+    context.beginPath()
+    context.strokeStyle = "#000000";
+    context.moveTo(x_to_px(-1),y_to_px(0.1))
+    context.lineTo(x_to_px(-1),y_to_px(-0.1))
+    context.stroke(); 
+    context.save(); 
+
+    context.font = fontsize+"em Arial";
+    context.translate(x_to_px(-2), y_to_px(0));
+    context.rotate(0);
+    context.fillStyle = "red"
+    context.fillText(texte.grapheSéparatrices.BigRip, 0, -15);
+    context.restore();
+    context.font = fontsize+"em Arial";
+    context.fillStyle = "#000000"
+    context.translate(x_to_px(0), y_to_px(0));
+    context.fillText(texte.grapheSéparatrices.pBB,0 ,15);
+    context.fillText(texte.grapheSéparatrices.BigRip,0,35)
+    context.restore();
+}
 
 
 }
@@ -316,12 +424,18 @@ function update_graphe_interactif() {
 function update_point() {
     let canvas = document.getElementById("canvas");
     let context = canvas.getContext("2d");
-
+    let x;
+    let y;
+    if (document.getElementById("Omégal0")) {
     const omegam0 = parseFloat(document.getElementById("Omégam0").value);
     const omegal0 = parseFloat(document.getElementById("Omégal0").value);
 
-    const x = omegam0_to_px(omegam0);
-    const y = omegal0_to_px(omegal0);
+    x = x_to_px(omegam0);
+    y = y_to_px(omegal0); 
+    } else {
+        x = x_to_px(document.getElementById("w0").value)
+        y = y_to_px(document.getElementById("w1").value)
+    }
 
     context.beginPath();
     context.arc(x, y, 4, 0, 2 * Math.PI);
@@ -330,6 +444,8 @@ function update_point() {
 }
 
 let canvas = document.getElementById("canvas");
+
+if (document.getElementById("Omégal0")) {
 canvas.addEventListener('click', function(event) {
     // Récupérer les coordonnées du clic
     const rect = canvas.getBoundingClientRect();
@@ -373,6 +489,11 @@ canvas.addEventListener('click', function(event) {
     if (document.getElementById("Omégal0") && (document.getElementById("Ol_enregistrer"))) {
         affichage_site_LCDM();
         }
+        
 });
 
-
+} else {
+    update_graphe_interactif();
+}
+update_graphe_interactif();
+update_point()
