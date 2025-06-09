@@ -345,6 +345,8 @@ function genereHtml()
 		newinput.setAttribute("maxlength","18");//on peut mettre que 18 caracteres 
 		newinput.setAttribute("type","text"); //on met que c'est du text
 		newinput.setAttribute("size","5");	//on met la taille de la case
+		//newinput.style.width = "60px"; // équivalent à size="5" environ
+    	//newinput.style.minWidth = "60px"; // largeur minimale
 		/*On lui associe la fonction *verifnbr* et *initialisationGenerale*,
 			si jamais y a un changement on appelle les deux fonctions*/
 		newinput.setAttribute("onchange","verifnbr();initialisationGenerale("+nbredefuseesgenere.toString()+")"); 
@@ -556,11 +558,11 @@ function genereHtml()
 		/*POUR LE TEMPS PROPRE */
 		newRow.innerHTML += '<th id="temps_ecoule'+count.toString()+'" class="tg-aicv"></th>';
 		/*POUR LE GRADIENT D'ACCELERATION */
-		newRow.innerHTML += '<th id="acceleration'+count.toString()+'" title="" class="tg-aicv"> Gradient (m.s<sup>-2)</sup>)</th>';
+		newRow.innerHTML += '<th id="acceleration'+count.toString()+'" title="" class="tg-6l4m"> Gradient (m.s<sup>-2)</sup>)</th>';
 		/*POUR LA VITESSE RADIALE */
 		newRow.innerHTML += '<th id="vitesseur'+count.toString()+'" title="" class="tg-aicv"  >V<SUB>r</SUB>(m.s<sup>-1</sup>) </th>';
 		/*POUR LA VITESSE ANGULAIRE */
-		newRow.innerHTML += '<th id="vitesseuphi'+count.toString()+'" title="" class="tg-aicv"  >V<SUB>&phi;</SUB>(m.s<sup>-1</sup>)</th>';
+		newRow.innerHTML += '<th id="vitesseuphi'+count.toString()+'" title="" class="tg-6l4m"  >V<SUB>&phi;</SUB>(m.s<sup>-1</sup>)</th>';
 		/*POUR LE TEMPS OBSERVATEUR */
 		newRow.innerHTML += '<th id="temps_obs'+count.toString()+'" class="tg-aicv"></th>';
 		/*POUR LE DECALAGE SPECTRALE */
@@ -570,9 +572,9 @@ function genereHtml()
 		/*POUR LA DISTANCE PARCOURUE */
 		newRow.innerHTML += '<th id="distance_metrique'+count.toString()+'" title="" class="tg-aicv"></th> ';
 		/*POUR LE NOMBRE DE G RESSENTI*/
-		newRow.innerHTML += '<th id="nb_g'+count.toString()+'" title="" class="tg-aicv" style="display: none;"></th>';
+		newRow.innerHTML += '<th id="nb_g'+count.toString()+'" title="" class="tg-6l4m" style="display: none;"></th>';
 		/*POUR LE DERNIER G AFFICHÉ */
-		newRow.innerHTML += '<th id="dernier_g'+count.toString()+'" title="" class="tg-aicv" style="display: none;"></th>'
+		newRow.innerHTML += '<th id="dernier_g'+count.toString()+'" title="" class="tg-6l4m" style="display: none;"></th>'
 		/*POUR LA PUISSANCE TOTALE CONSOMÉE*/
 		newRow.innerHTML += '<th id ="puissance_consommee_label'+count.toString()+'" title="" class="tg-aicv" style="display: none;"></th>'; 
 		

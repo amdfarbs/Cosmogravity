@@ -156,7 +156,7 @@ function envoisConstantes(nomBoutton) {
     }
 }
 
-var timeoutId = null;
+let timeoutId = null;
 
 /**
  * Fonction pour retarder l'exécution d'une fonction

@@ -509,7 +509,7 @@ function genereHtml()
 		/*POUR LA VITESSE RADIALE */
 		newRow.innerHTML +='<th id="vitesseur'+count.toString()+'" title="" class="tg-aicv"  >V<SUB>r</SUB>(m.s<sup>-1</sup>) </th>';
 		/*POUR LA VITESSE ANGULAIRE */
-		newRow.innerHTML +='<th id="vitesseuphi'+count.toString()+'" title="" class="tg-aicv"  >V<SUB>&phi;</SUB>(m.s<sup>-1</sup>)</th>';
+		newRow.innerHTML +='<th id="vitesseuphi'+count.toString()+'" title="" class="tg-6l4m"  >V<SUB>&phi;</SUB>(m.s<sup>-1</sup>)</th>';
 		/*POUR LE TEMPS OBSERVATEUR */
 		newRow.innerHTML +='<th id="temps_obs'+count.toString()+'" class="tg-aicv"></th>';
 		/*POUR LE DECALAGE SPECTRALE */
@@ -519,9 +519,9 @@ function genereHtml()
 		/*POUR LA DISTANCE PARCOURUE */
 		newRow.innerHTML +='<th id="distance_metrique'+count.toString()+'" title="" class="tg-aicv"></th>'; 
 		/*POUR LE NOMBRE DE G RESSENTI*/
-		newRow.innerHTML +='<th id="nb_g'+count.toString()+'" title="" class="tg-aicv" style="display: none;"></th>';
+		newRow.innerHTML +='<th id="nb_g'+count.toString()+'" title="" class="tg-6l4m" style="display: none;"></th>';
 		/*POUR LE DERNIER G AFFICHÉ */
-		newRow.innerHTML +='<th id="dernier_g'+count.toString()+'" title="" class="tg-aicv" style="display: none;">testou</th>';
+		newRow.innerHTML +='<th id="dernier_g'+count.toString()+'" title="" class="tg-6l4m" style="display: none;">testou</th>';
 		/*POUR LA PUISSANCE TOTALE CONSOMÉE*/
 		newRow.innerHTML +='<th id ="puissance_consommee_label'+count.toString()+'" title="" class="tg-aicv" style="display: none;"></th>';
 
@@ -2148,9 +2148,9 @@ function test_inte() {
 	else if(r_phy < 1.15*rs ){
 		return texte.pages_trajectoire.rphysetrs;
 	}
-	else if(r0 < rs ){
-		return texte.pages_trajectoire.alerte_r0_inferieure_rs;
-	}
+	//else if(r0 < rs ){
+	//	return texte.pages_trajectoire.alerte_r0_inferieure_rs;
+	//}
 	//sinon on revoit un true pour lancer la simulation
 	else
 	{
