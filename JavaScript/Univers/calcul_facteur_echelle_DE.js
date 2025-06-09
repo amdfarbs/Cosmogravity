@@ -136,7 +136,7 @@ function calcul_facteur_echelle_DE(equa_diff_1, equa_diff_2, fonction_simplifian
     }
     let nb_pas = 1e4
     if (document.getElementById("w1").value > 0 || (document.getElementById("w1").value == 0 && document.getElementById("w0").value < -1 )) {
-        nb_pas = nb_pas
+        nb_pas = nb_pas*10
     }
     let debutEtFin = debut_fin_univers(equa_diff_2,pas,nb_pas)
 

@@ -455,7 +455,6 @@ function equa_diff_2_DE(t, a, ap) {
 function debut_fin_univers(equa_diff,pas=1e-3 * H0 / Math.abs(H0),nb_max=1e4) {
     let texte = o_recupereJson()
     let H0 = Number(document.getElementById("H0").value);
-
     // Déclaration des variables et des valeurs retournés
     let set_solution = [0, 1 ,1]
     let save_set_solution;
@@ -512,6 +511,8 @@ function debut_fin_univers(equa_diff,pas=1e-3 * H0 / Math.abs(H0),nb_max=1e4) {
         set_solution = RungeKuttaEDO2(pas, set_solution[0], set_solution[1], set_solution[2], equa_diff)
         nombre_point = nombre_point + 1
     }
+    // Debug bien pratique
+    // console.log(set_solution," : ",save_set_solution)
 
     mort_univers = texte.univers.pasMort
     if ( option != "optionLDE") {
