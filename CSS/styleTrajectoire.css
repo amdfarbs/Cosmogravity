@@ -502,9 +502,16 @@ table {
 }
 
 th {
-    padding: 5px 5px;
+    padding: 8px 10px; /* Augmenté de 5px 5px à 8px 10px */
     text-align: center;
     border: 1px solid black;
+}
+th.tg-6l4m {
+    padding: 8px 17px; /* Plus d'espace horizontal pour 1-2 caractères en plus */
+    background-color: rgba(39, 121, 124, 0.85);
+    color: #ffffff;
+    font-weight: bold;
+    width: auto; /* Permet à la cellule de s'adapter au contenu */
 }
 
 td {
