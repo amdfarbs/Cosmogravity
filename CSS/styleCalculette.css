@@ -66,10 +66,10 @@
 }
 
 .grille_graph {
-    gap: 20pt;
+    gap: 0pt;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
     margin-bottom: 0.5rem;
     
 }
@@ -77,4 +77,21 @@
 
 .js-plotly-plot {
     align-self: center;
+}
+
+.fonction_t {
+    justify-content: space-between;
+    width:100%;
+    display: flex;
+    flex-direction: row;
+    gap:8pt;
+}
+
+.fonction_z {
+
+    justify-content: space-between;
+    width:100%;
+    display: flex;
+    flex-direction: row;
+    gap:8pt;
 }
