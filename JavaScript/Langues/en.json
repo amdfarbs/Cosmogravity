@@ -208,7 +208,14 @@
 		"infoOmégaR0Sortie": "Current radiation density parameter.",
 		"infoOmégaK0Sortie": "Current curvature density parameter.",
 		
-		"avertissement_z_grand":"z&#x2248;-1 (possible numerical error)"
+		"avertissement_z_grand":"z&#x2248;-1 (possible numerical error)",
+
+		"Enregistrer": "<h3>Saving</h3>",
+		"infoNomFichier": "Graph save name. Do not use special characters such as . * / | + \\ and others",
+		"labelNom": "File name :",
+		"nomDéfaut": "plot_calculator",
+		"bouttonEnregistrer": "Save",
+		"labelSelectionGraphe":"Graph :"
 	},
 
 	"constante": {
