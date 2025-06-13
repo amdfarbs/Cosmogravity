@@ -138,6 +138,9 @@
                 </label>
                 <input id="OptionsOmégak0" type="checkbox" onchange="updateCalculette()">
             </div>
+            <div id="conteneurCanvas">
+                <canvas id="canvas"></canvas>
+            </div>
 
         </div>
         <div>
@@ -571,6 +574,48 @@
                 </div>
             </div>
         </div>
+        <div class="boite_calculette" style="align-items: center;">
+            <div id="Enregistrer">
+                <h2>Enregistrement</h2>
+            </div>
+
+            <div class="résultats">
+                <label id="labelNom_fichier" for="nom_fichier">
+                    <img id="infoNomFichier" src="./Images/icone_info.png" alt="" width="20" height="20">
+                </label>
+                <input id="nom_fichier" type="text" value="">
+            </div>
+
+            <div class="résultats">
+                <label for="optionsEnregistrement">Format : </label>
+                <select name="Format enregistrement" id="optionsEnregistrement">
+                    <option value="PNG">PNG</option>
+                    <option value="SVG">SVG</option>
+                    <option value="JPEG">JPG</option>
+                </select>
+            </div>
+
+            <div class="résultats">
+                <label for="Selection graphe" id="label_selection_graphe">Graphe : </label>
+                <select name="Selection graphe" id="grapheSelection">
+                    <option value="d_t">d<sub>i</sub>(t)</option>
+                    <option value="d_z">d<sub>i</sub>(z)</option>
+                    <option value="omega_t">&Omega;<sub>i</sub>(t)</option>
+                    <option value="omega_z">&Omega;<sub>i</sub>(z)</option>
+                    <option value="z_t">z(t)</option>
+                    <option value="t_z">t(z)</option>
+                </select>
+            </div>
+
+            <br />
+
+            <div class="résultats">
+                <span></span>
+                <button onclick="enregistrer_calc()" id="bouttonEnregistrer" class="grosBoutton"></button>
+                <span></span>
+            </div>
+
+        </div>
     </div>
 </div>
 
@@ -584,6 +629,12 @@
 
 
 <script>
+    sessionStorage.setItem("affichage_d_z","False")
+    sessionStorage.setItem("affichage_d_t","False")
+    sessionStorage.setItem("affichage_omega_z","False")
+    sessionStorage.setItem("affichage_omega_t","False")
+    sessionStorage.setItem("affichage_t_z","False")
+    sessionStorage.setItem("affichage_z_t","False")
     texte_univers_calculette();
 
     $(function() {

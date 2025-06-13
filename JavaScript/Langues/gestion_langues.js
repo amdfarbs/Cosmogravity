@@ -461,6 +461,13 @@ function texte_univers_calculette() {
     document.getElementById("label_E2").title = texte.calculette.infobulle_E2;
     document.getElementById("label_mu1").title = texte.calculette.infobulle_mu1;
     document.getElementById("label_mu2").title = texte.calculette.infobulle_mu2;
+    document.getElementById("Enregistrer").innerHTML = texte.calculette.Enregistrer;
+    document.getElementById("infoNomFichier").title = texte.calculette.infoNomFichier
+    document.getElementById("labelNom_fichier").insertAdjacentHTML("beforeend", texte.calculette.labelNom)
+    document.getElementById("label_selection_graphe").innerHTML = texte.calculette.labelSelectionGraphe
+    document.getElementById("nom_fichier").value = texte.calculette.nomDéfaut
+    document.getElementById("bouttonEnregistrer").innerHTML = texte.calculette.bouttonEnregistrer
+
 
     // document.getElementById('texte_avertissement_z_-1').innerHTML = texte.calculette.avertissement_z_grand;
 };
