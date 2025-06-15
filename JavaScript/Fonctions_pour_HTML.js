@@ -467,6 +467,18 @@ function enregistrer() {
 
 }
 
+function enregistrer_calc() {
+    let format = document.getElementById("optionsEnregistrement").value
+    let nom = document.getElementById("nom_fichier").value
+    let selection = document.getElementById("grapheSelection").value
+    let item = "affichage_"+selection
+    let graph = "graphique_"+selection
+    if (sessionStorage.getItem(item)=="True") {
+        format = format.toLowerCase()
+        Plotly.downloadImage(graph, {format: format, filename: nom})
+    }
+}
+
 function downloadCSV(array1, array2, filename = "data.csv") {
     // Combine the arrays: assume equal length and 2 columns
     const rows = array1.map((val, i) => [val, array2[i]]);

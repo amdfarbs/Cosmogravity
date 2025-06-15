@@ -136,7 +136,7 @@ function calcul_facteur_echelle_LCDM(equa_diff_1, equa_diff_2, fonction_simplifi
         t_0 = t_0 / (nbrJours() * 24 * 3600 * 1e9)
     }
 
-    let debutEtFin = debut_fin_univers(equa_diff_2)
+    let debutEtFin = debut_fin_univers(equa_diff_2,pas)
 
     taus = tauEnTemps(taus, debutEtFin[2])
 
