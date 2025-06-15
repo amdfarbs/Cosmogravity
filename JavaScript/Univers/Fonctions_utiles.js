@@ -452,10 +452,9 @@ function equa_diff_2_DE(t, a, ap) {
  * @param equa_diff {function} Fonction caractéristique de l'EDO2 du modèle
  * @return Soit les temps de naissance/mort soit un string explicant pourquoi il n'y a pas de naissance/mort
  */
-function debut_fin_univers(equa_diff) {
+function debut_fin_univers(equa_diff,pas=1e-3 * H0 / Math.abs(H0),nb_max=1e4) {
     let texte = o_recupereJson()
     let H0 = Number(document.getElementById("H0").value);
-
     // Déclaration des variables et des valeurs retournés
     let set_solution = [0, 1 ,1]
     let save_set_solution;
@@ -466,10 +465,9 @@ function debut_fin_univers(equa_diff) {
     let age_debut;
     let age_fin;
     let duree_univers;
-    let pas = 1e-3 * H0 / Math.abs(H0)
     let boolDebut;
     let boolFin;
-    let nb_max = 1e4  //nb de point maximum
+
 
     // Recherche a = 0 ou da/dtau = Infinity dans le sens négatif
     while (set_solution[1] >= 0 && (Math.abs(set_solution[1]) < +Infinity) && (Math.abs(set_solution[2]) < +Infinity) && nombre_point <= nb_max) {
@@ -482,6 +480,7 @@ function debut_fin_univers(equa_diff) {
 
     // Debug bien pratique
     // console.log(set_solution," : ",save_set_solution)
+    // RungeKuttaEDO2(-pas*0.1, save_set_solution[0], save_set_solution[1], save_set_solution[2], equa_diff,true)
 
     if (option != "optionLDE") {
         if (set_solution[1] <= 0 || (set_solution[2]>= +Infinity) || (isNaN(set_solution[1]) && save_set_solution[2]*Math.sign(H0)>0)) {
@@ -512,6 +511,8 @@ function debut_fin_univers(equa_diff) {
         set_solution = RungeKuttaEDO2(pas, set_solution[0], set_solution[1], set_solution[2], equa_diff)
         nombre_point = nombre_point + 1
     }
+    // Debug bien pratique
+    // console.log(set_solution," : ",save_set_solution)
 
     mort_univers = texte.univers.pasMort
     if ( option != "optionLDE") {

@@ -25,7 +25,7 @@
 	{
 		"txtUnivers": "Modèles d'univers de Friedmann-Lemaître et calculette cosmologique",
 		"txtTrajectoires": "Trajectoires dans les métriques de Schwarzschild et de Kerr",
-		"version": "Version bêta 2.5.4 (04/06/2025)"
+		"version": "Version bêta 2.5.5 (14/06/2025)"
 	},
 
 	"univers": {
@@ -103,7 +103,6 @@
 		"bouton_calculer":"Calculer",
 		"unitéanneelumiere":"al",
 		"unitéannee":"a",
-		
 
 		"facteurechelle":"Facteur d'échelle",
 		"generateur_graphique_titre":"Génerateur de graphiques",
@@ -209,7 +208,14 @@
 		"infoOmégaR0Sortie": "Paramètre de densité de rayonnement actuel. [cf p4. (10)]",
 		"infoOmégaK0Sortie": "Paramètre de densité de courbure actuel. [cf p4. (10)]",
 		
-		"avertissement_z_grand":"z&#x2248;-1 (erreur numérique possible)"
+		"avertissement_z_grand":"z&#x2248;-1 (erreur numérique possible)",
+
+		"Enregistrer": "<h3>Enregistrement</h3>",
+			"infoNomFichier": "Nom d'enregistrement du graphique. Ne pas utiliser de caractère spéciaux tels que . * / | + \\ et autres",
+			"labelNom": "Nom du fichier :",
+			"nomDéfaut": "plot_calculette",
+			"bouttonEnregistrer": "Enregistrer",
+			"labelSelectionGraphe":"Graphe :"
 	},
 
 	"constante": {

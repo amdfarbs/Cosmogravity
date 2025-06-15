@@ -196,7 +196,7 @@ function abscisse_t(fonction_EouF,zmin,zmax,pas){
 }
 
 /**
- * Fonction de lerp en x², permet d'avaoir beaucoup plus de points vers zmin et moins vers zmax, utile pour les d(z) et t(z) qui varient beaucoup en zmin
+ * Fonction de lerp en x², permet d'aaoir beaucoup plus de points vers zmin et moins vers zmax, utile pour les d(z) et t(z) qui varient beaucoup en zmin
  * @param {*} zmin 
  * @param {*} zmax 
  * @param {*} pas 
@@ -217,12 +217,12 @@ function array_lerp(zmin=-1,zmax=5,pas) {
 }
 
 function generer_graphique_distance(fonction_EouF,is_t){
-    if (localStorage.getItem("affichage_d_t")=="True" && is_t == 1) {
+    if (sessionStorage.getItem("affichage_d_t")=="True" && is_t == 1) {
         document.getElementById('graphique_d_t').classList.add('cache')
-        localStorage.setItem("affichage_d_t","False") 
-    } else if (localStorage.getItem("affichage_d_z")=="True" && is_t == 0) {
+        sessionStorage.setItem("affichage_d_t","False") 
+    } else if (sessionStorage.getItem("affichage_d_z")=="True" && is_t == 0) {
         document.getElementById('graphique_d_z').classList.add('cache')
-        localStorage.setItem("affichage_d_z","False")
+        sessionStorage.setItem("affichage_d_z","False")
     } else {
     let start_temps=Date.now();
     log_abs=document.getElementById('check_log_abs').checked;
@@ -267,7 +267,7 @@ function generer_graphique_distance(fonction_EouF,is_t){
 
 
     if (is_t==1){
-        localStorage.setItem("affichage_d_t","True") 
+        sessionStorage.setItem("affichage_d_t","True") 
         plot_title = "d<sub>i</sub>(t)";
         xaxis_title=xaxis_temps;
         graphdivid="graphique_d_t"
@@ -285,7 +285,7 @@ function generer_graphique_distance(fonction_EouF,is_t){
         }
         document.getElementById('graphique_d_t').classList.remove('cache');
     }else{
-        localStorage.setItem("affichage_d_z","True") 
+        sessionStorage.setItem("affichage_d_z","True") 
         plot_title = "d<sub>i</sub>(z)";
         abscisse_calcul = fonction_log_lin(zmin,zmax,pas);
         if (log_abs && zmin < 0) {
@@ -408,12 +408,12 @@ function generer_graphique_distance(fonction_EouF,is_t){
 }
 
 function generer_graphique_Omega(fonction_EouF,is_t){
-    if (localStorage.getItem("affichage_omega_t")=="True" && is_t == 1) {
+    if (sessionStorage.getItem("affichage_omega_t")=="True" && is_t == 1) {
         document.getElementById('graphique_omega_t').classList.add('cache')
-        localStorage.setItem("affichage_omega_t","False") 
-    } else if (localStorage.getItem("affichage_omega_z")=="True" && is_t == 0) {
+        sessionStorage.setItem("affichage_omega_t","False") 
+    } else if (sessionStorage.getItem("affichage_omega_z")=="True" && is_t == 0) {
         document.getElementById('graphique_omega_z').classList.add('cache')
-        localStorage.setItem("affichage_omega_z","False")
+        sessionStorage.setItem("affichage_omega_z","False")
     } else {
     let start_temps=Date.now();
     log_abs=document.getElementById('check_log_abs').checked;
@@ -455,7 +455,7 @@ function generer_graphique_Omega(fonction_EouF,is_t){
         
 
         document.getElementById('graphique_omega_t').classList.remove('cache');
-        localStorage.setItem("affichage_omega_t","True")
+        sessionStorage.setItem("affichage_omega_t","True")
     }else{
         plot_title = "&#x3A9;<sub>i</sub>(z)";
         xaxis_title = "z";
@@ -463,7 +463,7 @@ function generer_graphique_Omega(fonction_EouF,is_t){
         abscisse_calcul = fonction_log_lin(zmin,zmax,pas);
         abscisse_display=abscisse_calcul;
         document.getElementById('graphique_omega_z').classList.remove('cache');
-        localStorage.setItem("affichage_omega_z","True")
+        sessionStorage.setItem("affichage_omega_z","True")
     }
 
 
@@ -612,12 +612,12 @@ function generer_graphique_Omega(fonction_EouF,is_t){
     }
 }
 function generer_graphique_TempsDecalage(fonction_EouF, is_t){
-    if (localStorage.getItem("affichage_z_t")=="True" && is_t == 1) {
+    if (sessionStorage.getItem("affichage_z_t")=="True" && is_t == 1) {
         document.getElementById('graphique_z_t').classList.add('cache')
-        localStorage.setItem("affichage_z_t","False") 
-    } else if (localStorage.getItem("affichage_t_z")=="True" && is_t == 0) {
+        sessionStorage.setItem("affichage_z_t","False") 
+    } else if (sessionStorage.getItem("affichage_t_z")=="True" && is_t == 0) {
         document.getElementById('graphique_t_z').classList.add('cache')
-        localStorage.setItem("affichage_t_z","False")
+        sessionStorage.setItem("affichage_t_z","False")
     } else {
     let start_temps=Date.now();
     log_abs=document.getElementById('check_log_abs').checked;
@@ -681,14 +681,14 @@ function generer_graphique_TempsDecalage(fonction_EouF, is_t){
         zArr=abscisse;
         abscisse=abscisse_temp;
         document.getElementById('graphique_z_t').classList.remove('cache');
-        localStorage.setItem("affichage_z_t","True")
+        sessionStorage.setItem("affichage_z_t","True")
     }else{
         yaxis_TempsDecalage=yaxis_temps;
         plot_title = "t(z)";
         xaxis_title = "z";
         graphdivid="graphique_t_z"
         document.getElementById('graphique_t_z').classList.remove('cache');
-        localStorage.setItem("affichage_t_z","True")
+        sessionStorage.setItem("affichage_t_z","True")
     }
 
     if (log_abs){
@@ -997,22 +997,22 @@ function resize_graphs() {
         width : taille/2,
         height : taille/4
     }
-    if (localStorage.getItem("affichage_d_z")=="True") {
+    if (sessionStorage.getItem("affichage_d_z")=="True") {
         Plotly.relayout("graphique_d_z",update)
     }
-    if (localStorage.getItem("affichage_d_t")=="True") {
+    if (sessionStorage.getItem("affichage_d_t")=="True") {
         Plotly.relayout("graphique_d_t",update)
     }
-    if (localStorage.getItem("affichage_omega_z")=="True") {
+    if (sessionStorage.getItem("affichage_omega_z")=="True") {
         Plotly.relayout("graphique_omega_z",update)
     }
-    if (localStorage.getItem("affichage_omega_t")=="True") {
+    if (sessionStorage.getItem("affichage_omega_t")=="True") {
         Plotly.relayout("graphique_omega_t",update)
     }
-    if (localStorage.getItem("affichage_z_t")=="True") {
+    if (sessionStorage.getItem("affichage_z_t")=="True") {
         Plotly.relayout("graphique_z_t",update)
     }
-    if (localStorage.getItem("affichage_t_z")=="True") {
+    if (sessionStorage.getItem("affichage_t_z")=="True") {
         Plotly.relayout("graphique_t_z",update)
     }
 }
