@@ -505,6 +505,6 @@ function downloadCSV(array1, array2, filename = "data.csv") {
 
   //Agrandir taille case si nécessaire
   function resizeInput(item) {
-    item.style.width = Math.max(100, 7.86 * (2 + item.value.length)) + 'px';
+    item.style.width = Math.max(129, 7.86 * (3.3 + item.value.length)) + 'px';
 }
 
