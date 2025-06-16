@@ -1633,7 +1633,8 @@ function animate(compteur,mobile,mobilefactor)
 				document.getElementById("tp"+compteur.toString()).innerHTML = mobile.temps_particule.toExponential(3); //temps mobile
 				document.getElementById("to"+compteur.toString()).innerHTML = 1/0; //temps observateur
 				document.getElementById("r_par"+compteur.toString()).innerHTML =mobile.r_part.toExponential(3); 
-				document.getElementById("ga"+compteur.toString()).innerHTML =1/0;
+				document.getElementById("ga"+compteur.toString()).innerHTML = fm.toExponential(3);//gradient;
+				if(mobile.r_part<0.000001){document.getElementById("ga"+compteur.toString()).innerHTML = 1/0}
 				document.getElementById("v_tot"+compteur.toString()).innerHTML ="";
 				document.getElementById("vr_sc_mas"+compteur.toString()).innerHTML = "";
 				document.getElementById("vp_sc_mas"+compteur.toString()).innerHTML = "";
