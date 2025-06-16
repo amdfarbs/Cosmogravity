@@ -224,7 +224,7 @@ body {
                 border-radius: 5px;
                 height: 1.5rem;
                 width: 7rem;
-                font-size: 15;
+                font-size: 20;
             }
 
             .paramètre img {
@@ -340,11 +340,11 @@ body {
 }
 
 .input-wrapper label {
-    width: 150px; /* Largeur fixe du label */
+    width: 100px; /* Largeur fixe du label */
     margin-right: 10px;
     font-size: 15;
     color: #333;
-    text-align: right;
+    text-align: center;
     white-space: nowrap; /* Empêche le texte de passer à la ligne */
     overflow: hidden; /* Cache le texte qui dépasse */
     text-overflow: ellipsis; /* Affiche "..." si le texte est trop long */
