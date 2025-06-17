@@ -11,8 +11,8 @@ const w1max = 2
 
 // Ces constantes gerent respectivement la taille en em des tags (Ouvert/Fermé), des Labels (Omega_m0) et des graduations
 const fontsize = 1.1;
-const fontsize_label = 0.8;
-const fontsize_graduations = 0.7;
+const fontsize_label = 0.9;
+const fontsize_graduations = 0.9;
 
 
 window.onload = function() {
@@ -92,6 +92,14 @@ function px_to_omegam0(x) {
     return omegaM0Min + ((x - pxMin) / (pxMax - pxMin)) * (omegaM0Max - omegaM0Min);
 }
 
+function px_to_w0(x) {
+    const pxMin = w0_to_px(w0min);
+    const pxMax = w0_to_px(w0max);
+
+    // Conversion des pixels en valeurs Omega
+    return w0min + ((x - pxMin) / (pxMax - pxMin)) * (w0max - w0min);
+}
+
 /**
  * Fonction permettant de convertir une coordonée y en pixel en omegal0
  * @param y {number} valeur de la coordonée
@@ -104,6 +112,15 @@ function px_to_omegal0(y) {
     // Conversion des pixels en valeurs Omega
     return omegaL0Min + ((y - pxMin) / (pxMax - pxMin)) * (omegaL0Max - omegaL0Min);
 }
+
+function px_to_w1(x) {
+    const pxMin = w1_to_px(w1min);
+    const pxMax = w1_to_px(w1max);
+
+    // Conversion des pixels en valeurs Omega
+    return w1min + ((x - pxMin) / (pxMax - pxMin)) * (w1max - w1min);
+}
+
 
 let x_min;
 let x_max;
@@ -153,7 +170,7 @@ function update_graphe_interactif() {
     context.lineTo(x_to_px(x_max), y_to_px(y_min));
     context.lineTo(x_to_px(x_min), y_to_px(y_min));
 
-    context.lineWidth = 1;
+    context.lineWidth = 2;
     context.strokeStyle = "#000000";
     context.stroke();
 
@@ -165,10 +182,10 @@ function update_graphe_interactif() {
     context.save()
     context.translate(x_to_px(x_min), y_to_px(y_max));
     context.rotate(-Math.PI / 2)
-    context.fillText(label_y,-17, 3);
+    context.fillText(label_y,-23, 5);
     context.restore()
     context.textAlign = 'left';
-    context.fillText(label_x,x_to_px(x_max) - 35, y_to_px(y_min) - 15);  // Label pour l'axe y
+    context.fillText(label_x,x_to_px(x_max) - 45, y_to_px(y_min) - 20);  // Label pour l'axe y
 
     // Dessiner les marqueurs des valeurs
     context.font = fontsize_graduations+"em Arial";
@@ -181,7 +198,7 @@ function update_graphe_interactif() {
         context.beginPath();
         context.moveTo(x_to_px(x_min) - 5, y_to_px(marqueur));
         context.lineTo(x_to_px(x_min) + 5, y_to_px(marqueur));
-        context.lineWidth = 1;
+        context.lineWidth = 2;
         context.strokeStyle = "#000000";
         context.stroke();
         context.textAlign = 'center';
@@ -199,7 +216,7 @@ function update_graphe_interactif() {
         context.beginPath();
         context.moveTo(x_to_px(marqueur), y_to_px(y_min) - 5);
         context.lineTo(x_to_px(marqueur), y_to_px(y_min) + 5);
-        context.lineWidth = 1;
+        context.lineWidth = 2;
         context.strokeStyle = "#000000";
         context.stroke();
         context.textAlign = 'center';
@@ -426,6 +443,7 @@ function update_point() {
     let context = canvas.getContext("2d");
     let x;
     let y;
+    let color = "#df1b1b"
     if (document.getElementById("Omégal0")) {
     const omegam0 = parseFloat(document.getElementById("Omégam0").value);
     const omegal0 = parseFloat(document.getElementById("Omégal0").value);
@@ -435,11 +453,14 @@ function update_point() {
     } else {
         x = x_to_px(document.getElementById("w0").value)
         y = y_to_px(document.getElementById("w1").value)
+        if (!(document.getElementById("w1").value > 0 || (document.getElementById("w1").value == 0 && document.getElementById("w0").value < -1 ))) {
+            color = "#000000"
+        }
     }
 
     context.beginPath();
     context.arc(x, y, 4, 0, 2 * Math.PI);
-    context.fillStyle = "#df1b1b";
+    context.fillStyle = color;
     context.fill();
 }
 
@@ -493,6 +514,27 @@ canvas.addEventListener('click', function(event) {
 });
 
 } else {
+        canvas.addEventListener('click', function(event) {
+            // Récupérer les coordonnées du clic
+            const rect = canvas.getBoundingClientRect();
+            const x = event.clientX - rect.left;
+            const y = event.clientY - rect.top;
+        
+            // Convertir les coordonnées en valeurs Omega
+            const w0 = px_to_w0(x); // Convertir x en ΩΛ
+            const w1 = px_to_w1(y);   // Convertir y en Ωm
+
+            document.getElementById("w0").value = w0.toFixed(4);
+            document.getElementById("w1").value = w1.toFixed(4);
+            update_graphe_interactif();
+            update_point()
+            if (document.getElementById("Ok_enregistrer")) {
+            updateUnivers()
+            affichage_site_DE();
+            } else {
+                updateCalculette()
+            }
+        });
     update_graphe_interactif();
 }
 update_graphe_interactif();

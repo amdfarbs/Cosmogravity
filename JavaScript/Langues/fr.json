@@ -59,8 +59,8 @@
 
 			"infoOmégaK0": "Paramètre de densité de courbure actuel. Vous pouvez le mettre à 0 ce qui correspond à un univers plat. [cf Modèles d’univers de Friedmann-Lemaître]",
 			"label_Omégak0": " Univers plat ? <br /> (&Omega;<sub>k<sub>0</sub></sub> = 0)",
-			"selecParam": "Vous pouvez sélectionner les Omégas en cliquant sur ce graphique :",
-
+			"selecParam": "Vous pouvez sélectionner &Omega;<sub>&Lambda;0</sub> et &Omega;<sub>m0</sub> en cliquant sur ce graphique :",
+			"selecParamDE": "Vous pouvez sélectionner w<sub>0</sub> et w<sub>1</sub> en cliquant sur ce graphique :",
 			"Tracé": "<h2>Tracé</h2>",
 				"infoAmin": "Le tracé n'ira pas en dessous de cette valeur. Ne peut pas être supérieur à 1 si l'univers n'as pas de début.",
 				"infoAmax": "Le tracé n'ira pas au dessus de cette valeur. Ne peut pas être inférieur à 1 si l'univers n'as pas de début.",
