@@ -271,6 +271,7 @@ function texte_univers_DE() {
     let texte = o_recupereJson();
     document.querySelectorAll(".unite_al").forEach(function(i){i.innerHTML=texte.calculette.unitéanneelumiere});
     document.getElementById("Entrées").innerHTML = texte.univers.Entrées;
+    document.getElementById("selecParamDE").innerHTML = texte.univers.selecParamDE
     document.getElementById("constantesUniverselles").innerHTML = texte.univers.constantes
     document.getElementById("calculetteCosmologique").innerHTML = texte.univers.calculette
     document.getElementById("infoT0").title = texte.univers.infoT0

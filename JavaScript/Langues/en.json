@@ -59,7 +59,8 @@
 
 		"infoOmégaK0": "Current curvature density parameter. You can set it to 0, which corresponds to a flat universe",
 		"label_Omégak0": "Flat Universe? <br /> (&Omega;<sub>k<sub>0</sub></sub> = 0)",
-		"selecParam": "You can select the Omegas by clicking on this chart:",
+		"selecParam": "You can select &Omega;<sub>&Lambda;0</sub> and &Omega;<sub>m0</sub> by clicking on this chart:",
+		"selecParamDE":"You can select w<sub>0</sub> and w<sub>1</sub> by clicking on this chart:",
 
 		"Tracé": "<h2>Plot</h2>",
 		"infoAmin": "The plot will not go below this value. Cannot be greater than 1 if the universe has no beginning.",
