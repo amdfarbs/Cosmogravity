@@ -199,7 +199,7 @@ function initialisation(){
 	CirculaireRetrogradeBarLabelCell = document.getElementById("circulaire_retrograde_bar");
 	CirculaireRetrogradeBarCell = document.getElementById("circulaire_retrograde_res_bar");
 
-	if (isNaN(E_prograde)){ //Si il n'y a pas d'orbite prograde je n'affiche pas les cases liées :
+	if (isNaN(E_prograde) || (r0>rhp && r0<rs)){ //Si il n'y a pas d'orbite prograde ou si je suis dans l'ergosphère je n'affiche pas les cases liées :
 		document.getElementById("circulaire_prograde_res_bar").innerHTML="";
 		CirculaireProgradeBarCell.style.display='none';
 		CirculaireProgradeBarLabelCell.style.display='none';
@@ -861,6 +861,10 @@ function animate() {
 				document.getElementById("vrk").innerHTML = texte.page_trajectoire_massive_kerr.vitesse_pas_définie; // vitesse radiale
 				document.getElementById("vpk").innerHTML = texte.page_trajectoire_massive_kerr.vitesse_pas_définie;//vitesse angulaire
 				document.getElementById("distance_parcourue").innerHTML = texte.page_trajectoire_massive_kerr.vitesse_pas_définie; //distance parcourue
+				if (deltam_sur_m==0){
+					document.getElementById("decal").innerHTML=" ";}
+				document.getElementById('DivClignotantePilot').innerHTML = " ";
+				
 				
 				document.getElementById("joyDiv").style.display = 'none'; //on enleve le pilotage
 				/*Au dela de RH+ le temps observateur est infini */
@@ -943,18 +947,21 @@ function animate() {
 				document.getElementById('DivClignotante').style.color = "blue";
 			}
 		// Gestion de la diode réserve d'énergie
-		if (deltam_sur_m <= 0.01) {   //Si je consomme moins de ΔE/E=0.01 la led près du décalage spectrale est verte.
-			document.getElementById('DivClignotantePilot').innerHTML = " <img src='./Images/diodever.gif' height='14px' />";
-			document.getElementById('DivClignotantePilot').style.color = "green";
-			}
-			else if (0.01 < deltam_sur_m && deltam_sur_m < 0.1) { //Si je consomme entre ΔE/E=0.01 et ΔE/E=0.1 la led près du décalage spectrale est orange.
-			document.getElementById('DivClignotantePilot').innerHTML = " <img src='./Images/diodejaune.gif' height='14px' />";
-			document.getElementById('DivClignotantePilot').style.color = "yellow";
-			}
-			else if (deltam_sur_m >= 0.1) {  //Si je consomme plus de ΔE/E=0.1 la led près du décalage spectrale est rouge.
-			document.getElementById('DivClignotantePilot').innerHTML = " <img src='./Images/dioderouge.gif' height='14px' />";
-			document.getElementById('DivClignotantePilot').style.color = "red";
-			}
+
+		if (r_part>rs*1.000001){
+			if (deltam_sur_m <= 0.01) {   //Si je consomme moins de ΔE/E=0.01 la led près du décalage spectrale est verte.
+				document.getElementById('DivClignotantePilot').innerHTML = " <img src='./Images/diodever.gif' height='14px' />";
+				document.getElementById('DivClignotantePilot').style.color = "green";
+				}
+				else if (0.01 < deltam_sur_m && deltam_sur_m < 0.1) { //Si je consomme entre ΔE/E=0.01 et ΔE/E=0.1 la led près du décalage spectrale est orange.
+				document.getElementById('DivClignotantePilot').innerHTML = " <img src='./Images/diodejaune.gif' height='14px' />";
+				document.getElementById('DivClignotantePilot').style.color = "yellow";
+				}
+				else if (deltam_sur_m >= 0.1) {  //Si je consomme plus de ΔE/E=0.1 la led près du décalage spectrale est rouge.
+				document.getElementById('DivClignotantePilot').innerHTML = " <img src='./Images/dioderouge.gif' height='14px' />";
+				document.getElementById('DivClignotantePilot').style.color = "red";
+				}
+		}
 			/* Diode pour le nombre de g ressenti
 				g_ressenti < 4 ------- vert
 				4 < g_ressenti < 9------- jaune
