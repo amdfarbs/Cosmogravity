@@ -863,7 +863,7 @@ function animate() {
 				document.getElementById("distance_parcourue").innerHTML = texte.page_trajectoire_massive_kerr.vitesse_pas_définie; //distance parcourue
 				if (deltam_sur_m==0){
 					document.getElementById("decal").innerHTML=" ";}
-				document.getElementById('DivClignotantePilot').innerHTML = " ";
+				//document.getElementById('DivClignotantePilot').innerHTML = " ";
 				
 				
 				document.getElementById("joyDiv").style.display = 'none'; //on enleve le pilotage
