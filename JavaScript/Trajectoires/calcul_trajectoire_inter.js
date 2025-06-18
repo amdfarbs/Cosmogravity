@@ -1786,6 +1786,9 @@ function alpha(r){
 	return 1-(Math.pow(r, 2)*rs) / Math.pow(r_phy, 3);
 }
 
+//devrait être 
+// return Math.pow(1.5 * Math.sqrt(1 - rs/r_phy) - 0.5 * Math.sqrt(1 - (Math.pow(r, 2)*rs)/Math.pow(r_phy, 3)), 2);
+
 // -------------------------------------{beta}--------------------------------------------
 
 /**
@@ -1796,6 +1799,9 @@ function alpha(r){
 function beta(r){
 	return 1.5 * Math.sqrt(1-(rs/r_phy)) - 0.5 *Math.sqrt(1-(Math.pow(r, 2)*rs)/Math.pow(r_phy, 3));
 }
+
+//devrait être
+//return 1 / (1 - (Math.pow(r, 2)*rs)/Math.pow(r_phy, 3));
 
 //----------------------------------------------------{derivee_seconde_externe_massif}----------------------------------------------------
 
@@ -1836,7 +1842,7 @@ function derivee_seconde_externe_massif_obs(E, L,r) {
 function derivee_seconde_interne_massif(E,L,r) {  
 	
 	terme1=Math.pow(E/beta(r),2) - Math.pow(L/r,2) - 1 ;
-	terme2=-Math.pow(E,2)*r*rs/( Math.pow(beta(r)*r_phy,3)*Math.sqrt(alpha(r)) ) + 2*Math.pow(L,2)/Math.pow(r,3)
+	terme2=-Math.pow(E,2)*r*rs/( Math.pow(beta(r)*r_phy,3)*Math.sqrt(alpha(r)) ) + 2*Math.pow(L,2)/Math.pow(r,3);
 
 	return -( Math.pow(c,2)*r*rs/( Math.pow(r_phy,3) ) )*terme1  + (Math.pow(c,2)*alpha(r)/2)*terme2;
 }
