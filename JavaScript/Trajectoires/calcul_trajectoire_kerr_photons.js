@@ -95,9 +95,19 @@ function initialisation(){
     //Je ne mets pas directement E=1 pour bien avoir NaN si je commence sous rs. 
     //L = (delta(r0) * dphi_sur_dlambda / c - rs * a * E) / (r0 - rs); //Je calcule L la constante d'intégration.
 
-	E=1; //Je fixe la constante d'intégration sans dimension E. 
-	L = (delta(r0)*dphi_sur_dlambda*r0 - rs*a*c)/(c*(r0-rs)); //Je calcule L la constante d'intégration.
+	//Expressions issus de S.Chandrasekhar
+	u0=1/r0;
+	Qpu0=1-3*rs/2*u0+2*a*Math.sqrt(rs/2)*Math.sqrt(Math.pow(u0,3));
 
+	if (rhp < r0 && r0 < rs){
+		E=(1-(rs*u0)+a*Math.sqrt(rs/2)*Math.sqrt(Math.pow(u0,3)))/(Math.sqrt(Qpu0));
+		L = Math.sqrt(rs/2)/Math.sqrt(u0*Qpu0) * (Math.pow(a,2)*Math.pow(u0,2) + 1 - 2*a*Math.sqrt(rs/2)*Math.sqrt(Math.pow(u0,3)));
+	}
+	else {
+		E=1; //Je fixe la constante d'intégration sans dimension E. 
+		L = (delta(r0)*dphi_sur_dlambda*r0 - rs*a*c)/(c*(r0-rs)); //Je calcule L la constante d'intégration.
+	}
+	
 	//Je calcule Rh+ (rhp), Rh- (rhm) et rh (qui sert au calcul de rmax) :
 	rhp = 0.5 * ( rs + Math.sqrt(Math.pow(rs, 2) - 4 * Math.pow(a, 2))); 
 	rhm = 0.5 * (rs - Math.sqrt(Math.pow(rs, 2) - 4 * Math.pow(a, 2))); 
@@ -175,10 +185,10 @@ function verifnbr() {
 		alert (texte.pages_trajectoire.alerte_verifier_teta);
 		document.getElementById("teta").value=128;
 	}
-	if (r0 <= rs){//Dans le cas où le r0 choisit est inférieure à rs j'affiche une alerte.
-		alert(texte.pages_trajectoire.alerte_r0_inferieure_rs);
-		document.getElementById("r0").value=4455;
-	} 					   
+	//if (r0 <= rs){//Dans le cas où le r0 choisit est inférieure à rs j'affiche une alerte.
+	//	alert(texte.pages_trajectoire.alerte_r0_inferieure_rs);
+	//	document.getElementById("r0").value=4455;
+	//} 					   
 }
 
 //----------------------------------------------------{trajectoire}----------------------------------------------------

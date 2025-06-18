@@ -106,9 +106,19 @@ function initialisation(){
 		alert(texte.pages_trajectoire.alerte_v0_superieure_c);
 		return;
 	}
+	//Expressions issus de S.Chandrasekhar
+	u0=1/r0;
+	Qpu0=1-3*rs/2*u0+2*a*Math.sqrt(rs/2)*Math.sqrt(Math.pow(u0,3));
 
-	E=c*Math.sqrt((r0-rs)/(r0*(c**2-v0**2))); //Je calcule la constante d'intégration sans dimension E.
-	L=(-1)*(a*c*rs/Math.sqrt(r0)-v0*Math.sin(tetarad)*Math.sqrt(r0*delta(r0)))/Math.sqrt((c**2-v0**2)*(r0-rs)); //Je calcule L la constante d'intégration. 
+	if (rhp < r0 && r0 < rs){
+		E=(1-(rs*u0)+a*Math.sqrt(rs/2)*Math.sqrt(Math.pow(u0,3)))/(Math.sqrt(Qpu0));
+		L = Math.sqrt(rs/2)/Math.sqrt(u0*Qpu0) * (Math.pow(a,2)*Math.pow(u0,2) + 1 - 2*a*Math.sqrt(rs/2)*Math.sqrt(Math.pow(u0,3)));
+	}
+	else {
+		E=c*Math.sqrt((r0-rs)/(r0*(c**2-v0**2))); //Je calcule la constante d'intégration sans dimension E.
+		L=(-1)*(a*c*rs/Math.sqrt(r0)-v0*Math.sin(tetarad)*Math.sqrt(r0*delta(r0)))/Math.sqrt((c**2-v0**2)*(r0-rs)); //Je calcule L la constante d'intégration.
+	}
+	 
 	vr=v0*Math.cos(tetarad)*c*Math.sqrt(delta(r0))/(r0*Math.sqrt(c**2-v0**2)); //Je calcule dr/dtau
 
 	deltam_sur_m = 0; //J'initialise la valeur du rapport d'énergie consommée pendant le pilotage.
@@ -276,10 +286,10 @@ function verifnbr() {
 		alert (texte.pages_trajectoire.alerte_verifier_teta);
 		document.getElementById("teta").value=90;
 	}
-	if (r0 <= rs){//Dans le cas où le r0 choisit est inférieure à rs j'affiche une alerte.
-		alert(texte.pages_trajectoire.alerte_r0_inferieure_rs);
-		document.getElementById("r0").value=5e12.toExponential(0);
-	} 
+	//if (r0 <= rs){//Dans le cas où le r0 choisit est inférieure à rs j'affiche une alerte.
+	//	alert(texte.pages_trajectoire.alerte_r0_inferieure_rs);
+	//	document.getElementById("r0").value=5e12.toExponential(0);
+	//} 
 
 }
 
