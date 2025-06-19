@@ -8,11 +8,13 @@ const w0max = 1
 const w1min = -2
 const w1max = 2
 
+const marge_droite2 = 15
+const marge_gauche = 28
 
 // Ces constantes gerent respectivement la taille en em des tags (Ouvert/Fermé), des Labels (Omega_m0) et des graduations
 const fontsize = 1.1;
-const fontsize_label = 0.9;
-const fontsize_graduations = 0.9;
+const fontsize_label = 1;
+const fontsize_graduations = 1;
 
 
 window.onload = function() {
@@ -42,8 +44,8 @@ function resizeCanvas() {
  */
 function omegam0_to_px(value) {
     let canvas = document.getElementById("canvas");
-    let echelle = (canvas.width - 30) / Math.abs(omegaM0Max - omegaM0Min);
-    return echelle * (value - omegaM0Min) + 15;
+    let echelle = (canvas.width - (marge_droite2+marge_gauche)) / Math.abs(omegaM0Max - omegaM0Min);
+    return echelle * (value - omegaM0Min) + (marge_gauche);
 }
 
 /**
@@ -52,8 +54,8 @@ function omegam0_to_px(value) {
 */
 function w0_to_px(value) {
    let canvas = document.getElementById("canvas");
-   let echelle = (canvas.width - 30) / Math.abs(w0max - w0min);
-   return echelle * (value - w0min) + 15;
+   let echelle = (canvas.width - (marge_droite2+marge_gauche)) / Math.abs(w0max - w0min);
+   return echelle * (value - w0min) + (marge_gauche);
 }
 
 // Ol est dans le sens des y
@@ -64,8 +66,8 @@ function w0_to_px(value) {
  */
 function omegal0_to_px(value) {
     let canvas = document.getElementById("canvas");
-    let echelle = (canvas.height - 30) / Math.abs(omegaL0Max - omegaL0Min);
-    return (canvas.height - 15) - (echelle * (value - omegaL0Min));
+    let echelle = (canvas.height - (marge_droite2+marge_gauche)) / Math.abs(omegaL0Max - omegaL0Min);
+    return (canvas.height - (marge_gauche)) - (echelle * (value - omegaL0Min));
 }
 
 /**
@@ -75,8 +77,8 @@ function omegal0_to_px(value) {
  */
 function w1_to_px(value) {
     let canvas = document.getElementById("canvas");
-    let echelle = (canvas.height - 30) / Math.abs(w1max - w1min);
-    return (canvas.height - 15) - (echelle * (value - w1min));
+    let echelle = (canvas.height - (marge_droite2+marge_gauche)) / Math.abs(w1max - w1min);
+    return (canvas.height - (marge_gauche)) - (echelle * (value - w1min));
 }
 
 /**
@@ -204,10 +206,15 @@ function update_graphe_interactif() {
         context.textAlign = 'center';
         if (marqueur !== -3) {
             context.save();
-            context.translate(x_to_px(x_min) - 7, y_to_px(marqueur));
+            context.translate(x_to_px(x_min) - 10, y_to_px(marqueur));
             context.rotate(-Math.PI / 2);
             context.textAlign = 'center';
-            context.fillText(marqueur.toFixed(1), 0, 0);
+            if (marqueur === y_min) {
+                context.fillText(marqueur.toFixed(1), 3, -5)
+            } else {
+                context.fillText(marqueur.toFixed(1), 0, -5);
+        }
+
             context.restore();
         }
     }
@@ -220,8 +227,12 @@ function update_graphe_interactif() {
         context.strokeStyle = "#000000";
         context.stroke();
         context.textAlign = 'center';
-        context.fillText(marqueur.toFixed(1), x_to_px(marqueur), y_to_px(y_min) + 10);
+        if (marqueur === x_min) {
+            context.fillText(marqueur.toFixed(1), x_to_px(marqueur)+3, y_to_px(y_min) + 17)
+        } else {
+        context.fillText(marqueur.toFixed(1), x_to_px(marqueur), y_to_px(y_min) + 17);
     }
+}
 
     if (document.getElementById("Omégal0")) {
     // Tracé de la séparatrice univers fermé / ouvert et affichage des textes

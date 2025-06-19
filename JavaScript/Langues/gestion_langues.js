@@ -162,7 +162,7 @@ function texte_navigation() {
         }
         document.getElementById("nav").style.background = "linear-gradient(90deg, rgba(121, 20, 123, 0.7), rgba(39, 121, 124, 0.7))"
     } else {
-        size= "1rem";
+        size= "1.2rem";
         const items = document.getElementsByClassName("item");
             for (let i = 0; i < items.length; i++) {
         items[i].style.animation = "none";
@@ -330,7 +330,6 @@ function texte_univers_calculette() {
     if (document.getElementById("Monofluide_optionDE")) {
         document.getElementById("Monofluide_optionDE").innerHTML = texte.univers.monofluide_DE
     } else {
-        console.log("test")
         document.getElementById("Monofluide_optionLDE").innerHTML = texte.univers.monofluide_L
     }
     document.getElementById("Monofluide_optionK").innerHTML = texte.univers.monofluide_K

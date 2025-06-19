@@ -970,15 +970,15 @@ function update_rho(isDE){
 	t0 = Number(document.getElementById("T0").value);
 	h0 = Number(document.getElementById("H0").value);
 	omegam0 = Number(document.getElementById("Omégam0").value);
+    omegar0 = Number(document.getElementById("Omégar0").value);
 		
 	sigma = (2*Math.pow(Math.PI, 5)*Math.pow(k, 4))/(15*Math.pow(h, 3)*Math.pow(c, 2));
-	rho_r = (4*sigma*Math.pow(t0, 4))/(Math.pow(c, 3));
-	rho_r = rho_r.toExponential(4);
 	rho_m = omegam0*3 * Math.pow(h0*1e3/(3.085677581*1e22),2) / (8 * Math.PI * G); // 1parsec=3.085677581*1e16 mètres, H0 est en Km/s/Mpc donc h0*1e3/(3.085677581*1e22),2) nous ramene aux unités SI
 	rho_m = rho_m.toExponential(4);
-	
+	rho_r = omegar0*3 * Math.pow(h0*1e3/(3.085677581*1e22),2) / (8 * Math.PI * G);
+    rho_r = rho_r.toExponential(4);
 	//const_cosmo = Number(document.getElementById("lambda_cosmo_const").value);
-	
+    console.log("rho_r :" + rho_r)
 	
 	if(isDE==1){
 		omegaDE0 = Number(document.getElementById("OmégaDE0").value);
