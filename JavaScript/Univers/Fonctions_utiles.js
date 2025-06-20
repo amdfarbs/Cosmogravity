@@ -100,7 +100,7 @@ function Omega_r(z) {
     let h = Number(document.getElementById("h").value);
     let G = Number(document.getElementById("G").value);
     let k = Number(document.getElementById("k").value);
-
+    let rho_r
     let omega_r
 
     let T0 = Number(document.getElementById("T0").value);
@@ -108,7 +108,13 @@ function Omega_r(z) {
     // Si z = 0 on renvoie le calcul direct de omega_r0 sinon on le calcule en fonction de omega_r0
     let sigma = ( 2 * Math.pow(Math.PI, 5) * Math.pow(k, 4) ) / ( 15 * Math.pow(h, 3) * Math.pow(c, 2) );
     if (z === 0) {
-        let rho_r = ( 4 * sigma * Math.pow(T0, 4) ) / Math.pow(c, 3)
+        rho_r = ( 4 * sigma * Math.pow(T0, 4) ) / Math.pow(c, 3)
+        if (document.getElementById("optionsOmégar0").options[0].selected) {
+            rho_r = rho_r * 1.6913
+        }
+        if (document.getElementById("optionsOmégar0").options[2].selected) {
+            rho_r = 0
+        }
         omega_r = ( 8 * Math.PI * G * rho_r) / ( 3 * Math.pow(H0_parSecondes(H0), 2) )
     }
     else {
@@ -117,14 +123,6 @@ function Omega_r(z) {
         }else{
             omega_r = ( Omega_r(0) * Math.pow(1 + z, 4) ) / fonction_F(z,true);
         }  
-    }
-
-
-    if (document.getElementById("optionsOmégar0").options[0].selected) {
-        omega_r = omega_r * 1.6913
-    }
-    if (document.getElementById("optionsOmégar0").options[2].selected) {
-        omega_r = 0
     }
 
     let option = document.getElementById("optionsMonofluide").value
@@ -452,9 +450,10 @@ function equa_diff_2_DE(t, a, ap) {
  * @param equa_diff {function} Fonction caractéristique de l'EDO2 du modèle
  * @return Soit les temps de naissance/mort soit un string explicant pourquoi il n'y a pas de naissance/mort
  */
-function debut_fin_univers(equa_diff,pas=1e-3 * H0 / Math.abs(H0),nb_max=1e4) {
+function debut_fin_univers(equa_diff,pas=1e-3,nb_max=1e4) {
     let texte = o_recupereJson()
     let H0 = Number(document.getElementById("H0").value);
+    pas = pas*Math.sign(H0)
     // Déclaration des variables et des valeurs retournés
     let set_solution = [0, 1 ,1]
     let save_set_solution;
@@ -741,7 +740,7 @@ function graphique_facteur_echelle(solution,debutEtFin , t_0) {
         y: ordonnee,
         type: "scatter",
         mode: "lines",
-        name: "Facteur d'échelle",
+        name: "a(t)",
         line: { color: 'purple' }
     }];
     let x_min = abscisse[0];
