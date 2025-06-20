@@ -450,9 +450,10 @@ function equa_diff_2_DE(t, a, ap) {
  * @param equa_diff {function} Fonction caractéristique de l'EDO2 du modèle
  * @return Soit les temps de naissance/mort soit un string explicant pourquoi il n'y a pas de naissance/mort
  */
-function debut_fin_univers(equa_diff,pas=1e-3 * H0 / Math.abs(H0),nb_max=1e4) {
+function debut_fin_univers(equa_diff,pas=1e-3,nb_max=1e4) {
     let texte = o_recupereJson()
     let H0 = Number(document.getElementById("H0").value);
+    pas = pas*Math.sign(H0)
     // Déclaration des variables et des valeurs retournés
     let set_solution = [0, 1 ,1]
     let save_set_solution;
