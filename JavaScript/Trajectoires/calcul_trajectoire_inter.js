@@ -1143,6 +1143,11 @@ function trajectoire(compteur,mobile) {
 					document.getElementById("decal"+compteur.toString()).innerHTML = deltam_sur_m.toExponential(3); //Affichage sur le site de l'énergie consommée. 
 					document.getElementById("puissance_consommee"+compteur.toString()).innerHTML = puissance_instant.toExponential(3); //Affichage sur le site de la puissance consommée.
 			}
+
+			if (pilotage_possible==false){
+				document.getElementById("decal"+compteur.toString()).innerHTML = " "; 
+			}
+
 		}, 50);}
 
 		//--------------------------------Gestion des boutons d'accélération/décélération--------------------------------
@@ -1521,8 +1526,8 @@ function animate(compteur,mobile,mobilefactor) {
 			mobile.distance_parcourue_totale+=vtotal*(mobile.dtau*(1-rs/mobile.r_part)/mobile.E);
 
 			/*Calcul du gradient d'acceleration*/
-			gm = derivee_seconde_externe_massif(mobile.r_part,mobile.L);
-			gmp = derivee_seconde_externe_massif(mobile.r_part+1,mobile.L);
+			gm = derivee_seconde_externe_massif(mobile.L,mobile.r_part);
+			gmp = derivee_seconde_externe_massif(mobile.L,mobile.r_part+1);
 			fm = Math.abs(gm - gmp); 
 			 
 		}
@@ -1593,8 +1598,8 @@ function animate(compteur,mobile,mobilefactor) {
 			/*Calcul de la distance parcourue*/
 			mobile.distance_parcourue_totale+=vtotal*(mobile.dtau*Math.pow(beta(mobile.r_part),2)/mobile.E);
 			/*Calcul du gradient d'acceleration*/
-			gm = derivee_seconde_interne_massif(mobile.r_part,mobile.E,mobile.L); 
-			gmp = derivee_seconde_interne_massif(mobile.r_part+1,mobile.E,mobile.L);
+			gm = derivee_seconde_interne_massif(mobile.E,mobile.L,mobile.r_part); 
+			gmp = derivee_seconde_interne_massif(mobile.E,mobile.L,mobile.r_part+1);
 			fm = Math.abs(gm - gmp); 
 
 		}
@@ -1786,9 +1791,6 @@ function alpha(r){
 	return 1-(Math.pow(r, 2)*rs) / Math.pow(r_phy, 3);
 }
 
-//devrait être 
-// return Math.pow(1.5 * Math.sqrt(1 - rs/r_phy) - 0.5 * Math.sqrt(1 - (Math.pow(r, 2)*rs)/Math.pow(r_phy, 3)), 2);
-
 // -------------------------------------{beta}--------------------------------------------
 
 /**
@@ -1799,9 +1801,6 @@ function alpha(r){
 function beta(r){
 	return 1.5 * Math.sqrt(1-(rs/r_phy)) - 0.5 *Math.sqrt(1-(Math.pow(r, 2)*rs)/Math.pow(r_phy, 3));
 }
-
-//devrait être
-//return 1 / (1 - (Math.pow(r, 2)*rs)/Math.pow(r_phy, 3));
 
 //----------------------------------------------------{derivee_seconde_externe_massif}----------------------------------------------------
 
