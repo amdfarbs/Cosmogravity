@@ -25,7 +25,7 @@
 	{
 		"txtUnivers": "Modèles d'univers de Friedmann-Lemaître et calculette cosmologique",
 		"txtTrajectoires": "Trajectoires dans les métriques de Schwarzschild et de Kerr",
-		"version": "Version bêta 2.5.6 (18/06/2025)"
+		"version": "Version bêta 2.5.5 (14/06/2025)"
 	},
 
 	"univers": {
@@ -262,7 +262,6 @@
 			"Encadrant1": "Isabelle Mougenot (Espace Dev)",
 			"Encadrant2": "Jean-Pierre Cordoni",
 			"Encadrant3": "Henri Reboul (LUPM)",
-			"Encadrant4" : "Mathieu Lafourcade (LIRMM)",
 		"Participant": "Participants",
 			"Participant1": "Matthieu Carrère (LUPM)",
 			"Participant2": "Claude Zurbach (LUPM)",
@@ -276,7 +275,6 @@
 
 		"versions": "Versions du site",
 		"License": "<strong>Licence :</strong> CC-BY-NC-SA",
-		"v2025": "<strong>Version 2025 :</strong> Ahmed Al-Basri | Enzo Dattignie | Alban Desoutter",
 		"v2024": "<strong>Version 2024 :</strong> Adrien toulouse | Manon Nolot | Khaled Madani | Rémy Dupont",
 		"v2023": "<strong>Version 2023 :</strong> Latifa Benameur | Simon Blondeau |  Mohamad Jouni | Clara Massat | Dhungara Nischal | Victor Sauvage (version 2.3 révisée et augmentée par J-P Cordoni)",
 		"v2022": "<strong>Version 2022 :</strong> Joumana Badran | Enora Etoubleau | Fatima Idbaba | Omar Tada (version 2.2 révisée et augmentée par J-P Cordoni)",
@@ -324,7 +322,8 @@
 		"txt_rphysique":"Rayon physique de l'astre",
 		"labelnumberfusees":"Nombre de mobiles",
 		"labelgp":"Afficher le graphe du potentiel",
-		"label_depasser":"Depasser Rh-",
+		"label_depasser":"Dépasser Rh+",
+		"infobulle_depasser":"Attention : Calculs non garantis au-delà de Rh+",
 		"vrarret":"0",
 		"vphiarret":"0",
 		"v_total":"Vitesse (m/s)",

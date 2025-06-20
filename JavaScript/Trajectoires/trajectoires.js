@@ -78,9 +78,9 @@ function pressionBouttonObservateur(Kerr) {
     document.getElementById("r3").className = "bouttonChoix";
     document.getElementById("r4").className = "bouttonChoix-inverse";
 
-    //if (Kerr){
-    //  document.getElementById("case_depasser").style="display: none;";
-    //}
+    if (Kerr){
+      document.getElementById("case_depasser").style="display: none;";
+    }
 
   }
 }
@@ -97,9 +97,9 @@ function pressionBouttonMobile(Kerr) {
     document.getElementById("r4").className = "bouttonChoix";
     document.getElementById("r3").className = "bouttonChoix-inverse";
 
-    //if(Kerr){
-    //  document.getElementById("case_depasser").style="display: block;";
-    //}
+    if(Kerr){
+      document.getElementById("case_depasser").style="display: block;";
+    }
 
   }
 }

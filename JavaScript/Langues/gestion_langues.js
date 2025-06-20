@@ -509,7 +509,6 @@ function texte_Apropos() {
     document.getElementById("enc1").innerHTML = texte.Apropos.Encadrant1
     document.getElementById("enc2").innerHTML = texte.Apropos.Encadrant2
     document.getElementById("enc3").innerHTML = texte.Apropos.Encadrant3
-    document.getElementById("enc4").innerHTML = texte.Apropos.Encadrant4
 
     document.getElementById("participant").innerHTML = texte.Apropos.Participant
     document.getElementById("parti1").innerHTML = texte.Apropos.Participant1
@@ -525,7 +524,6 @@ function texte_Apropos() {
 
     document.getElementById("versions").innerHTML = texte.Apropos.versions
     document.getElementById("license").innerHTML = texte.Apropos.License
-    document.getElementById("2025").innerHTML = texte.Apropos.v2025
     document.getElementById("2024").innerHTML = texte.Apropos.v2024
     document.getElementById("2023").innerHTML = texte.Apropos.v2023
     document.getElementById("2022").innerHTML = texte.Apropos.v2022
@@ -635,7 +633,8 @@ function textegravetetc_Kerr(){
 
     if(canvaswidthheightt=="750"){
         document.getElementById("labelgp").innerHTML = texte.pages_trajectoire.labelgp;
-        //document.getElementById("label_depasser").innerHTML = texte.pages_trajectoire.label_depasser;
+        document.getElementById("label_depasser").innerHTML = texte.pages_trajectoire.label_depasser;
+        document.getElementById("label_depasser").title = texte.pages_trajectoire.infobulle_depasser;
     }
 
 }
