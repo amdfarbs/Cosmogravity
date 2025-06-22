@@ -849,6 +849,10 @@ function animate() {
 					/* Decalage spectrale */
 					if(deltam_sur_m ==0) {document.getElementById("decal").innerHTML="";}	
 					else{document.getElementById("decal").innerHTML=deltam_sur_m.toExponential(3);}
+					// Réactivation du pilotage quand le mobile est au-dessus de rs
+    				if (element2.value=="mobile" && peuxonrelancer !== false) {
+        			document.getElementById("joyDiv").style.display = 'block'; // Réaffichage du pilotage
+    }
 				}
 			//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> APRES RS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 			else
@@ -865,7 +869,7 @@ function animate() {
 					document.getElementById("decal").innerHTML=" ";}
 				//document.getElementById('DivClignotantePilot').innerHTML = " ";
 				
-				
+			
 				document.getElementById("joyDiv").style.display = 'none'; //on enleve le pilotage
 				/*Au dela de RH+ le temps observateur est infini */
 				if (r_part<=rhp)
@@ -878,7 +882,6 @@ function animate() {
 			 document.getElementById("tp").innerHTML = temps_particule.toExponential(3);  //temps du mobile
 			 document.getElementById("ga").innerHTML = fm.toExponential(3); // gradient d'acceleration
 		}	
-
 		else
 		{	
 			r_part=0; // on met la valeur theorique du rayon

@@ -341,12 +341,9 @@ function genereHtml()
 		var newinput = document.createElement("Input"); //on crée le input
 		newinput.setAttribute("id","r0"+count.toString()+"");//on lui met un id
 		newinput.setAttribute("value","2e13"); // on met la valeur par defaut
-		//newinput.setAttribute("align","left"); // on met la position du texte dans l'input
 		newinput.setAttribute("maxlength","18");//on peut mettre que 18 caracteres 
 		newinput.setAttribute("type","text"); //on met que c'est du text
 		newinput.setAttribute("size","5");	//on met la taille de la case
-		//newinput.style.width = "60px"; // équivalent à size="5" environ
-    	//newinput.style.minWidth = "60px"; // largeur minimale
 		/*On lui associe la fonction *verifnbr* et *initialisationGenerale*,
 			si jamais y a un changement on appelle les deux fonctions*/
 		newinput.setAttribute("onchange","verifnbr();initialisationGenerale("+nbredefuseesgenere.toString()+")"); 
@@ -613,7 +610,7 @@ function genereHtml()
 
 	//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>< CANVA POUR LE TRACÉ ><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 	//on recupere la valeur de la hauteur du canva
-	var canvaswidthheight = '750';
+	var canvaswidthheight = calculerTailleCanvas().toString();
 	/*POUR LE TRACÉ DERRIERE LA BOULE*/
 	var canvasgenere = document.createElement("canvas");//on crée un element HTML Canva
 	canvasgenere.setAttribute("id","myCanvas"); //on lui met un id
@@ -681,6 +678,9 @@ function genereHtml()
 	notationvitesseree2(); //on met les bonnes notations
 	infobulleobservateurdistant(); //on met les infobulles
 	textegravetetc(); //on met le text adapaté dans les tableaux 
+
+	configurerResizeObserverCanvas();
+	observerPanneauxCanvas();
 
 	//pour le bon affichage du katex
 	renderMathInElement(document.body, {

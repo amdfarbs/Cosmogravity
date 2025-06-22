@@ -408,7 +408,7 @@
 		"dernier_g_infobulle":"Dernier nombre de g ≠ 0 ressenti par le pilote avec 1g = 9.81m/s². Valable seulement pour la mécanique Newtonienne.",
 		"distance_metrique_parcourue":"D(m)",
 		"distance_metrique_parcourue_infobulle":"Distance métrique parcourue par le mobile depuis l'instant initial.",
-		"pourcentage_vphi_pilotage_label" : "X=",
+		"pourcentage_vphi_pilotage_label" : "X =",
 		"pourcentage_vphi_infobulle" : "Pourcentage de la vitesse tangentielle utilisée pour le pilotage",
 		"puissance_consommee_label":"P<sub>consommée</sub> (W/kg)",
 		"puissance_consommee_infobulle":"Puissance instantannée consommée par les réacteurs en W/kg.",
