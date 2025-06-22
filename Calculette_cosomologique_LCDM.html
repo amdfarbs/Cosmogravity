@@ -43,7 +43,7 @@
                     <img id="infoT0" src="./Images/icone_info.png" alt="" width="20" height="20" title="">
                     T<sub>0</sub> =
                 </label>
-                <input id="T0" type="number" min="0" value="2.7255" step="0.01">
+                <input id="T0" type="number" min="0" value="2.7255" step="0.0001">
                 <span>K</span>
             </div>
 
@@ -73,7 +73,7 @@
                 <label for="Omégam0">
                     <img id="infoOmégam0" src="./Images/icone_info.png" alt="" width="20" height="20">
                     &Omega;<sub>m<sub>0</sub></sub> = </label>
-                <input id="Omégam0" type="number" value="0.30890" step="0.01"onchange="updateCalculette()">
+                <input id="Omégam0" type="number" value="0.3089" step="0.0001"onchange="updateCalculette()">
                 <span></span>
             </div>
 
@@ -82,7 +82,7 @@
                     <img id="infoOmégaLDE0" src="./Images/icone_info.png" alt="" width="20" height="20">
                     &Omega;<sub>&Lambda;<sub>0</sub></sub> =
                 </label>
-                <input id="Omégal0" type="number" value="0.69110" step="0.01" onchange="updateCalculette()">
+                <input id="Omégal0" type="number" value="0.6911" step="0.0001" onchange="updateCalculette()">
                 <span></span>
             </div>
 
@@ -91,7 +91,7 @@
                     <img id="infoOmégar0Sortie" src="./Images/icone_info.png" alt="" width="20" height="20">
                     &Omega;<sub>r<sub>0</sub></sub> =
                 </label>
-                <input style="cursor: not-allowed" readonly id="Omégar0" type="text" step="0.01">
+                <input style="cursor: not-allowed" readonly id="Omégar0" type="text" step="any">
                 <span></span>
             </div>
 
@@ -100,7 +100,7 @@
                     <img id="infoOmégak0Sortie" src="./Images/icone_info.png" alt="" width="20" height="20">
                     &Omega;<sub>k<sub>0</sub></sub> =
                 </label>
-                <input style="cursor: not-allowed" readonly id="Omégak0" type="text" step="0.01">
+                <input style="cursor: not-allowed" readonly id="Omégak0" type="text" step="any">
                 <span></span>
             </div>
 
@@ -171,7 +171,7 @@
                 </div>
                 <div class="paramètre">
                     <label id="label_theta" class="infobullable" for="theta">&Theta; = </label>
-                    <input id="theta" type="number" value="0" step="0.1" min="0" max="1000">
+                    <input id="theta" type="number" value="0" step="0.0001" min="0" max="1000">
                     <span style="font-size: 16px;">ArcSecond</span>
                 </div>
             </div>
@@ -247,14 +247,14 @@
                             <label id="label_zmin" for="graphique_z_min" class="infobullable">
                                 z<sub>min</sub> =
                             </label>
-                            <input id="graphique_z_min" type="number" value="0" step="0.1" min="-.99999999999" max="1000">
+                            <input id="graphique_z_min" type="number" value="0" step="0.0001" min="-.9999" max="1000">
                         </div>
             
                         <div class="paramètre">
                             <label id="label_zmax" class="infobullable" for="graphique_z_max">
                                 z<sub>max</sub> =
                             </label>
-                            <input id="graphique_z_max" type="number" value="5" step="0.1" min="-.99999999998" max="1000">
+                            <input id="graphique_z_max" type="number" value="5" step="0.0001" min="-.9999" max="1000">
                         </div>
 
                         <div class="paramètre">
@@ -348,15 +348,15 @@
             <div>
                 <div class="paramètre">
                     <label id="label_z1" class="infobullable" for="z1">z1 = </label>
-                    <input id="z1" type="number" value="0" step="0.1" min="0" max="1000">
+                    <input id="z1" type="number" value="0" step="0.0001" min="0" max="1000">
                 </div>
                 <div class="paramètre">
                     <label id="label_z2" class="infobullable" for="z2">z2 = </label>
-                    <input id="z2" type="number" value="0" step="0.1" min="0" max="1000">
+                    <input id="z2" type="number" value="0" step="0.0001" min="0" max="1000">
                 </div>
                 <div class="paramètre">
                     <label id="label_ie" class="infobullable" for="ie">Ie = </label>
-                    <input id="ie" type="number" value="0" step="0.1" min="0" max="1000">
+                    <input id="ie" type="number" value="0" step="0.0001" min="0" max="1000">
                     <span>W.sr<sup>-1</sup></span>
                 </div>
             </div>
