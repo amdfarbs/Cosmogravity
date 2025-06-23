@@ -610,7 +610,7 @@ function genereHtml()
 
 	//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>< CANVA POUR LE TRACÉ ><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 	//on recupere la valeur de la hauteur du canva
-	var canvaswidthheight = calculerTailleCanvas().toString();
+	var canvaswidthheight = '750';
 	/*POUR LE TRACÉ DERRIERE LA BOULE*/
 	var canvasgenere = document.createElement("canvas");//on crée un element HTML Canva
 	canvasgenere.setAttribute("id","myCanvas"); //on lui met un id
@@ -679,8 +679,6 @@ function genereHtml()
 	infobulleobservateurdistant(); //on met les infobulles
 	textegravetetc(); //on met le text adapaté dans les tableaux 
 
-	configurerResizeObserverCanvas();
-	observerPanneauxCanvas();
 
 	//pour le bon affichage du katex
 	renderMathInElement(document.body, {
