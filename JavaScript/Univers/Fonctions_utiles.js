@@ -384,7 +384,7 @@ function equa_diff_1_LCDM(t, a) {
  * @returns {number} La valeur de la dérivée seconde de a en ce temps
  */
 function equa_diff_2_LCDM(t, a, ap) {
-    let Omegam0 = Omega_m(0)
+       let Omegam0 = Omega_m(0)
     let Omegar0 = Omega_r(0)
     let Omegal0 = Omega_l(0)
 
