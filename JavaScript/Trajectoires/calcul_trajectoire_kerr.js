@@ -1310,20 +1310,22 @@ function majFondFixe()
 	context.font = "11pt normal";
 	/*MASSE*/
 	context.fillText("M = "+M.toExponential(3)+" kg",5,90);
+	/*MOMENT CINÉTIQUE*/
+	context.fillText("J = "+J.toExponential(3)+" kg.m\u00B2.s\u207B\u00B9",5,110);
 	/*CHARGE(A)*/
-	context.fillText("a = "+a.toExponential(3)+" m",5,110);
+	context.fillText("a = "+a.toExponential(3)+" m",5,130);
 	/*ENTREES MOBILE*/
-	context.fillText("r\u2080 = "+r0.toExponential(3)+" m",5,130);//r0
-	context.fillText("V\u2080 = "+v0.toExponential(3)+" m.s\u207B\u00B9",5,150); //v0
-	context.fillText("\u03C6\u2080 = "+phi_degres.toExponential(3)+" °",5,170);//phi0
+	context.fillText("r\u2080 = "+r0.toExponential(3)+" m",5,150);//r0
+	context.fillText("V\u2080 = "+v0.toExponential(3)+" m.s\u207B\u00B9",5,170); //v0
+	context.fillText("\u03C6\u2080 = "+phi_degres.toExponential(3)+" °",5,190);//phi0
 	/*POUR LE MODE */
 	if(document.getElementById('traject_type2').value=="observateur")
 	{
-		context.fillText(texte.pages_trajectoire.observateur,5,190);
+		context.fillText(texte.pages_trajectoire.observateur,5,210);
 	} 
 	else 
 	{
-		context.fillText(texte.pages_trajectoire.mobile,5,190); 
+		context.fillText(texte.pages_trajectoire.mobile,5,210); 
 
 	}
 
