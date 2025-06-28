@@ -33,61 +33,6 @@ function calcul_facteur_echelle_DE(equa_diff_1, equa_diff_2, fonction_simplifian
         document.getElementById("a_max").value = a_max;
     }
 
-    /**
-     * Fonction qui permet de :
-     *      - Redéfinir les conditions initiales
-     *      - Calcule l'intervale de temps de résolution et en déduis un pas raisonnable
-     */
-    function bornes_temps_CI() {
-        let pas;
-        let tau_init = 0;
-        let a_init = 1;
-        let ap_init = 1;
-
-        let t_0 = calcul_ages(fonction_simplifiant_1, H0parGAnnee, 1e-10, 1)
-
-        let t_min = calcul_ages(fonction_simplifiant_1, H0parGAnnee, 1e-10, a_min)
-        let tau_min = H0parGAnnee * (t_min - t_0)
-
-        let t_max = calcul_ages(fonction_simplifiant_1, H0parGAnnee, 1e-10, a_max)
-        let tau_max = H0parGAnnee * (t_max - t_0)
-
-
-        if (a_min > 1 && !isNaN(tau_min)) {
-            tau_init = tau_min
-            a_init = a_min
-            ap_init = equa_diff_1(tau_min, a_init)
-        }
-
-        if (a_max < 1 && !isNaN(tau_max)) {
-            tau_init = tau_max
-            a_init = a_max
-            ap_init = equa_diff_1(tau_max, a_init)
-        }
-
-        // On calcule le pas qui sera utilisé
-        let universInconnu = true
-        if ( (isNaN(tau_min) || isNaN(tau_max)) && !isNaN(t_0) ) {
-            pas = Math.abs(t_0) * 1e-3
-            universInconnu = false
-        } else {
-            pas = 1e-3
-        }
-
-        let option = document.getElementById("optionsMonofluide").value
-        if (!isNaN(tau_min) && !isNaN(tau_max) && option === "optionNull") {
-            pas = Math.abs(tau_max - tau_min) * 1e-3
-            universInconnu = false
-        }
-
-        if (universInconnu && option === "optionNull") {
-            if (a_min > 1) {a_min = 1}
-            if (a_max < 1) {a_max = 1}
-        }
-
-
-        return [tau_init, a_init, ap_init, pas]
-    }
 
     let params = bornes_temps_CI();
 

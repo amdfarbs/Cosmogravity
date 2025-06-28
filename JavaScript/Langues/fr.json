@@ -23,7 +23,7 @@
 	
 	"index":
 	{
-		"txtUnivers": "Modèles d'univers de Friedmann-Lemaître et calculette cosmologique",
+		"txtUnivers": "Modèles LCDM et Energie Sombre <br>Calculette Cosmologique",
 		"txtTrajectoires": "Trajectoires dans les métriques de Schwarzschild et de Kerr",
 		"version": "Version bêta 2.5.8 (26/06/2025)"
 	},
@@ -209,6 +209,8 @@
 		"infoOmégaK0Sortie": "Paramètre de densité de courbure actuel. [cf Modèles d’univers de Friedmann-Lemaître]",
 		
 		"avertissement_z_grand":"z&#x2248;-1 (erreur numérique possible)",
+		"avertissement_nbb":"Attention, les calculs suivants peuvent s'averer faux ou incohérents dans cet univers",
+
 
 		"Enregistrer": "<h3>Enregistrement</h3>",
 			"infoNomFichier": "Nom d'enregistrement du graphique. Ne pas utiliser de caractère spéciaux tels que . * / | + \\ et autres",
