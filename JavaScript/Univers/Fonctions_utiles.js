@@ -452,6 +452,7 @@ function equa_diff_2_DE(t, a, ap) {
  */
 function debut_fin_univers(equa_diff,pas=1e-3,nb_max=1e4) {
     let texte = o_recupereJson()
+    pas = bornes_temps_CI()[3]
     let H0 = Number(document.getElementById("H0").value);
     pas = pas*Math.sign(H0)
     // Déclaration des variables et des valeurs retournés
@@ -541,7 +542,7 @@ function debut_fin_univers(equa_diff,pas=1e-3,nb_max=1e4) {
     } else {
         duree_univers = false
     }
-    return [naissance_univers, mort_univers, age_debut, age_fin, duree_univers]
+    return [naissance_univers, mort_univers, age_debut, age_fin, duree_univers,boolDebut,boolFin]
 }
 
 /**
@@ -687,6 +688,129 @@ function calcul_t_inverse(temps,fonction,H0,precision=1e-30,iterationsmax=100){
 	}
 	return (1-a_t)/a_t;
 }
+
+/**
+     * Fonction qui permet de :
+     *      - Redéfinir les conditions initiales
+     *      - Calcule l'intervale de temps de résolution et en déduis un pas raisonnable
+     */
+function bornes_temps_CI() {
+    // if (document.getElementById("Omega_l")) {
+    let H0 = document.getElementById("H0").value;
+    let H0parGAnnee = H0_parGAnnees(H0)
+    
+    //on recupere les valeurs des variables
+    let a_min = 0
+    let a_max = 5
+    if (document.getElementById("a_min")) {
+        a_min = Number(document.getElementById("a_min").value);
+        a_max = Number(document.getElementById("a_max").value);
+    }
+    if(document.getElementById("Omégal0")) {
+        fonction_simplifiant = fonction_E
+    } else {
+        fonction_simplifiant = fonction_F
+    }
+    let pas;
+    let tau_init = 0;
+    let a_init = 1;
+    let ap_init = 1;
+
+    let t_0 = calcul_ages(fonction_simplifiant, H0parGAnnee, 1e-10, 1)
+
+    let t_min = calcul_ages(fonction_simplifiant, H0parGAnnee, 1e-10, a_min)
+    let tau_min = H0parGAnnee * (t_min - t_0)
+
+    let t_max = calcul_ages(fonction_simplifiant, H0parGAnnee, 1e-10, a_max)
+    let tau_max = H0parGAnnee * (t_max - t_0)
+
+    if (a_min > 1 && !isNaN(tau_min)) {
+        tau_init = tau_min
+        a_init = a_min
+        ap_init = equa_diff_1(tau_min, a_init)
+    }
+
+    if (a_max < 1 && !isNaN(tau_max)) {
+        tau_init = tau_max
+        a_init = a_max
+        ap_init = equa_diff_1(tau_max, a_init)
+    }
+
+    // On calcule le pas qui sera utilisé
+
+    let universInconnu = true
+    if ( (isNaN(tau_min) || isNaN(tau_max)) && !isNaN(t_0)) {
+        pas = Math.abs(t_0) * 1e-3
+        universInconnu = false
+    } else {
+        pas = 1e-3
+    }
+
+    let option = document.getElementById("optionsMonofluide").value
+    if (!isNaN(tau_min) && !isNaN(tau_max) && option === "optionNull") {
+        pas = Math.abs(tau_max - tau_min) * 1e-3
+        universInconnu = false
+    }
+    if (document.getElementById("Omégal0")) {
+    if (document.getElementById("Omégam0").value == 0 && document.getElementById("Omégal0").value == 1 && document.getElementById("Omégar0").value == 0 && document.getElementById("Omégak0").value == 0) {
+        pas = 1e-3
+    }}
+
+    if (universInconnu && option === "optionNull") {
+        if (a_min > 1) {a_min = 1}
+        if (a_max < 1) {a_max = 1}
+    }
+    return [tau_init, a_init, ap_init, pas]
+    // } else {
+    //     let pas;
+    //     let tau_init = 0;
+    //     let a_init = 1;
+    //     let ap_init = 1;
+
+    //     let t_0 = calcul_ages(fonction_simplifiant_1, H0parGAnnee, 1e-10, 1)
+
+    //     let t_min = calcul_ages(fonction_simplifiant_1, H0parGAnnee, 1e-10, a_min)
+    //     let tau_min = H0parGAnnee * (t_min - t_0)
+
+    //     let t_max = calcul_ages(fonction_simplifiant_1, H0parGAnnee, 1e-10, a_max)
+    //     let tau_max = H0parGAnnee * (t_max - t_0)
+
+
+    //     if (a_min > 1 && !isNaN(tau_min)) {
+    //         tau_init = tau_min
+    //         a_init = a_min
+    //         ap_init = equa_diff_1(tau_min, a_init)
+    //     }
+
+    //     if (a_max < 1 && !isNaN(tau_max)) {
+    //         tau_init = tau_max
+    //         a_init = a_max
+    //         ap_init = equa_diff_1(tau_max, a_init)
+    //     }
+
+    //     // On calcule le pas qui sera utilisé
+    //     let universInconnu = true
+    //     if ( (isNaN(tau_min) || isNaN(tau_max)) && !isNaN(t_0) ) {
+    //         pas = Math.abs(t_0) * 1e-3
+    //         universInconnu = false
+    //     } else {
+    //         pas = 1e-3
+    //     }
+
+    //     let option = document.getElementById("optionsMonofluide").value
+    //     if (!isNaN(tau_min) && !isNaN(tau_max) && option === "optionNull") {
+    //         pas = Math.abs(tau_max - tau_min) * 1e-3
+    //         universInconnu = false
+    //     }
+
+    //     if (universInconnu && option === "optionNull") {
+    //         if (a_min > 1) {a_min = 1}
+    //         if (a_max < 1) {a_max = 1}
+    //     }
+
+
+        // return [tau_init, a_init, ap_init, pas]
+    }
 
 /**
  * Fonction permettant de tracer le facteur d'échelle en fonction du temps.

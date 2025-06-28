@@ -401,6 +401,19 @@ function updateCalculette() {
     } else {
         update_rho(1)
     }
+    let equa_diff_2
+    if (document.getElementById("Omégal0")) {
+        equa_diff_2 = equa_diff_2_LCDM
+    } else {
+        equa_diff_2 = equa_diff_2_DE
+    }
+    if ((!debut_fin_univers(equa_diff_2, T0)[5] && Math.sign(document.getElementById("H0").value)==1) || (!debut_fin_univers(equa_diff_2, T0)[6] && Math.sign(document.getElementById("H0").value)==-1)) {
+        document.getElementById("avertissement_nbb").classList.remove('cache')
+        document.getElementById("avertissement_nbb2").classList.remove('cache')
+    } else {
+        document.getElementById("avertissement_nbb").classList.add('cache')
+        document.getElementById("avertissement_nbb2").classList.add('cache')
+    }
 
 }
 

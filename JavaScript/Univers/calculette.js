@@ -247,8 +247,8 @@ function generer_graphique_distance(fonction_EouF,is_t){
     }
 
     //Si il n'y a pas de big bang impossible a calculer
-    if (isNaN(debut_fin_univers(equa_diff_2, T0)[2])){
-        return;
+    if (!debut_fin_univers(equa_diff_2, T0)[5]){
+        console.log("ERREUR")
     }
     //paramètre pour le tracer
     let zmin = Number(document.getElementById("graphique_z_min").value);
@@ -986,8 +986,8 @@ function update_rho(isDE){
 		rho_de = rho_de.toExponential(4);
 		document.getElementById("rho_de").innerHTML = rho_de;
 	} else {
-        Omega_l = Number(document.getElementById("Omégal0").value)
-        rho_l = Omega_l *3 * Math.pow(h0*1e3/(3.085677581*1e22),2) / (8 * Math.PI * G)
+        Omega_l0 = Number(document.getElementById("Omégal0").value)
+        rho_l = Omega_l0 *3 * Math.pow(h0*1e3/(3.085677581*1e22),2) / (8 * Math.PI * G)
         rho_l = rho_l.toExponential(4);
 		document.getElementById("rho_l").innerHTML = rho_l;
     }

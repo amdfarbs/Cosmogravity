@@ -467,7 +467,8 @@ function texte_univers_calculette() {
     document.getElementById("label_selection_graphe").innerHTML = texte.calculette.labelSelectionGraphe
     document.getElementById("nom_fichier").value = texte.calculette.nomDéfaut
     document.getElementById("bouttonEnregistrer").innerHTML = texte.calculette.bouttonEnregistrer
-
+    document.getElementById("avertissement_nbb").innerHTML = texte.calculette.avertissement_nbb
+    document.getElementById("avertissement_nbb2").innerHTML = texte.calculette.avertissement_nbb
 
     // document.getElementById('texte_avertissement_z_-1').innerHTML = texte.calculette.avertissement_z_grand;
 };
