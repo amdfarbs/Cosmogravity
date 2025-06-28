@@ -1311,7 +1311,7 @@ function majFondFixe()
 	/*MASSE*/
 	context.fillText("M = "+M.toExponential(3)+" kg",5,90);
 	/*MOMENT CINÉTIQUE*/
-	context.fillText("J = "+J.toExponential(3)+" m\u00B2.s\u207B\u00B9",5,110);
+	context.fillText("J = "+J.toExponential(3)+" kg.m\u00B2.s\u207B\u00B9",5,110);
 	/*CHARGE(A)*/
 	context.fillText("a = "+a.toExponential(3)+" m",5,130);
 	/*ENTREES MOBILE*/
