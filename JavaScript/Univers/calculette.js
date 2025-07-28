@@ -30,12 +30,26 @@ function affichage_des_z(fonction_EouF){
     let delta_dm=Math.abs(DistanceMetrique(fonction_EouF,1/(1+z1),1/(1+z2))); //distance entre les deux z
 
     //on affiche toutes les valeurs de distances ainsi que leurs conversions
-    document.getElementById('output_dm1').value=arrondie_affichage(dm1);
-    document.getElementById('output_dm1_pc').value=arrondie_affichage(m_vers_pc(dm1));
-    document.getElementById('output_dm1_al').value=arrondie_affichage(m_vers_AL(dm1));
+    document.getElementById("affichage_deltadm").style=""
+    if (dm1 >= 0) {
+        document.getElementById("affichage_dm1").style=""
+        document.getElementById('output_dm1').value=arrondie_affichage(dm1);
+        document.getElementById('output_dm1_pc').value=arrondie_affichage(m_vers_pc(dm1));
+        document.getElementById('output_dm1_al').value=arrondie_affichage(m_vers_AL(dm1));
+    } else {
+        document.getElementById("affichage_dm1").style="display:none"
+        document.getElementById("affichage_deltadm").style="display:none"
+    }
+
+    if (dm2 >= 0) {
+        document.getElementById("affichage_dm2").style=""
     document.getElementById('output_dm2').value=arrondie_affichage(dm2);
     document.getElementById('output_dm2_pc').value=arrondie_affichage(m_vers_pc(dm2));
     document.getElementById('output_dm2_al').value=arrondie_affichage(m_vers_AL(dm2));
+    } else {
+        document.getElementById("affichage_dm2").style="display:none"
+        document.getElementById("affichage_deltadm").style="display:none"
+    }
     document.getElementById('output_delta_dm').value=arrondie_affichage(delta_dm);
     document.getElementById('output_delta_dm_pc').value=arrondie_affichage(m_vers_pc(delta_dm));
     document.getElementById('output_delta_dm_al').value=arrondie_affichage(m_vers_AL(delta_dm));
@@ -156,18 +170,40 @@ function affichage_des_z(fonction_EouF){
     let mu2 = -5 + 5* Math.log10(m_vers_pc(dl2));
 
     document.getElementById("output_Le").value = arrondie_affichage(Le);
-    document.getElementById("output_dL1").value = arrondie_affichage(dl1);
-    document.getElementById("output_dL1_pc").value = arrondie_affichage(m_vers_pc(dl1));
-    document.getElementById("output_dL1_al").value = arrondie_affichage(m_vers_AL(dl1));
-    document.getElementById("output_dL2").value = arrondie_affichage(dl2);
-    document.getElementById("output_dL2_pc").value = arrondie_affichage(m_vers_pc(dl2));
-    document.getElementById("output_dL2_al").value = arrondie_affichage(m_vers_AL(dl2));
-    document.getElementById("output_da1").value = arrondie_affichage(dda1);
-    document.getElementById("output_da1_pc").value = arrondie_affichage(m_vers_pc(dda1));
-    document.getElementById("output_da1_al").value = arrondie_affichage(m_vers_AL(dda1));
-    document.getElementById("output_da2").value = arrondie_affichage(dda2);
-    document.getElementById("output_da2_pc").value = arrondie_affichage(m_vers_pc(dda2));
-    document.getElementById("output_da2_al").value = arrondie_affichage(m_vers_AL(dda2));
+    if (dl1 >= 0) {
+        document.getElementById("affichage_dl2").style=""
+        document.getElementById("output_dL1").value = arrondie_affichage(dl1);
+        document.getElementById("output_dL1_pc").value = arrondie_affichage(m_vers_pc(dl1));
+        document.getElementById("output_dL1_al").value = arrondie_affichage(m_vers_AL(dl1));
+    } else {
+        document.getElementById("affichage_dl1").style="display: none"
+    }
+
+    if (dl2 >= 0) {
+        document.getElementById("affichage_dl2").style=""
+        document.getElementById("output_dL2").value = arrondie_affichage(dl2);
+        document.getElementById("output_dL2_pc").value = arrondie_affichage(m_vers_pc(dl2));
+        document.getElementById("output_dL2_al").value = arrondie_affichage(m_vers_AL(dl2));
+    } else {
+        document.getElementById("affichage_dl2").style="display: none"
+    }
+    
+    if (dda1 >= 0) {
+        document.getElementById("affichage_da1").style=""
+        document.getElementById("output_da1").value = arrondie_affichage(dda1);
+        document.getElementById("output_da1_pc").value = arrondie_affichage(m_vers_pc(dda1));
+        document.getElementById("output_da1_al").value = arrondie_affichage(m_vers_AL(dda1));
+    } else {
+        document.getElementById("affichage_da1").style="display: none"
+    }
+    if (dda2 >= 0) {
+        document.getElementById("affichage_da2").style=""
+        document.getElementById("output_da2").value = arrondie_affichage(dda2);
+        document.getElementById("output_da2_pc").value = arrondie_affichage(m_vers_pc(dda2));
+        document.getElementById("output_da2_al").value = arrondie_affichage(m_vers_AL(dda2));
+    } else {
+        document.getElementById("affichage_da2").style="display: none"
+    }
     document.getElementById("output_E1").value = arrondie_affichage(Ee1);
     document.getElementById("output_E2").value = arrondie_affichage(Ee2);
     document.getElementById("output_mu1").value = arrondie_affichage(mu1);
