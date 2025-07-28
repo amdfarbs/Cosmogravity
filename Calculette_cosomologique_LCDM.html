@@ -245,6 +245,9 @@
     <div id="PanneauCentral" class="fenetre_calculette" >
         <div class="boite_calculette">
             <h3 id="generateur_graphique" style="text-align: center;"></h3>
+            <div id="loading" class="load_bar_calc" style="display:none"> 
+                <span>loading ...</span>
+            </div>
             <span id="avertissement_nbb" class="" style="text-align: center;color: red;">Error</span>
             <div class="parametreGraphique">
                 <div style="display: flex;gap: 10px;margin-bottom: 1rem;">
@@ -350,6 +353,9 @@
     <div id="panneauSortie" class="fenetre_calculette">
         <div id="Entree_z1_z2" class="boite_calculette" style="align-items: center;">
             <h4 id="calcul_z_titre"></h4>
+            <div id="loading2" class="load_bar_calc" style="display:none"> 
+                <span>loading ...</span>
+            </div>
             <button id="bouton_calculer_z" class="grosBoutton" onclick="affichage_des_z(fonction_E)">Calculer</button>
             <div>
                 <div class="paramètre">

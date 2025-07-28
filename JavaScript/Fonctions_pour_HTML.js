@@ -286,6 +286,7 @@ if (window.location.pathname==="/Calculette_cosomologique_LCDM.html"){
  * Fonction qui permet de rafraîchir les éléments importants de la page univers
  */
 function updateUnivers() {
+    document.getElementById("loading").style=""
     document.getElementById("Omégak0").value = Omega_k(0).toExponential(4)
     document.getElementById("Ok_enregistrer").innerHTML = "&Omega;<sub>k<sub>0</sub></sub> = " + Omega_k(0).toExponential(4)
 
@@ -373,6 +374,7 @@ function updateUnivers() {
     
         update_graphe_interactif();
         update_point()
+        document.getElementById("loading").style="display:none"
     }
     
 /**
@@ -491,6 +493,7 @@ function enregistrer_calc() {
         Plotly.downloadImage(graph, {format: format, filename: nom})
     }
 }
+
 
 function downloadCSV(array1, array2, filename = "data.csv") {
     // Combine the arrays: assume equal length and 2 columns

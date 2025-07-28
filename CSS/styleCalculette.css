@@ -41,6 +41,12 @@
     display:none;
 }
 
+.load_bar_calc {
+    align-self: center;
+    width: 300px;
+    background-color: red;
+}
+
 .boite_calculette{
     display: flex;
     flex-direction: column;

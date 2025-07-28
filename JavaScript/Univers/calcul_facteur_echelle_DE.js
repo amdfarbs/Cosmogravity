@@ -96,6 +96,9 @@ function calcul_facteur_echelle_DE(equa_diff_1, equa_diff_2, fonction_simplifian
 }
 
 function affichage_site_DE() {
+    document.getElementById("loading").style.display = "block"; // Correct style setting
+
+    setTimeout(() => {
     let equa_diff_1 = equa_diff_1_DE
     let equa_diff_2 = equa_diff_2_DE
     let fonction_1 = fonction_F
@@ -116,4 +119,6 @@ function affichage_site_DE() {
     sessionStorage.setItem("abs",donnee[0])
     sessionStorage.setItem("ord",donnee[1])
     update_point()
+    document.getElementById("loading").style.display = "none";
+})
 }
