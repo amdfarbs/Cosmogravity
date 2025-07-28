@@ -99,27 +99,29 @@ function calcul_facteur_echelle_LCDM(equa_diff_1, equa_diff_2, fonction_simplifi
 }
 
 function affichage_site_LCDM() {
-    let texte = o_recupereJson()
-    let equa_diff_1 = equa_diff_1_LCDM
-    let equa_diff_2 = equa_diff_2_LCDM
-    let fonction = fonction_E
+     document.getElementById("loading").style.display = "block";
 
-    let sorties = calcul_facteur_echelle_LCDM(equa_diff_1, equa_diff_2, fonction)
-    let donnee = sorties[0]
-    let age_univers = sorties[1]
-    let debutEtFin = sorties[2]
+    setTimeout(() => {
+        let texte = o_recupereJson();
+        let equa_diff_1 = equa_diff_1_LCDM;
+        let equa_diff_2 = equa_diff_2_LCDM;
+        let fonction = fonction_E;
 
-    document.getElementById("début").innerHTML = debutEtFin[0]
-    document.getElementById("fin").innerHTML = debutEtFin[1]
-    document.getElementById("duree").innerHTML = ""
-    if (debutEtFin[4]) {
-        document.getElementById("duree").innerHTML = debutEtFin[4]
-    }
+        let sorties = calcul_facteur_echelle_LCDM(equa_diff_1, equa_diff_2, fonction);
+        let donnee = sorties[0];
+        let age_univers = sorties[1];
+        let debutEtFin = sorties[2];
 
-    graphique_facteur_echelle(donnee, debutEtFin, age_univers)
-    sessionStorage.setItem("abs",donnee[0])
-    sessionStorage.setItem("ord",donnee[1])
-    update_point()
+        document.getElementById("début").innerHTML = debutEtFin[0];
+        document.getElementById("fin").innerHTML = debutEtFin[1];
+        document.getElementById("duree").innerHTML = debutEtFin[4] || "";
+
+        graphique_facteur_echelle(donnee, debutEtFin, age_univers);
+        sessionStorage.setItem("abs", donnee[0]);
+        sessionStorage.setItem("ord", donnee[1]);
+        update_point();
+        document.getElementById("loading").style.display = "none"; // Correct style setting
+    }, 0); 
 }
 
   

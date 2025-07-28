@@ -4,6 +4,9 @@
  * @returns 
  */
 function affichage_des_z(fonction_EouF){
+    document.getElementById("loading2").style.display = "block"; // Correct style setting
+
+    setTimeout(() => {
     let start_temps=Date.now(); //commencer le timer pour savoir combien de temps les calculs prennent
     let H0 = Number(document.getElementById("H0").value);
     let z1 = Number(document.getElementById("z1").value);
@@ -211,6 +214,8 @@ function affichage_des_z(fonction_EouF){
 
     duree_calcul=Date.now()-start_temps;
     document.getElementById('resul_tps').innerHTML = "Le calcul a duré : " + duree_calcul + " millisecondes !";
+    document.getElementById("loading2").style.display = "none";
+    },5)
 }
 
 
@@ -253,6 +258,8 @@ function array_lerp(zmin=-1,zmax=5,pas) {
 }
 
 function generer_graphique_distance(fonction_EouF,is_t){
+    document.getElementById("loading").style.display = "block";
+    setTimeout(() => {
     if (sessionStorage.getItem("affichage_d_t")=="True" && is_t == 1) {
         document.getElementById('graphique_d_t').classList.add('cache')
         sessionStorage.setItem("affichage_d_t","False") 
@@ -440,10 +447,14 @@ function generer_graphique_distance(fonction_EouF,is_t){
     Plotly.newPlot(graphdivid,data,layout,{displaylogo: false});
 
     document.getElementById("temps_calcul_graph").innerHTML = "Le calcul a duré : " + (Date.now()-start_temps) + " millisecondes !";
-    }
+}
+document.getElementById("loading").style.display = "none";
+},5);
 }
 
 function generer_graphique_Omega(fonction_EouF,is_t){
+    document.getElementById("loading").style="";
+    setTimeout(() => {
     if (sessionStorage.getItem("affichage_omega_t")=="True" && is_t == 1) {
         document.getElementById('graphique_omega_t').classList.add('cache')
         sessionStorage.setItem("affichage_omega_t","False") 
@@ -507,6 +518,7 @@ function generer_graphique_Omega(fonction_EouF,is_t){
         //Si il n'y a pas de big bang impossible a calculer
         let T0 = Number(document.getElementById("T0").value);
         if (isNaN(debut_fin_univers(equa_diff_2_LCDM, T0)[2])){
+            document.getElementById("loading").style.display = "none";
             return;
         }
         text_omegal0_graph ='   \Ω<sub>Λ0</sub>:  '+Omega_l(0); //texte et titre dans lequel omegalambda ou omegaDE apparait
@@ -536,6 +548,7 @@ function generer_graphique_Omega(fonction_EouF,is_t){
         //Si il n'y a pas de big bang impossible a calculer
         let T0 = Number(document.getElementById("T0").value);
         if (isNaN(debut_fin_univers(equa_diff_2_DE, T0)[2])){
+            document.getElementById("loading").style.display = "none";
             return;
         }
         text_omegal0_graph ='   \Ω<sub>DE0</sub>:  '+Omega_DE(0); //texte et titre dans lequel omegalambda ou omegaDE apparait
@@ -646,8 +659,12 @@ function generer_graphique_Omega(fonction_EouF,is_t){
 
     document.getElementById("temps_calcul_graph").innerHTML = "Le calcul a duré : " + (Date.now()-start_temps) + " millisecondes !";
     }
+    document.getElementById("loading").style.display = "none";
+    }, 5); 
 }
 function generer_graphique_TempsDecalage(fonction_EouF, is_t){
+    document.getElementById("loading").style.display = "block";
+    setTimeout(() => {
     if (sessionStorage.getItem("affichage_z_t")=="True" && is_t == 1) {
         document.getElementById('graphique_z_t').classList.add('cache')
         sessionStorage.setItem("affichage_z_t","False") 
@@ -673,6 +690,7 @@ function generer_graphique_TempsDecalage(fonction_EouF, is_t){
     //Si il n'y a pas de big bang impossible a calculer
     let T0 = Number(document.getElementById("T0").value);
     if (isNaN(debut_fin_univers(equa_diff_2, T0)[2])){
+        document.getElementById("loading").style.display = "none";
         return;
     }
     //paramètre pour le tracer
@@ -793,7 +811,11 @@ function generer_graphique_TempsDecalage(fonction_EouF, is_t){
     Plotly.newPlot(graphdivid,data,layout,{displaylogo: false});
 
     document.getElementById("temps_calcul_graph").innerHTML = "Le calcul a duré : " + (Date.now()-start_temps) + " millisecondes !";
+    
 }
+document.getElementById("loading").style.display = "none";
+}, 5); 
+
 }
 
 //-----------------Calcul diamètre---------
