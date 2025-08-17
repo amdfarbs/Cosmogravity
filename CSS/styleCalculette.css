@@ -42,9 +42,11 @@
 }
 
 .load_bar_calc {
-    align-self: center;
+    align-self:center;
+    text-align: center;
     width: 300px;
-    background-color: red;
+    height: 3em;
+    color: red;
 }
 
 .boite_calculette{

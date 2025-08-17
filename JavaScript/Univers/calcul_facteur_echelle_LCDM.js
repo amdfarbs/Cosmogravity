@@ -120,8 +120,9 @@ function affichage_site_LCDM() {
         sessionStorage.setItem("abs", donnee[0]);
         sessionStorage.setItem("ord", donnee[1]);
         update_point();
-        document.getElementById("loading").style.display = "none"; // Correct style setting
-    }, 0); 
+        document.getElementById("loading").style.display = "none";
+    }, 10); 
+    
 }
 
   

@@ -94,8 +94,9 @@
 			"labelNom": "Nom du fichier",
 			"nomDéfautLCDM": "échelle_LCDM",
 			"nomDéfautDE": "échelle_DE",
-			"bouttonEnregistrer": "Enregistrer"
+			"bouttonEnregistrer": "Enregistrer",
 
+		"load_msg": "<h3>Chargement</h3>"
 	},
 
 
@@ -217,7 +218,9 @@
 			"labelNom": "Nom du fichier :",
 			"nomDéfaut": "plot_calculette",
 			"bouttonEnregistrer": "Enregistrer",
-			"labelSelectionGraphe":"Graphe :"
+			"labelSelectionGraphe":"Graphe :",
+		
+		"load_msg": "<h3>Chargement</h3>"
 	},
 
 	"constante": {

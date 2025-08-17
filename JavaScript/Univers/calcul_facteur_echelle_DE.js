@@ -120,5 +120,5 @@ function affichage_site_DE() {
     sessionStorage.setItem("ord",donnee[1])
     update_point()
     document.getElementById("loading").style.display = "none";
-})
+},10);
 }

@@ -286,7 +286,8 @@ if (window.location.pathname==="/Calculette_cosomologique_LCDM.html"){
  * Fonction qui permet de rafraîchir les éléments importants de la page univers
  */
 function updateUnivers() {
-    document.getElementById("loading").style=""
+    document.getElementById("loading").style.display="block";
+    setTimeout(() => {
     document.getElementById("Omégak0").value = Omega_k(0).toExponential(4)
     document.getElementById("Ok_enregistrer").innerHTML = "&Omega;<sub>k<sub>0</sub></sub> = " + Omega_k(0).toExponential(4)
 
@@ -366,6 +367,7 @@ function updateUnivers() {
                 document.getElementById("resultat_dm_evenement_al").innerHTML = arrondie_affichage(dm_horizon_evenement_al);
                 document.getElementById("he_enregistrer").innerHTML = "d<sub>e<sub>0</sub></sub> = " + dm_horizon_evenement_pc.toExponential(4) + " pc"
             }
+            
         }
 
        
@@ -374,7 +376,8 @@ function updateUnivers() {
     
         update_graphe_interactif();
         update_point()
-        document.getElementById("loading").style="display:none"
+    }, 100); 
+    document.getElementById("loading").style.display = "none";
     }
     
 /**

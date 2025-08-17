@@ -91,7 +91,9 @@
 		"labelNom": "File name",
 		"nomDéfautLCDM": "scale_LCDM",
 		"nomDéfautDE": "scale_DE",
-		"bouttonEnregistrer": "Save"
+		"bouttonEnregistrer": "Save",
+
+		"load_msg": "<h3>Loading</h3>"
 	},
 
 	"calculette" : {
@@ -211,7 +213,9 @@
 		"labelNom": "File name :",
 		"nomDéfaut": "plot_calculator",
 		"bouttonEnregistrer": "Save",
-		"labelSelectionGraphe":"Graph :"
+		"labelSelectionGraphe":"Graph :",
+
+		"load_msg": "<h3>Loading</h3>"
 	},
 
 	"constante": {
