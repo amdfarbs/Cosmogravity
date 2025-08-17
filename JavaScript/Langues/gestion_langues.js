@@ -264,6 +264,8 @@ function texte_univers_LCDM() {
     document.getElementById("nom_fichier").value = texte.univers.nomDéfautLCDM
     document.getElementById("bouttonEnregistrer").innerHTML = texte.univers.bouttonEnregistrer
 
+    document.getElementById("load_msg").innerHTML = texte.univers.load_msg
+
 
 }
 
@@ -317,6 +319,8 @@ function texte_univers_DE() {
     document.getElementById("labelNom_fichier").insertAdjacentHTML("beforeend", texte.univers.labelNom)
     document.getElementById("nom_fichier").value = texte.univers.nomDéfautDE
     document.getElementById("bouttonEnregistrer").innerHTML = texte.univers.bouttonEnregistrer
+
+    document.getElementById("load_msg").innerHTML = texte.univers.load_msg
 };
 
 function texte_univers_calculette() {
@@ -471,6 +475,9 @@ function texte_univers_calculette() {
     document.getElementById("avertissement_nbb2").innerHTML = texte.calculette.avertissement_nbb
 
     // document.getElementById('texte_avertissement_z_-1').innerHTML = texte.calculette.avertissement_z_grand;
+
+    document.getElementById("load_msg").innerHTML = texte.univers.load_msg
+    document.getElementById("load_msg2").innerHTML = texte.univers.load_msg
 };
 
 function texte_constantes() {
